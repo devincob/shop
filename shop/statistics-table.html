@@ -1,0 +1,356 @@
+<meta charset="UTF-8" />
+<style>
+	
+	.yuChairFix:after {
+		content: '';
+		display: block;
+		clear: both;
+	}
+	
+	#statisticsTable {
+		position: relative;
+	}
+	
+	#statisticsTable .statisticsScreen {
+		height: 73px;
+	}
+	
+	#statisticsTable .statisticsScreen>span {
+		color: #666;
+		font-size: 14px;
+		height: 41px;
+		width: 36px;
+		text-align: center;
+		line-height: 41px;
+	}
+	
+	#statisticsTable .tableListInp {
+		color: #666666;
+		border: #b3b3b3 solid 1px;
+	}
+	
+	#statisticsTable .tableListInp div {
+		width: 41px;
+		height: 41px;
+		position: relative;
+		cursor: pointer;
+	}
+	
+	#statisticsTable .tableListInp div i {
+		height: 10px;
+		width: 10px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-top: -5px;
+		margin-left: -5px;
+		border-top: 10px solid #b3b3b3;
+		border-left: 5px solid transparent;
+		border-right: 5px solid transparent;
+		box-sizing: border-box;
+	}
+	
+	#statisticsTable .statisticsList {
+		position: relative;
+		line-height: 41px;
+	}
+	
+	#statisticsTable .statisticsList input {
+		text-align: center;
+		display: block;
+		float: left;
+		height: 41px;
+		width: 148px;
+		outline: none;
+		border: 0;
+		border-right: 1px #B3B3B3 solid;
+	}
+	
+	#statisticsTable .statisticsList ul {
+		width: 100%;
+		margin: 0;
+		position: absolute;
+		top: 43px;
+		left: 0;
+		z-index: 10;
+		background: #fff;
+	}
+	
+	#statisticsTable .statisticsList ul li {
+		text-align: center;
+		height: 41px;
+		border: 1px #b3b3b3 solid;
+		border-top: 0;
+	}
+	
+	#statisticsTable .statConBox {
+		width: 302px;
+		height: 152px;
+		margin-right: 12px;
+		margin-bottom: 12px;
+		background: #eee;
+		position: relative;
+		float: left;
+	}
+	
+	#statisticsTable .statConBox h1 {
+		width: 255px;
+		font-size: 20px;
+		line-height: 54px;
+		height: 54px;
+		margin-top: 0;
+		margin-bottom: 6px;
+		text-indent: 15px;
+		border-left: 1px #f8931f solid;
+    	overflow: hidden;
+    	text-overflow: ellipsis;
+    	-webkit-line-clamp: 1;
+    	display: -webkit-box;
+    	-webkit-box-orient: vertical;
+	}
+	
+	#statisticsTable .statConBox p {
+		font-size: 12px;
+		margin-top: 23px;
+		margin-bottom: 0;
+		padding-left: 18px;
+	}
+	
+	#statisticsTable .statConBox a {
+		text-align: center;
+		line-height: 34px;
+		color: #fff;
+		height: 34px;
+		font-size: 14px;
+		margin-top: 19px;
+		display: block;
+		background: #f8931f;
+	}
+	
+	#statisticsTable .statConBox span {
+		font-size: 42px;
+		color: rgba(0, 0, 0, .1);
+		position: absolute;
+		top: 8px;
+		right: 11px;
+	}
+	
+	#statisticsTable .statConBox.active h1 {
+		color: #f8931f;
+		border-left-color: #f8931f;
+	}
+	
+	#statisticsTable .statConBox.active span {
+		color: #f8931f;
+	}
+	
+	#statTable.tableStatisticsDetails {
+		width: 700px;
+	}
+	
+	#statTable .titleBar li {
+		padding-left: ;
+	}
+	
+	#statTable .titleBar ul {
+		padding-left: 28px;
+	}
+	
+	#statTable .titleBar ul span {
+		font-size: 16px;
+		display: block;
+		width: 210px;
+		float: left;
+	}
+	
+	#statTable .titleBar li:first-of-type {
+		margin-bottom: 30px;
+	}
+	
+	#statTable .titleBar li:last-of-type span:last-of-type {
+		width: 345px;
+	}
+	
+	#statTable .titleDetails {
+		margin-top: 25px;
+		max-height: 460px;
+	}
+	
+	#statTable .titleDetails li span {
+		color: #888;
+		height: 50px;
+		line-height: 50px;
+		font-size: 16px;
+		text-align: center;
+		margin: 0;
+		float: left;
+	}
+	
+	#statTable .titleDetails li:nth-of-type(even) {
+		background: #f4f2f3;
+	}
+	
+	#statTable .titleDetails li:first-of-type {
+		background: #e6e6e6;
+	}
+	
+	#statTable .titleDetails li:last-of-type {
+		background: #e6e6e6;
+	}
+	#statTable .titleDetails li:first-of-type span {
+		color: #000;
+	}
+	
+	#statTable .titleDetails li span:nth-of-type(1) {
+		width: 88px;
+	}
+	
+	#statTable .titleDetails li span:nth-of-type(2) {
+		width: 110px;
+	}
+	
+	#statTable .titleDetails li span:nth-of-type(3) {
+		width: 90px;
+	}
+	
+	#statTable .titleDetails li span:nth-of-type(4) {
+		width: 90px;
+	}
+	
+	#statTable .titleDetails li span:nth-of-type(5) {
+		width: 110px;
+	}
+	
+	#statTable .titleDetails li span:nth-of-type(6) {
+		width: 95px;
+	}
+	
+	#statTable .titleDetails li span:nth-of-type(7) {
+		width: 95px;
+	}
+	
+	#statTable.tableStatisticsDetails {
+		position: absolute;
+		right: 0;
+		background: #fff;
+	}
+	
+	.newClose {
+		text-align: center;
+		line-height: 50px;
+		width: 45px;
+		height: 100%;
+		background: #e4e4e4;
+		position: absolute;
+		right: 0;
+		top: 0;
+		cursor: pointer;
+	}
+	.win-body {
+		max-height: 615px !important;
+	}
+</style>
+
+<section id="statisticsTable" v-on:click="clickBody" style="min-width: 1100px;">
+	<section>
+		<section class="statisticsScreen yuChairFix">
+			<section class="statisticsList fl">
+				<section class="tableListInp yuChairFix">
+					<sd-calendar :time.sync="startTime" :uid="'mycalendar1'" :format="'yyyy年MM月dd日'" :only="true" readonly="readonly" style="height: 41px"></sd-calendar>
+					<div class="fl calendar-ctr" onclick="$('#mycalendar1').mouseup();">
+						<i></i>
+					</div>
+				</section>
+			</section>
+			<span style="float: left; width: 25px;">至</span>
+			<section class="statisticsList fl">
+				<section class="tableListInp yuChairFix">
+					<sd-calendar :time.sync="endTime" :uid="'mycalendar2'" :format="'yyyy年MM月dd日'" :only="true" readonly="readonly" style="height: 41px"></sd-calendar>
+					<div class="fl calendar-ctr" onclick="$('#mycalendar2').mouseup();">
+						<i></i>
+					</div>
+				</section>
+			</section>
+
+			<a v-on:click="searInDate" style="margin-right: 40px;width: 51px;height: 43px;background: #29A7E1;display: block;float: left;" href="javascript:void(0)"><img src="res/images/search.png" alt="" /></a>
+			<section class="statisticsList fl">
+				<section v-on:click="showAreaList" class="tableListInp yuChairFix">
+					<span style="height: 41px;width: 136px;display: block;float: left;text-align: center;border-right: 1px #B3B3B3 solid;cursor: pointer;">{{allArea}}</span>
+					<div class="fl">
+						<i></i>
+					</div>
+				</section>
+				<ul v-if="areaBtn" class="tableListUl" style="cursor: pointer;">
+					<li v-for="item in areaList" v-on:click="selectUlArea(item)">{{item}}</li>
+				</ul>
+			</section>
+			<span class="fl line">-</span>
+			<section class="statisticsList fl">
+				<section v-on:click="showTableList" class="tableListInp yuChairFix">
+					<span style="height: 41px;width: 136px;display: block;float: left;text-align: center;border-right: 1px #B3B3B3 solid;cursor: pointer;">{{allTable}}</span>
+					<div class="fl">
+						<i></i>
+					</div>
+				</section>
+				<ul v-if="tableBtn" class="tableListUl" style="cursor: pointer;">
+					<li v-for="item in tableList" v-on:click="selectUlTable(item)">{{item}}</li>
+				</ul>
+			</section>
+			<a v-on:click="searInBill" style="display: block;width: 96px; height: 44px; float: left;background: #29A7E1;line-height: 44px;" href="javascript:void(0)" class="fl">搜索</a>
+		</section>
+		<section class="statisticsContent yuChairFix">
+			<section class="statConBox" v-for="(i,item) in allDetails">
+				<h1>{{item.areaName}}-{{item.tableName}}</h1>
+				<p>共点单：{{item.orderTotal}}</p>
+				<p>共收：¥{{item.payment}}</p>
+				<!--<a href="javascript:void(0)" v-on:click="showDetails(item)">点击查看详情</a>-->
+				<span>{{i+1}}</span>
+			</section>
+		</section>
+	</section>
+
+	<section class="tableStatisticsDetails" id="statTable">
+		<section class="titleBar">
+			<ul style="margin-top: 20px;">
+				<li class="yuChairFix">
+					<span>订单总数：{{tableTotalDetails.orderTotal}}单</span>
+					<span>总实收：¥{{tableTotalDetails.payment}}</span>
+					<span>总优惠：¥{{tableTotalDetails.payment}}</span>
+				</li>
+				<li class="yuChairFix">
+					<span>菜品数：份</span>
+					<span>桌台统计日期：{{tableDetails.time}}</span>
+				</li>
+				</dl>
+		</section>
+		<ul class="titleDetails" style="padding: 0;">
+			<li class="yuChairFix">
+				<span>序号</span>
+				<span>商品名</span>
+				<span>单价</span>
+				<span>数量</span>
+				<span>小计</span>
+				<span>折扣总额</span>
+				<span>实收总额</span>
+			</li>
+			<li class="yuChairFix" v-for="(i,item) in tableDetails.goods">
+				<span>{{i+1}}</span>
+				<span>{{item.itemName}}</span>
+				<span>{{item.itemPrice}}</span>
+				<span>{{item.itemNum}}</span>
+				<span>{{item.priceTotal}}</span>
+				<span>{{item.discountPrice}}</span>
+				<span>{{item.paymentTotal}}</span>
+			</li>
+			<li class="yuChairFix">
+				<span>序号</span>
+				<span>商品名</span>
+				<span>单价</span>
+				<span>数量</span>
+				<span>小计</span>
+				<span>折扣总额</span>
+				<span>实收总额</span>
+			</li>
+		</ul>
+	</section>
+</section>

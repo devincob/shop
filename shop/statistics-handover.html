@@ -1,0 +1,387 @@
+<style type="text/css">
+	.yuChairFix:after {
+		content: '';
+		display: block;
+		clear: both;
+	}
+	
+	#orHandOver {
+		margin-top: 20px;
+		position: relative;
+	}
+	
+	#orHandOver .orMaReMainList li:first-of-type,
+	#orHandOver .orMaReMainList li:last-of-type {
+		background: #e6e6e6;
+	}
+	
+	#orHandOver .orMaReMainList li:nth-of-type(even) {
+		background: #f2f2f2;
+	}
+	
+	#orHandOver .orMaReMainList li span {
+		display: block;
+		text-align: center;
+		height: 50px;
+		line-height: 50px;
+		width: 9%;
+		color: #8f8f8f;
+		float: left;
+		position: relative;
+	}
+	#orHandOver .orMaReMainList li span:nth-of-type(1){
+		width: 12%;
+	}
+	#orHandOver .orMaReMainList li span:nth-of-type(2){
+		width: 13%;
+	}
+	#orHandOver .orMaReMainList li span:nth-of-type(4){
+		width: 5%;
+	}
+	#orHandOver .orMaReMainList li span:nth-of-type(7){
+		width: 7%;
+	}
+	
+	#orHandOver .orMaRetBox {
+		height: 42px;
+		border: 1px solid #b3b3b3;
+		float: left;
+	}
+	
+	#orHandOver .zhi {
+		text-align: center;
+		width: 35px;
+		height: 40px;
+		line-height: 40px;
+		display: block;
+		float: left;
+	}
+	
+	.orHandOverTime {
+		height: 42px;
+		margin-bottom: 25px;
+	}
+	
+	#orHandOver .orMaRetBox input {
+		text-align: center;
+		height: 40px;
+		width: 159px;
+		padding-left: 0;
+		display: block;
+		float: left;
+		outline: none;
+		border: 0;
+		border-right: solid #b3b3b3 1px;
+	}
+	
+	#orHandOver .orMaRetBox div {
+		width: 40px;
+		height: 40px;
+		position: relative;
+		cursor: pointer;
+	}
+	
+	#orHandOver .orMaRetBox div i {
+		height: 10px;
+		width: 10px;
+		border-top: 10px #b3b3b3 solid;
+		border-left: 5px solid transparent;
+		border-right: 5px solid transparent;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		margin-left: -5px;
+		margin-top: -5px;
+		box-sizing: border-box;
+	}
+	
+	#orHandOver .orMaRetBox a {
+		width: 50px;
+		height: 40px;
+		background: #28a8e0;
+	}
+	
+	#orHandOver .orMaRetBox:last-of-type a {
+		color: #fff;
+		height: 40px;
+		width: 51px;
+		text-align: center;
+		line-height: 40px;
+	}
+	
+	#orHandOver .deepBlue {
+		background: #2980b9;
+	}
+	
+	#orHandOver .blue {
+		background: #00adef;
+	}
+	
+	#orHandOver .red {
+		background: #ec1515;
+	}
+	
+	#orHandOver .orMaReMainList li span a {
+		width: 100% !important;
+		color: #fff;
+		font-size: 12px;
+		height: 49px;
+		margin-top: 1px;
+		margin-left: 1px;
+		display: block;
+		float: right;
+	}
+	
+	#orHandOver .circle {
+		width: 26px;
+		height: 26px;
+		border: 1px #c7c7c7 solid;
+		border-radius: 50%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-left: -13px;
+		margin-top: -13px;
+		background: #fff;
+	}
+	
+	#orHandOver .circle.active {
+		background: url(res/icon/selected.png) center center no-repeat, #28A8E0;
+	}
+	
+	#orHandOver .orMaReBatch {
+		position: absolute;
+		top: -60px;
+		right: 100px;
+	}
+	
+	#orHandOver .orMaReBatch a {
+		color: #fff;
+		margin-left: 10px;
+	}
+	
+	#orHandOver .orange {
+		background: #f8931f;
+	}
+	
+	#orHandOver .orMaReBatch a.active {
+		background: #2980b9;
+	}
+	
+	#orHandOver .orMaReMainList li:nth-of-type(2) {
+		text-align: center;
+		height: 50px;
+		line-height: 50px;
+	}
+	
+	#orBatch {
+		width: 100%;
+		position: fixed;
+	}
+	
+	#orBatch p {
+		margin: 0;
+		margin-top: 30px;
+		padding-left: 28px;
+	}
+	
+	#orBatch p:last-of-type {
+		height: 14px;
+		margin-bottom: 48px;
+	}
+	
+	#orBatch p span {
+		display: block;
+		float: left;
+	}
+	
+	#orBatch p>span:first-of-type {
+		width: 254px;
+	}
+	
+	#orHandOver .orMaReBatch a.disabled {
+		background: #B3B3B3;
+		cursor: not-allowed;
+	}
+	
+	#statHaovDetails {
+		min-width: 1100px;
+		margin-right: 90px;
+		padding-top: 25px;
+	}
+	
+	#statHaovDetails .loginTime {
+		margin-bottom: 20px;
+	}
+	
+	#statHaovDetails .loginTime span {
+		font-size: 14px;
+		display: block;
+		width: 356px;
+		float: left;
+	}
+	
+	#statHaovDetails .deInfo .deInfoBox {
+		padding-bottom: 1px;
+		margin-bottom: 10px;
+		background: #f2f2f2;
+	}
+	
+	#statHaovDetails .deInfo .deInfoBox h1 {
+		padding: 11px 0;
+		background: #e6e6e6;
+		margin: 0;
+	}
+	
+	#statHaovDetails .deInfo .deInfoBox h1 span {
+		height: 28px;
+		line-height: 28px;
+		padding-left: 23px;
+		display: block;
+		border-left: 2px #f7941d solid;
+	}
+	
+	#statHaovDetails .deInfo .deInfoBox ul {
+		height: 100px;
+		padding: 0;
+		margin: 0;
+		padding-left: 25px;
+		padding-top: 20px;
+	}
+	
+	#statHaovDetails .deInfo .deInfoBox ul li {
+		padding-bottom: 1px;
+		list-style: none;
+		margin-bottom: 20px;
+	}
+	
+	#statHaovDetails .deInfo .deInfoBox ul li span {
+		display: block;
+		width: 25%;
+		float: left;
+	}
+	
+	/*#statHaovDetails .deInfo .deInfoBox:last-of-type ul {
+		height: 50px;
+	}*/
+</style>
+
+<section id="orHandOver" style="min-width: 1300px;">
+	<section v-if="!showDetails">
+		<section class="orHandOverCon">
+			<section class="orHandOverTime yuChairFix">
+				<section class="orMaRetBox yuChairFix">
+					<sd-calendar :time.sync="startTime" :uid="'mycalendar1'" :format="'yyyy年MM月dd日'" :only="true" readonly="readonly" style="height: 40px"></sd-calendar>
+					<div class="fl calendar-ctr" onclick="$('#mycalendar1').mouseup();">
+						<i></i>
+					</div>
+				</section>
+				<span class="zhi">至</span>
+				<section class="orMaRetBox yuChairFix">
+					<sd-calendar :time.sync="endTime" :uid="'mycalendar2'" :format="'yyyy年MM月dd日'" :only="true" readonly="readonly" style="height: 40px"></sd-calendar>
+					<div class="fl calendar-ctr" onclick="$('#mycalendar2').mouseup();">
+						<i></i>
+					</div>
+					<a class="fl" v-on:click="searInTime" href="javascript:void(0)"><img src="res/images/search.png" alt="" /></a>
+				</section>
+			</section>
+			<section class="orHandOverMain">
+				<ul class="orMaReMainList">
+					<li class="yuChairFix">
+						<span>开始时间</span>
+						<span>结束时间</span>
+						<span>姓名</span>
+						<span>职位</span>
+						<span>收银总额</span>
+						<span>开台次数</span>
+						<span>会员收入</span>
+						<span>会员充值</span>
+						<span>备用金</span>
+						<span>服务费</span>
+						<span style="float: right;">操作</span>
+					</li>
+					<li v-if="handOverInfo.length == 0">今天还未进行交接班</li>
+					<li style="display: table;width: 100%;" v-for="(i,item) in handOverInfo" class="yuChairFix">
+						<span>{{item.getTime}}</span>
+						<span>{{item.giveTime}}</span>
+						<span>{{item.userName}}</span>
+						<span>{{item.roleName}}</span>
+						<span>{{item.totalIncome}}</span>
+						<span>{{item.allNum}}</span>
+						<span>{{item.vip}}</span>
+						<span>0.00</span>
+						<span>{{item.pettyCash}}</span>
+						<span>{{item.chargeIncome}}</span>
+						<span style="float: right;"><a v-on:click="showHand(item)" class="deepBlue" href="javascript:void(0)">明细</a></span>
+					</li>
+					<li class="yuChairFix">
+						<span>开始时间</span>
+						<span>结束时间</span>
+						<span>姓名</span>
+						<span>职位</span>
+						<span>收银总额</span>
+						<span>开台次数</span>
+						<span>会员收入</span>
+						<span>会员充值</span>
+						<span>备用金</span>
+						<span>服务费</span>
+						<span style="float: right;">操作</span>
+					</li>
+				</ul>
+
+			</section>
+			<sd-page v-if="total>1" v-on:click="goPage(page)" :page.sync="page" :count.sync='count' :total.sync='total' :num.sync='num' style="float: right;margin-top: 25px;"></sd-page>
+		</section>
+	</section>
+	<section v-else id="statHaovDetails">
+		<section class="loginTime yuChairFix">
+			<span>{{hoverDetail.getTime}}</span>
+			<span>{{hoverDetail.giveTime}}</span>
+		</section>
+		<section class="deInfo">
+			<section class="deInfoBox">
+				<h1><span>基本信息</span></h1>
+				<ul class="basicInfo">
+					<li class="yuChairFix">
+						<span>交接人：{{hoverDetail.userName}}</span>
+						<span>职位：{{hoverDetail.roleName}}</span>
+						<span>备用金：¥{{hoverDetail.pettyCash}}</span>
+						<span>开台数：{{hoverDetail.allNum}}</span>
+					</li>
+					<li class="yuChairFix">
+						<span>总订单数：{{hoverDetail.havePayNum}}</span>
+						<span>挂账单数：{{hoverDetail.havePayNum}}</span>
+						<span>现金找零：{{hoverDetail.cashChange}}</span>
+					</li>
+				</ul>
+			</section>
+			<section class="deInfoBox yuChairFix">
+				<h1><span>总收入：¥{{hoverDetail.totalIncome}}</span></h1>
+				<ul class="basicInfo">
+					<li class="yuChairFix">
+						<span>现金支付：¥{{hoverDetail.cash}}</span>
+						<span>微信支付：¥{{hoverDetail.wx}}</span>
+						<span>余额支付：¥0.00</span>
+						<span>服务费：¥{{hoverDetail.chargeIncome}}</span>
+					</li>
+					<li class="yuChairFix">
+						<span>银联支付：¥{{hoverDetail.bank}}</span>
+						<span>支付宝支付：¥{{hoverDetail.ali}}</span>
+						<span>其他支付：¥{{hoverDetail.other}}</span>
+						<span>挂账金额：¥{{hoverDetail.holdIncome}}</span>
+					</li>
+				</ul>
+			</section>
+			<!--<section class="deInfoBox">
+				<h1><span>会员消费统计</span></h1>
+				<ul class="basicInfo">
+					<li class="yuChairFix">
+						<span>会员消费：¥{{}}</span>
+						<span>会员充值：¥{{}}</span>
+						<span>赠送额度：¥{{}}</span>
+					</li>
+				</ul>
+			</section>-->
+		</section>
+	</section>
+</section>

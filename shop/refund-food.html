@@ -1,0 +1,116 @@
+<style type="text/css">
+    .commonLi ul li{
+        width: 33%;
+        float: left;
+    }
+    .commonLi ul li:first-child{
+        width:34%;
+    }
+    .refundFoodContent{
+        text-align: center;
+    }
+    .refundFoodContent:nth-of-type(odd){
+        background: #f2f2f2;
+    }
+    .refundTittle{
+        background: #E6E6E6;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+    }
+    .refundFoodContent{
+        height: 50px;
+        line-height: 50px;
+    }
+    .editInfo{
+        width: 100%;
+        display: block;
+        color: #FFF;
+    }
+</style>
+<section   num="app" id="refundFood" v-cloak>
+    <section>
+        <!-- 添加原因的button-->
+        <section style="margin-bottom: 15px;">
+            <div v-on:click="addReason" class="btn-concent" style="width: 100px;">
+                <button class="increase">添加</button>
+            </div>
+        </section>
+        <section style="width:100%;min-width: 760px;">
+            <!-- title标题-->
+            <section class="refundTittle commonLi" >
+                <ul>
+                    <li>退菜原因</li>
+                    <li>排序</li>
+                    <li>操作</li>
+                </ul>
+            </section>
+            <!-- 内容list-->
+            <section>
+                    <section v-if = "refundFood.length == 0" style="width:100%;height:50px;line-height: 50px;text-align: center;color:orange;">暂时无退菜</section>
+                    <section v-else v-for="(index,print) in refundFood" class="refundFoodContent commonLi" >
+                        <ul>
+                            <li style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">{{print.reasonName}}</li>
+                            <li>{{print.sort}}</li>
+                            <li>
+                                <span v-if="print.isDefined==1" class="blue editInfo" >
+                                     <a v-on:click="editInfo(index,print)" href="javascript:void(0);" class="blue fl" style="width: 50%;">编辑</a>
+                                     <a v-on:click="deleteRefundBtn(index,print)" href="javascript:void(0);" class="red fl" style="width: 50%;">删除</a>
+                                </span>
+                                <!--编辑状态-->
+                                <span v-else class="gray editInfo">不可操作</span>
+                            </li>
+                        </ul>
+                    </section>
+              </section>
+            <!-- title标题-->
+            <section v-if = "refundFood.length >0" class="refundTittle commonLi">
+                <ul>
+                    <li>退菜原因</li>
+                    <li>排序</li>
+                    <li>操作</li>
+                </ul>
+            </section>
+        </section>
+        <!--翻页控件：-->
+        <!--<sd-page :page.sync="0" :count.sync='100' :total.sync='20' :num.sync='1'></sd-page>-->
+    </section>
+
+</section>
+<!--编辑退菜信息---------------弹框-->
+<section id="editInfomation">
+    <style type="text/css">
+        #editInfomation{background:#eee;width:100%;height:100%;padding-top:20px;}
+        #editInfomation .popupList{
+            height:50px;
+            padding-left:20px;
+            margin-top:20px;
+        }
+        #editInfomation .popupListBefore{
+            width: 120px;height: 40px;
+            line-height: 40px;
+            float: left;
+            text-align: right;
+            margin-right:15px;
+        }
+        /*...........................小红*星星.....................*/
+        #editInfomation .popupListBefore:after {
+            content: "*";
+            color: red;
+            position: relative;
+            top: 3px;
+            right: -1px;
+        }
+        #editInfomation .popupList .input{
+            border: 1px solid deepskyblue;
+        }
+    </style>
+    <div class="popupList">
+        <h3 class="popupListBefore">编辑退菜原因</h3>
+        <input type="text" v-model="refundName" class="input" value="{{refundName}}" placeholder="重新编辑退菜原因"/>
+    </div>
+    <div class="popupList">
+        <h3 class="popupListBefore">排序</h3>
+        <sd-subadd :num.sync="num" :maxnum="1000" :minnum="1"></sd-subadd>
+    </div>
+</section>

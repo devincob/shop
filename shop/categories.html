@@ -1,0 +1,313 @@
+<style type="text/css">
+    .tc {
+        text-align: center;
+    }
+    
+    .pa {
+        position: absolute;
+        z-index: 666;
+    }
+    
+    .cate-show {
+        text-align: left;
+        font-size: 0;
+        /*width: 2800px;*/
+        height: 90px;
+    }
+    
+    .dlb {
+        display: inline-block;
+    }
+    
+    .cate-addclass {
+        width: 150px;
+        height: 40px;
+        background-color: #29A7E1;
+        line-height: 40px;
+        cursor: pointer;
+        float: left;
+    }
+    
+    .cate-addclass a {
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        margin-bottom: 4px;
+    }
+    
+    .cate-addclass a img {
+        vertical-align: middle;
+        margin-right: 4px;
+    }
+    
+    .cate-addclassed {
+        width: 250px;
+        height: 136px;
+        background-color: #EDECE8;
+        font-size: 0;
+        margin-left: 10px;
+        display: none;
+        float: left;
+    }
+    
+    .cate-addclassed input,
+    .add-secondClass .secondClass-content input {
+        padding: 0;
+        width: 210px;
+        height: 40px;
+        border: none;
+        outline: none;
+        margin-top: 10px;
+        font-size: 16px;
+        padding-left: 20px;
+    }
+    
+    .add-secondClass .secondClass-content input {
+        margin-top: 0px;
+    }
+    
+    .cate-addclassed-esc,
+    .cate-addclassed-ent {
+        font-size: 16px;
+        width: 115px;
+        height: 40px;
+        line-height: 40px;
+        display: inline-block;
+        cursor: pointer;
+    }
+    
+    .cate-addclassed-esc {
+        background-color: #CACACA;
+    }
+    
+    .cate-addclassed-ent {
+        background-color: #F8931F;
+    }
+    
+    .cate-showclass {
+        width: 250px;
+        padding-bottom: 20px;
+        text-align: center;
+        background-color: #EDECE8;
+        cursor: move;
+        vertical-align: top;
+        margin-left: 10px;
+        float: left;
+        /*position: relative;*/
+        /*opacity: 0.3;*/
+    }
+    
+    .cate-showclass span {
+        line-height: 40px;
+        text-align: left;
+        text-indent: 36px;
+        font-size: 16px
+    }
+    
+    .cate-showclass ul li {
+        width: 230px;
+        height: 40px;
+        background-color: #fff;
+        margin-bottom: 10px;
+        display: inline-block;
+        line-height: 40px;
+        text-align: left;
+        text-indent: 25px;
+        font-size: 16px;
+        cursor: pointer;
+        /*margin-top:10px;*/
+    }
+    /*.cate-showclass ul li:first-child {
+			
+		}*/
+    
+    .cate-showclass ul li a {
+        width: 25px;
+        height: 40px;
+        margin-right: 6px;
+        float: right;
+        display: none;
+    }
+    
+    .cate-showclass ul li input,
+    .firstClass input {
+        padding: 0;
+        float: left;
+        width: 136px;
+        height: 40px;
+        line-height: 40px;
+        border: none;
+        outline: none;
+        font-size: 14px;
+        color: #333;
+        padding-left: 24px;
+    }
+    
+    .firstClass {
+        display: inline-block;
+        width: 250px;
+        height: 40px;
+        line-height: 40px;
+        text-align: left;
+    }
+    
+    .firstClass input {
+        background-color: #EDECE8;
+        margin-left: 10px;
+        font-size: 16px;
+    }
+    
+    .firstClass a {
+        width: 24px;
+        height: 40px;
+        margin-right: 16px;
+        float: right;
+        display: none;
+    }
+    
+    .firstClass a:last-child {
+        margin-right: 6px;
+    }
+    
+    .cate-showclass ul li a:first-child,
+    .firstClass a:first-child {
+        background: url(res/icon/delete.png) center center no-repeat;
+    }
+    
+    .cate-showclass ul li a:last-child,
+    .firstClass a:last-child {
+        background: url(res/icon/change.png) center center no-repeat;
+    }
+    
+    .cate-showclass ul li:hover,
+    .cate-showclass ul li:hover input {
+        background-color: #F7F6F2;
+    }
+    
+    .cate-showclass ul li:hover a,
+    .firstClass:hover a {
+        display: block;
+    }
+    
+    #placeholderParent {
+        width: 250px;
+        background-color: #f8f8f8;
+        float: left;
+        margin-left: 10px;
+        display: none;
+    }
+    
+    .occupied2 {
+        width: 230px;
+        height: 40px;
+        margin-bottom: 10px;
+        background-color: #fff;
+        display: none;
+    }
+    
+    .cate-addclassed-double {
+        display: none;
+    }
+    
+    .add-secondClass {
+        display: inline-block;
+        width: 230px;
+        height: 40px;
+        font-size: 0;
+        text-align: center;
+    }
+    
+    .add-secondClass p {
+        display: inline-block;
+        width: 230px;
+        background-color: #fff;
+        height: 40px;
+        font-size: 16px;
+        margin-bottom: 10px;
+        line-height: 40px;
+        vertical-align: middle;
+        cursor: pointer;
+        /*display: none;*/
+    }
+    
+    .add-secondClass .secondClass-content {
+        display: none;
+        font-size: 0;
+    }
+    
+    .add-secondClass img {
+        vertical-align: middle;
+    }
+    
+    .mouseImg {
+        display: none;
+        position: absolute;
+        top: 6px;
+        left: 120px;
+    }
+    /*.cata-scroll{
+        width: 1300px;
+        height: 700px;
+        overflow: auto;
+        background-color:red;
+    }*/
+</style>
+
+<!-- 模块展示代码在此 -->
+
+<div class="cate-show" id="cate-gories" v-cloak>
+    <div class="cate-addclass dlb tc">
+        <a href="javascript:void(0);" class="addOneClassfiy" v-on:click="createOneClassify()" v-show="Sort"><img src="res/images/add.png" />添加一级分类</a>
+        <a href="javascript:void(0);" class="yellow" v-on:click="changeSort(false)" v-show="Sort">排序</a>
+        <a href="javascript:void(0);" class="gray" v-on:click="returnClassfiy()" v-show="!Sort">取消</a>
+        <a href="javascript:void(0);" class="yellow" v-on:click="entUpdata(false)" v-show="!Sort">确定</a>
+        <!--<a href="javascript:void(0);" class="green">保存</a>-->
+    </div>
+    <div class="cate-addclassed dlb tc" v-show="Sort">
+        <input type="text" placeholder="请输入一级分类名称" id="cate-addclassed-input"maxlength='10' />
+        <span class="cate-addclassed-esc" v-on:click="createOneEsc()">取消</span>
+        <span class="cate-addclassed-ent" v-on:click="createOneEnt()">确认</span>
+    </div>
+    <div class="cata-scroll">
+        <div v-bind:style="{width:showWidth + 'px'}">
+            <template v-for="(i, item) in classifyInfo" v-if="item"  v-cloak>
+
+                <div class="cate-showclass dlb" v-on:mousedown="mainCate($event,i)">
+                    <div style="position: relative;height: 1px;">
+                        <img src="res/icon/mousedowned.png" class="mouseImg" />
+                    </div>
+
+                    <span class="firstClass">
+                
+                <a href="javascript:void(0)" class="oneClassfiyDelete" indexof={{item.id}} v-show="Sort"></a>
+                <input v-model="item.name" readonlyclass="cate-one-input" indexof={{item.id}}maxlength='10'  v-cloak/>
+                <a href="javascript:void(0)"class="oneClassfiyEdit" indexof={{item.id}} v-show="Sort"></a>
+            </span>
+                    <ul style="font-size:0">
+                        <template v-for="i in item.child" v-if="i">
+                            <li class="second-class">
+                                <!--{{i.name}}-->
+                                <a href="javascript:void(0)" class="cateTwoDelete" indexof={{i.id}} v-show="Sort"></a>
+                                <input type="text" v-model="i.name" readonly class="cate-two-input"maxlength='10' />
+                                <a href="javascript:void(0)" class="cateTwoEdit" v-show="Sort" indexof={{i.id}}></a>
+                            </li>
+                        </template>
+                        <strong class="add-secondClass" v-show="Sort">
+                    <p class="secondClass-key"><img src="res/images/addclassify.png"/>&nbsp;创建二级分类</p>
+                    <div class="secondClass-content">
+                        <input type="text" placeholder="请输入二级分类名称" class="secondClass-key-input" maxlength='10'/>
+                        <span class="cate-addclassed-esc">取消</span>
+                        <span class="cate-addclassed-ent" pid = {{item.id}}>确认</span> 
+                    </div>
+                </strong>
+                    </ul>
+                </div>
+            </template>
+        </div>
+    </div>
+    <div id="placeholderParent" style="width: 250px;">
+
+    </div>
+    <div id="placeholderChild" style="width: 230px;margin-bottom: 10px;list-style-type: none;height: 40px; background-color: #fff;display: inline-block;">
+    </div>
+</div>

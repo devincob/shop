@@ -1,0 +1,81 @@
+<style type="text/css">
+    #bstime .line {
+        display: block;
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        margin: 10px 0;
+    }
+    
+    #bstime .line label{
+       float: left;
+       margin-left: 20px;
+    }
+    
+    #bstime .ltitle {
+        width: 120px;
+        line-height: 40px;
+        text-align: right;
+        float: left;
+        box-sizing: border-box;
+        font-size: 16px;
+    }
+    
+    #bstime input.day {
+        text-align: center;
+        width: 120px;
+        height: 30px;
+        border: 1px solid #ccc;
+    }
+    
+     #bstime input.mes {
+        width: 300px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        resize: none;
+    }
+    
+      #bstime textarea {
+        outline: none;
+        width: 300px;
+        height: 150px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        resize: none;
+    }
+</style>
+<meta charset="UTF-8" />
+<section style="text-align:left;" id="bstime">
+    <div class="line">
+        <span class="ltitle" style="">店铺名称<span class="required"></span></span>
+        <label><input type="text" class="input mes"  v-model="shopName"  maxlength="10" placeholder="请输入店铺名称"></label>
+    </div>
+    <div class="line">
+        <span class="ltitle" style="">负责人</span>
+        <label><input type="text" class="input mes"  v-model="contactMan"  maxlength="2" placeholder="请输入负责人"></label>
+    </div>
+    <div class="line">
+        <span class="ltitle" style="">联系方式<span class="required"></span></span>
+        <label><input type="text" class="input mes"  v-model="telephone"  maxlength="2" placeholder="请输入手机号码"></label>
+    </div>
+    <div class="line">
+        <span class="ltitle" style="">店铺地址<span class="required"></span></span>
+        <label><input type="text" class="input mes"  v-model="address"  maxlength="2" placeholder="请输店铺地址"></label>
+    </div>
+    <div class="line">
+        <span class="ltitle" style="">详细介绍</span>
+        <label><textarea type="text" class="input mes"  v-model="description"  maxlength="2" placeholder="请输入详细介绍"></textarea></label>
+    </div>
+    <div class="line" style="clear: both;">
+        <span class="ltitle">营业开始时间<span class="required"></span></span>
+        <label><input type="text" class="input day"  v-model="shour"  maxlength="2" placeholder="小时"> 点</label>
+        <label><input type="text" class="input day"  v-model="sminute"  maxlength="2" placeholder="分钟"> 分</label>
+    </div>
+    <div class="line">
+        <span class="ltitle">营业结束时间<span class="required"></span></span>
+        <label><input type="text" class="input day"  v-model="ehour"  maxlength="2"  placeholder="小时"> 点</label>
+        <label><input type="text" class="input day"  v-model="eminute"  maxlength="2" placeholder="分钟"> 分</label>
+    </div>
+
+    <a class="yellow fl" style="width: 290px; margin-left: 140px;" @click="send">修改店铺信息</a>
+</section>

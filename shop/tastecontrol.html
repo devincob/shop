@@ -1,0 +1,327 @@
+<style type="text/css">
+    .taste-show {}
+    
+    body {
+        /*overflow-y: none;*/
+    }
+    
+    ul.tas-variety li {
+        width: 300px;
+        height: 150px;
+        background-color: #efefef;
+        float: left;
+        margin-right: 10px;
+        margin-bottom: 20px;
+        text-align: center;
+        font-size: 22px;
+        line-height: 150px;
+        color: #898989;
+        cursor: pointer;
+    }
+    
+    ul.tas-variety li span {
+        display: block;
+        margin-top: 40px;
+        margin-bottom: 10px;
+    }
+    
+    ul.tas-variety li:first-child {
+        font-size: 14px;
+        line-height: 16px;
+    }
+    
+    .tas-addtas {
+        width: 556px;
+        height: 600px;
+        background-color: #F2F2F2;
+        padding: 30px;
+        color: #333;
+    }
+    .tas-type {
+        width: 100%;
+        height: 40px;
+        font-size: 0;
+    }
+    
+    .tas-text,
+    .tas-text2 {
+        font-size: 14px;
+        line-height: 40px;
+        text-align: center;
+        width: 54px;
+    }
+    
+    .tas-text2 {
+        width: 85px;
+        text-align: left;
+    }
+    
+    .tas-type span {
+        width: 100px;
+        height: 40px;
+        background-color: #FFFFFF;
+        display: inline-block;
+        float: left;
+        font-size: 14px;
+        line-height: 40px;
+        text-align: center;
+    }
+    
+    .tas-type:first-child span {
+        border: 1px solid #F1F1F1;
+        cursor: pointer;
+    }
+    
+    .tas-inputname,
+    .tas-change {
+        margin-top: 10px;
+        overflow: hidden;
+    }
+    
+    .tas-inputname input,
+    .tas-change input,
+    .tas-tastype a {
+        border: none;
+        width: 404px;
+        height: 38px;
+        outline: none;
+       /* margin-left: 14px;*/
+        padding: 0;
+        text-indent: 16px;
+
+        
+    }
+    .tas-tastype a{
+        cursor: pointer;
+        
+    }
+    .tas-change input {
+        width: 180px;
+        float: left;
+        padding: 0;
+    }
+    
+    .tas-tastype {
+        margin: 10px;
+        width: 504px;
+        
+    }
+    
+    .tas-add-text {
+       
+        background-color: #E7E7E7;
+        width: 490px;
+        clear: both;
+        
+    }
+    .tas-add-content{
+        line-height: 24px;
+        margin-top: 10px;
+    }
+  
+    
+    .tas-tastype a {
+       margin-left:-10px ;
+       
+    }
+    /*二级弹窗*/
+    
+    .tas-addtas2 {
+        width: 1000px;
+        background-color: #FFF;
+        padding: 30px;
+        color: #333;
+    }
+    
+    .tas-addtas2 ul li {
+        display: inline-block;
+        padding: 0 20px 0 20px;
+        font-size: 14px;
+        text-align: center;
+        height: 40px;
+        line-height: 40px;
+        cursor: pointer;
+    }
+    
+    .tas-Cuisine {
+        background-color: #f3f3f3;
+        margin-bottom: 5px;
+    }
+    
+    .bgc-blue {
+        background-color: #2980b9;
+        color: #FFFFFF;
+        position: relative;
+    }
+    
+    .bgc-blue:after {
+        content: "";
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid #fff;
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translate(-50%, 0);
+		-webkit-transform: translate(-50%, 0);
+		-ms-transform: translate(-50%, 0);
+		-moz-transform: translate(-50%, 0);
+    }
+    
+    .bgc-gray {
+        background-color: #B5B5B7;
+        cursor: pointer;
+    }
+    
+    .tas-tasList {
+        background-color: #f3f3f3;
+        margin-bottom: 5px;
+    }
+    
+    .tas-show2-goods {
+        margin-top: 20px;
+        max-height: 400px;
+        overflow-y: scroll;
+        overflow-y: hidden;
+    }
+    
+    .tas-goodsList {
+        background-color: #f3f3f3;
+        margin-right: 14px;
+        margin-bottom: 10px;
+    }
+    
+    .taste-max {
+       height: auto;
+        
+    }
+    
+    .tas-type span.sd-subadd {
+        width: auto;
+        height: 40px;
+    }
+    
+    .tas-type .input-content {
+        width: 64px;
+        height: 38px;
+    }
+    .cata-delete{
+        display: inline-block;
+        cursor: pointer;
+        background: url(res/icon/delete.png) center center no-repeat;
+        height: 40px;
+        width: 60px;
+    }
+</style>
+
+<!-- 口味显示列表 -->
+
+<div class="taste-show" id="taste-show">
+    <ul class="tas-variety" v-cloak>
+        <li class="taste-add" v-on:click="addOpenPageWin()"><span class="tas-add"><img src="res/images/comadd.png"/></span>添加口味</li>
+        <li v-for="value in taste | orderBy 'sort'" class="taste-add" v-on:click="editOpenPageWin(value.id)">{{value.name}}</li>
+    </ul>
+</div>
+
+<!-- 一级弹窗  -->
+<div id="tas-addtas1" class="tas-addtas" v-cloak>
+    <div class="tas-type">
+        <p class="tas-text required fl" style="text-align: left;">类型</p>
+        <span v-bind:class='{"sign":( Attr == 0)}' v-on:click="changeType()">单选口味</span>
+        <span v-bind:class='{"sign":( Attr == 1)}' v-on:click="changeType()">多选口味</span>
+        <p class="tas-text required fl" style="width: 70px;">排序</p>
+        <sd-subadd :num.sync="sort"></sd-subadd>
+    </div>
+    <div class="taste-max">
+        <!--添加口味 一級彈窗-->
+        <div class="taste-addAttr" v-if="type == 'add'" v-cloak>
+            <div class="tas-inputname">
+                <label class="tas-text2 required fl">口味分組</label>
+                <input type="text" placeholder="请输入口味" v-model="newTaste" maxlength='10'/>
+            </div>
+            <div class="tas-change" v-for="(i,value) in newObj">
+                <span class="tas-text2 required fl">口味名称</span>
+                <input type="text" placeholder="请输入口味分组名称" v-model="value[0]" maxlength='10'/>
+                <span class="tas-text2  fl" style="width: 64px;text-indent: 14px;">价格</span>
+                <input type="text" placeholder="请输入价格" v-model="value[1]" style="width: 100px;margin-left: 0px;" maxlength='6'/>
+                <span style="font-size: 14px;"class="cata-delete" indexof = {{i}} v-on:click="deleteTaste('add',i)"><!--<img src="res/icon/delete.png"/>--></span>
+            </div>
+        </div>
+        <!--編輯口味 一級彈窗-->
+        <div class="taste-editAttr" v-if="type != 'add'" v-cloak>
+            <div>
+                <div class="tas-inputname">
+                    <label class="tas-text2 required fl">口味分組</label>
+                    <input type="text" placeholder="请输入口味分组名称" v-model="tasteClass.name" maxlength='10'/>
+                </div>
+                <!--对应口味的属性-->
+                <div class="tas-change" v-for="(i,value) in objs" >
+                    <label class="tas-text2 required fl" >口味名称</label>
+                    <input type="text" v-model="value[0]"placeholder="请输入口味名称" maxlength='10'/>
+                    <label class="tas-text2  fl" style="width: 64px;text-indent: 14px;">价格</label>
+                    <input type="text" v-model="value[1]" placeholder="请输入价格"style="width: 100px;margin-left: 0px;" maxlength='6'/>
+                    <span style="font-size: 14px;"class="cata-delete" v-on:click="deleteTaste('edit',i)"><!--<img src="res/icon/delete.png"/>--></span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="tas-second">
+        <div class="tas-tastype" id="tas-tastype">
+            <span class="tas-secondWindow">
+                    <a class="addclassify fl" v-on:click="append"  style="width:490px;background-position: 190px;">添加口味属性</a> 
+                </span>
+        </div>
+        
+            <div class="tas-add-text">
+                <div class = "tas-add-content">
+                    <template v-for="item in selectedArr">             
+                        {{item}};               
+                    </template>
+                </div>
+        </div>
+        <div class="tas-tastype" style="margin-top: -10px">
+            <a class="addclassify fl" style="width:490px;background-position: 190px;margin-top: 10px;" v-on:click="openSecond">添加关联菜品</a>
+        </div>
+    </div>
+</div>
+
+<!--二级弹窗-->
+<div id="tas-addtas2" class="tas-addtas2" v-cloak>
+    <div class="tas-show2-title">
+        <ul>
+            <template v-for="(i , item) in category">
+                <li v-if="item.id == List1ID" v-on:click="changeL1ID(item.id,i)" class="bgc-blue">{{item.name}}</li>
+                <li v-else v-on:click="changeL1ID(item.id,i)" class="tas-Cuisine">{{item.name}}</li>
+            </template>
+        </ul>
+    </div>
+    <div class="tas-show2-taste" transition='slidUpDown'>
+        <ul>
+            <template v-for=" (i ,item) in child">
+                <li class="bgc-gray" v-if="item.id == List2ID" v-on:click="changeL2ID(item.id)">{{item.name}}</li>
+                <li v-else v-on:click="changeL2ID(item.id)" class="tas-tasList ">{{item.name}}</li>
+            </template>
+        </ul>
+    </div>
+    <a href="javascript:void(0)" class="check" v-on:click="selectAllGoods">全部选择</a>
+    <a href="javascript:void(0)" class="unselect" v-on:click = "unSelectAllGoods">全部取消</a>
+    
+    <div v-if="filterChilds()" class="tas-show2-goods">
+        <ul>
+            <template v-for="item in goods | orderBy 'id'">
+                <template v-if="incategory(item.cids)">
+                    <li class="tas-goodsList sign" v-if="isselected(item.id)" v-on:click="deleteGoodsId(item.id,item.goodsName)" goodsId={ {item.id}}>{{item.goodsName}}</li>
+                    <li class="tas-goodsList" v-else v-on:click="addGoodsID(item.id,item.goodsName)" goodsId={ {item.id}}>{{item.goodsName}}</li>
+                </template>
+            </template>
+        </ul>
+    </div>
+</div>
+
+

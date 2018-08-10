@@ -1,0 +1,240 @@
+<style type="text/css">
+	ul,li,p,h1{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	.fl{
+		float: left;
+	}
+	.fr{
+		float: right;
+	}
+	.chairFix:after{
+		content: '';
+		display: block;
+		clear: both;
+	}
+	#orMaRetreat {
+		margin-top: 20px;
+		padding-right: 100px;
+		position: relative;
+	}
+	#orMaRetreat nav{
+		margin-bottom: 20px;
+	}
+	#orMaRetreat nav a{
+		text-align: center;
+		font-size: 12px;
+		width: 100px;
+		height: 40px;
+		line-height: 40px;
+		float: left;
+		display: block;
+		background: #F2F2F2;
+	}
+	#orMaRetreat nav a.active{
+		color: #fff;
+		background: #2a80b9;
+	}
+	#orMaRetreat .orMaReMainList li:first-of-type,#orMaRetreat .orMaReMainList li:last-of-type{
+		background: #e6e6e6;
+	}
+	#orMaRetreat .orMaReMainList li:nth-of-type(even){
+		background: #f2f2f2;
+	}
+	#orMaRetreat .orMaReMainList li span{
+		display: block;
+		text-align: center;
+		height: 50px;
+		line-height: 50px;
+		width: 11%;
+		color: #8f8f8f;
+		float: left;
+		position: relative;
+	}
+	#orMaRetreat .orMaReMainList li span:last-of-type{
+		width: 23%;
+	}
+	
+	#orMaRetreat .orMaRetBox{
+		height: 40px;
+		border: 1px solid #b3b3b3;
+		float: left;
+	}
+	#orMaRetreat .zhi{
+		text-align: center;
+		width: 35px;
+		height: 40px;
+		line-height: 40px;
+		display: block;
+		float: left;
+	}
+	.orMaRetreatTime {
+		height: 42px;
+		margin-bottom: 25px;
+	}
+	#orMaRetreat .orMaRetBox input{
+		text-align: center;
+		height: 100%;
+		width: 132px;
+		display: block;
+		float: left;
+		outline: none;
+		border: 0;
+		border-right: solid #b3b3b3 1px;
+	}
+	#orMaRetreat .orMaRetBox div{
+		width: 40px;
+		height: 40px;
+		position: relative;
+	}
+	#orMaRetreat .orMaRetBox div i{
+		height: 10px;
+		width: 10px;
+		border-top: 10px #b3b3b3 solid;
+		border-left: 5px solid transparent;
+		border-right: 5px solid transparent;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		margin-left: -5px;
+		margin-top: -5px;
+		box-sizing: border-box;
+	}
+	#orMaRetreat .orMaRetBox a{
+		width: 50px;
+		height: 40px;
+		background: #28a8e0;
+	}
+	#orMaRetreat .orMaRetBox:last-of-type{
+		margin-left: 45px;
+	}
+	#orMaRetreat .orMaRetBox:last-of-type a{
+		color: #fff;
+		height: 40px;
+		width: 90px;
+		text-align: center;
+		line-height: 40px;
+	}
+	#orMaRetreat .deepBlue{
+		background: #2980b9;
+	}
+	#orMaRetreat .blue{
+		background: #00adef;
+	}
+	#orMaRetreat .red{
+		background: #ec1515;
+	}
+	#orMaRetreat .orMaReMainList li span a{
+		color: #fff;
+		font-size: 12px;
+		width: 32.9%;
+		height: 49px;
+		margin-top: 1px;
+		margin-left: 1px;
+		display: block;
+		float: left;
+	}
+	#orMaRetreat .circle{
+		width: 18px;
+		height: 18px;
+		border: 1px #c7c7c7 solid;
+		border-radius: 50%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-left: -9px;
+		margin-top: -9px;
+		background: #fff;
+	}
+	#orMaRetreat .circle.active{
+		background: ;
+	}
+	#orMaRetreat .orMaReBatch{
+		position: absolute;
+		top: -60px;
+		right: 100px;
+	}
+	#orMaRetreat .orMaReBatch a{
+		color: #fff;
+		margin-left: 10px;
+	}
+	#orMaRetreat .orange{
+		background: #f8931f;
+	}
+	#orMaRetreat .orMaReBatch a.active{
+		background: #2980b9;
+	}
+</style>
+
+<section id="orMaRetreat">
+	<nav class="chairFix">
+		<a href="javascript:void(0)" class="active">退单统计</a>
+		<a href="javascript:void(0)">退菜统计</a>
+		<div class="orMaReBatch">
+			<a class="active" href="javascript:void(0)">批量结清</a>
+			<a class="blue" href="javascript:void(0)">导出</a>
+			<a class="orange" href="javascript:void(0)">打印</a>
+		</div>
+	</nav>
+	
+	<section class="orMaRetreatCon">
+		<section class="orMaRetreatTime chairFix">
+			<section class="orMaRetBox chairFix">
+				<input type="text" placeholder="请选择日期" />
+				<div class="fl">
+					<i></i>
+				</div>
+			</section>
+			<span class="zhi">至</span>
+			<section class="orMaRetBox chairFix">
+				<input type="text" placeholder="请选择日期"  />
+				<div class="fl">
+					<i></i>
+				</div>
+				<a class="fl" href="javascript"></a>
+			</section>
+			<section class="orMaRetBox chairFix">
+				<input type="text" placeholder="请输入订单号"  />
+				<a class="fl orMaaBtn" href="">查询</a>
+			</section>
+		</section>
+		<section class="orMaRetreatMain">
+			<ul class="orMaReMainList" v-for="(i,item) in ">
+				<li class="chairFix">
+					<span>全选</span>
+					<span>订单号</span>
+					<span>挂账账号</span>
+					<span>人数</span>
+					<span>消费金额</span>
+					<span>挂账时间</span>
+					<span>挂账金额（元）</span>
+					<span>操作</span>
+				</li>
+				<li class="chairFix">
+					<span><div class="circle"></div></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+					<span><a class="deepBlue" href="javascript:void(0)">明细</a><a class="blue" href="javascript:void(0)">结清</a><a class="red" href="javascript:void(0)">删除</a></span>
+				</li>
+				<li class="chairFix">
+					<span>全选</span>
+					<span>订单号</span>
+					<span>挂账账号</span>
+					<span>人数</span>
+					<span>消费金额</span>
+					<span>挂账时间</span>
+					<span>挂账金额（元）</span>
+					<span>操作</span>
+				</li>
+			</ul>
+			
+		</section>
+		<sd-page :page.sync="0" :count.sync='100' :total.sync='20' :num.sync='1' style="float: right;"></sd-page>
+	</section>
+</section>

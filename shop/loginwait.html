@@ -1,0 +1,90 @@
+<!-- 开台审核审核中，未通过状态显示 -->
+<style type="text/css">
+    body {
+        background: url(res/images/bg.png) center -500px no-repeat;
+        background-size: 100% 100%;
+    }
+    
+    html,
+    body {
+        height: 100%;
+    }
+    
+    .loginwait {
+        width: 100%;
+        height: 60%;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+    }
+    
+    .loginwait .loginverBox {
+        height: 80%;
+        width: 600px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+    }
+    
+    .loginwait .wait {
+        position: absolute;
+        width: 931px;
+        height: 216px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -100%);
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        background: url(res/images/tips.png) center center no-repeat;
+    }
+    
+   .loginwait  h1 {
+        color: #f0333a;
+        font-weight: bold;
+        height: 40px;
+        font-size: 32px;
+        text-align: left;
+        margin-bottom: 30px;
+        overflow: hidden;
+    }
+    
+   .loginwait textarea {
+        width: 100%;
+        height: 150px;
+        padding: 20px;
+        outline: none;
+        border: 1px solid #b8b8b8;
+        resize: none;
+        margin-bottom: 20px;
+    }
+    
+    
+   .loginwait .addShop {
+        position: absolute;
+        right: 150px;
+        top: 170px;
+        /*background: url(res/images/addshop.png) no-repeat;*/
+        width: 135px;
+        height: 40px;
+        line-height: 40px;
+    }
+</style>
+
+<div class="loginwait">
+    <div class="loginverBox" style="display: none;">
+        <div class="feedback">
+            <h1>您的信息审核未通过，请及时更改！</h1>
+            <textarea></textarea>
+            <a href="javascript:void(0);" class="yellow" style="font-size: 18px;letter-spacing: 5px;">重新修改</a>
+        </div>
+    </div>
+    <div class="wait">
+        <a class="addShop blue">返回登录界面</a>
+        
+    </div>
+</div>

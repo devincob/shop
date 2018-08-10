@@ -1,0 +1,160 @@
+<style>
+    .employmes {
+        width: 580px;
+        min-height: 480px;
+        height: auto;
+        padding-top: 20px;
+        background-color: #f2f2f2;
+    }
+    
+    .employmes .tag {
+        float: left;
+        width: 102px;
+        height: 40px;
+        line-height: 40px;
+        text-align: right;
+    }
+    
+    .employmes .mes {
+        float: left;
+        width: 420px;
+        height: auto;
+        padding-left: 15px;
+    }
+    
+    .employmes .clear {
+        clear: both;
+        font-size: 0;
+        line-height: 0;
+        height: 15px;
+        width: 100%;
+    }
+    
+    .employmes .selectbtns span {
+        background-color: #fff;
+    }
+    
+    .employlist .item {
+        background-color: #eeeeee;
+        color: #898989;
+        height: 150px;
+    }
+    
+    .employlist .head {
+        border-left: 2px solid #026eb7;
+        height: 65px;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    .employlist .mes {
+        width: 198px;
+        text-indent: 10px;
+    }
+    
+    .employlist .username {
+        height: 30px;
+        line-height: 30px;
+        font-size: 20px;
+        color: #595758;
+    }
+    
+    .employlist .job {
+        height: 30px;
+        line-height: 30px;
+        font-size: 20px;
+    }
+    
+    .employlist .pos {
+        width: 100px;
+        height: 70px;
+        line-height: 70px;
+        text-align: center;
+    }
+    
+    .employlist .posnum {
+        font-size: 48px;
+        color: #dddddd;
+    }
+    
+    .employlist .usermes {
+        height: 60px;
+        line-height: 40px;
+        text-indent: 10px;
+    }
+    
+    .employlist .usermes .name {
+        height: 25px;
+        font-size: 16px;
+    }
+    
+    .employlist .usermes .phone {
+        height: 25px;
+        font-size: 16px;
+    }
+</style>
+<!-- 员工搜索 -->
+<div class="search" id="employe-search">
+    <input type="text" placeholder="请输入名称或手机或职位" maxlength="10" class="search-input" style="width: 250px;" />
+    <a href="javascript:void(0);" class="search-btn"></a>
+</div>
+
+<!-- 员工列表 -->
+<div class="employlist" id="employlist">
+    <section class="commodity-box">
+        <section class="commodityAdd fl" style="height:150px;" v-on:click="add">
+            <section class="combox">
+                <img src="res/images/comadd.png" alt="添加" />
+                <h3>新建员工信息</h3>
+            </section>
+        </section>
+
+        <section class="item fl" v-for="(i,item) in list" v-on:click="edit(item.id,i)">
+            <section class="head">
+                <section class="mes fl">
+                    <section class="username">{{item.name}}</section>
+                    <section class="job"> </section>
+                </section>
+                <section class="pos fl">
+                    <h2 class="posnum">{{i+1}}</h2>
+                </section>
+            </section>
+            <section class="usermes">
+                <section class="name">职位：{{item.roleName}}</section>
+                <section class="phone">电话：{{item.mobile}}</section>
+            </section>
+        </section>
+    </section>
+</div>
+
+<!-- 新增或者修改员工信息窗口 -->
+<div class="employmes" id="employWin" v-if="info">
+
+    <h2 class="required tag">职位</h2>
+    <div class="mes">
+        <sd-radio :list.sync="jobs" :index.sync="index" :name='"name"'></sd-radio>
+    </div>
+    <div class="clear"></div>
+    <h2 class="required tag">手机号码</h2>
+    <div class="mes">
+        <input type="text" v-if="eidt" disabled="disabled" class="input" maxlength="11" style="width: 100%; " v-model="info.mobile" placeholder="请输入手机号码">
+        <input type="text" v-if="!eidt" class="input" maxlength="11" style="width: 100%; " v-on:keyup="checkMobile" v-model="mobile" placeholder="请输入手机号码">
+    </div>
+    <div class="clear"></div>
+    <div v-bind:style="{ display: info.added ? 'none' : 'block' }">
+        <h2 class="tag">真实姓名</h2>
+        <div class="mes">
+            <input type="required text" v-if="eidt" disabled="disabled" class="input" maxlength="15" style="width: 100%; " v-model="info.name" placeholder="请输入真实姓名">
+            <input type="required text" v-if="!eidt" class="input" maxlength="15" style="width: 100%; " v-model="rname" placeholder="请输入真实姓名">
+        </div>
+        <div class="clear"></div>
+         <template v-if="!eidt">
+            <h2 class="tag">登录密码</h2>
+            <div class="mes">
+                <input type="password" class="input" maxlength="20" style="width: 100%; " v-model="info.password" placeholder="请输入登录密码">
+            </div>
+            <div class="clear"></div>
+        </template>
+    </div>
+    <div style="height: 80px;width: 100%; clear: both;"></div>
+</div>

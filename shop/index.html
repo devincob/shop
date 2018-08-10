@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-cmn-Hans" translate="no">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>闪店商家</title>
+        <link href="res/favicon.icon" rel="icon" type="image/x-icon" />
+        <!--<script type="text/javascript" src="core.js"></script>-->
+        <!--<script type="text/javascript" src="init.js"></script>-->
+         <script type="text/javascript" src="js/jquery-3.1.0.js?111"></script>
+        <script type="text/javascript" src="js/vue.js?111"></script>
+        <script type="text/javascript" src="js/sd.js?111"></script 
+
+    </head>
+
+    <body></body>
+    <script>
+        // 00
+        // sd.debugHost = "http://v5.ishandian.net/shop/simulationdata/gets?debugMethod=";
+        // 静态资源CDN地址
+        // sd.froot = 'http://localhost/';
+        // 服务器请求地址 //http://v5.ishandian.com.cn/shop/    192.168.31.231:82
+          sd.host = 'http://v5.ishandian.net/shop/';
+        // 'http://192.168.31.231:82/shop/';
+//      sd.host = 'http://v5.ishandian.net/shop/'
+//      sd.host = 'http://v5.ishandian.net/shop/';
+        // web 服务器地址,当前文件所放置的服务器地址
+        //sd.webHost = 'http://127.0.0.1:8020/web/';
+        sd.webHost = sd.froot + 'index.html';
+        // 初始化
+        sd.controller(['css/reset.css', 'css/layout.css', 'js/sd/main.js']);
+    </script>
+
+</html>

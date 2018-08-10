@@ -1,0 +1,143 @@
+<style type="text/css">
+    .tas-addtas {
+        width: 580px;
+        height: 460px;
+        background-color: #F2F2F2;
+        padding: 30px;
+        color: #333;
+    }
+    /*.tas-type{width: 490px;height: 40px;margin: 0 auto;font-size: 0;}*/
+    
+    .tas-text {
+        font-size: 16px;
+        line-height: 40px;
+        text-align: center;
+        width: 64px;
+    }
+    
+    .tas-change {
+        margin-top: 10px;
+        height: 40px;
+    }
+    
+    .tas-change input {
+        border: none;
+        height: 40px;
+        outline: none;
+        padding: 0;
+        width: 65px;
+        float: left;
+    }
+    
+    .tas-change textarea {
+        padding-left: 16px;
+    }
+    
+    .describe {
+        width: 400px;
+        height: 116px;
+        font-size: 14px;
+        padding: 14px;
+    }
+    
+    .commodity-box> section {
+        height: 150px;
+    }
+    
+    .area-content {
+        background-color: #eeeeee;
+        color: #898989;
+    }
+    
+    .area-border {
+        border-left: 2px solid #026eb7;
+        height: 40px;
+        width: 300px;
+        margin-bottom: 50px;
+    }
+    
+    .area-pos {
+        width: 208px;
+       
+    }
+    
+    .area-pos-name {
+        text-indent: 10px;
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        font-size: 24px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        word-break: break-all;
+        white-space:nowrap; 
+    }
+    
+    .area-number {
+        width: 90px;
+        height: 70px;
+        line-height: 70px;
+        text-align: center;
+    }
+    
+    .area-number h2 {
+        font-size: 48px;
+        color: #dddddd;
+    }
+    
+    .area-seat {
+        height: 80px;
+        line-height: 20px;
+        padding-left: 10px;
+    }
+    
+    .area-seat-num {
+        height: 20px;
+        font-size: 16px;
+    }
+</style>
+
+<!--页面展示-->
+<div id="area-show">
+    <section class="commodity-box">
+        <section class="commodityAdd fl" v-on:click="openWindow('add')">
+            <section class="combox">
+                <img src="res/images/comadd.png" alt="添加" />
+                <h3>新建区域</h3>
+            </section>
+        </section>
+         <template v-for="(i,item) in dataList"  v-cloak>
+        <section class="area-content fl" v-on:click="openWindow('edit',item.id,i)" hehe = {{item.id}}>
+            <section class="area-border">
+                <section class="area-pos fl">
+                    <section class="area-pos-name">{{item.areaName}}</section>
+                </section>
+                <section class="area-number fl">
+                    <h2>{{i+1}}</h2>    
+                    
+                </section>
+            </section>
+            <section class="area-seat">
+                <section class="area-seat-num">总桌数：{{item.tableTotal}}</section>
+                <section class="area-seat-num">总席位：{{item.seatTotal}}</section>
+            </section>
+        </section>
+        </template>
+    </section>
+</div>  
+<!--一级弹窗-->
+    <div class="tas-addtas"  id="area-window">
+      
+        <div class="tas-change">
+            <p class="tas-text required fl">名称</p>
+            <input type="text" placeholder="请输入区域名称" maxlength="20" style="width:197px;padding-left: 16px;" v-model = getOneArea.areaName />
+            <p class="tas-text required fl">排序</p>
+            <!--<p class="tas-text2  fl" style="width: 50px;padding-left: 14px;">价格</p>-->
+            <sd-subadd :num.sync="getOneArea.sort" :maxnum="255" :minnum="1"></sd-subadd>
+        </div>
+        <div class="tas-change">
+            <p class="tas-text fl">描述</p>
+            <textarea class="describe" v-model = getOneArea.description></textarea>
+        </div>
+
+    </div>

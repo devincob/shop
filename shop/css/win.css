@@ -1,0 +1,123 @@
+@charset "utf-8";
+.win {
+    position:fixed;
+    /*position:absolute;*/
+    /*margin: auto;*/
+    width: 500px;
+    height: 400px;
+    background-color: #fff;
+    overflow: hidden;
+    z-index: 1000;
+}
+.win.center{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+}
+
+.win.right{
+    top: 50%;
+    right: 0;
+    transform: translate(0, -50%);
+	-webkit-transform: translate(0, -50%);
+	-ms-transform: translate(0,, -50%);
+	-moz-transform: translate(0,, -50%);
+}
+
+.win-mask {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: url(../res/images/a50.png) repeat;
+    z-index: 1000;
+}
+
+.win-mask-show {
+   overflow: hidden;
+}
+
+.win-head {
+    position: relative;
+    background-color: #e6e6e6;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    overflow: hidden;
+}
+
+.win-head-logo {
+    float: left;
+    width: 3px;
+    height: 50px;
+    background-color: #fbb03b;
+    cursor: default;
+}
+
+.win-head-title {
+    position: absolute;
+    width: auto;
+    height: 50px;
+    line-height: 50px;
+    top: 0px;
+    left: 32px;
+    cursor: default;
+}
+
+.win-head-close {
+    float: right;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    background: url(../res/images/close.png) no-repeat center center;
+}
+
+.win-body {
+    width: 100%;
+    overflow:auto;
+    height:auto;
+    overflow-x:hidden;
+}
+
+.win-body-str {
+    padding: 15px;
+    width: auto;
+    height: auto;
+    line-height: 25px;
+    font-size: 14px;
+}
+
+.win-bottom {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    overflow: hidden;
+    font-size: 0;
+    display: block;
+    background-color: #999;
+}
+
+.win-cancel {
+    width: 50%;
+    height: 50px;
+    line-height: 50px;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+
+.win-ok {
+    width: 50%;
+    height: 50px;
+    line-height: 50px;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}

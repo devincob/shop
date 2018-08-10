@@ -1,0 +1,130 @@
+<style>
+    .joblist .item {
+        background-color: #eeeeee;
+        color: #898989;
+        height: 150px;
+    }
+    
+    .joblist .head {
+        border-left: 2px solid #026eb7;
+        height: 65px;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    .joblist .mes {
+        width: 198px;
+        text-indent: 10px;
+        line-height: 65px;
+        height: 65px;
+        font-size: 24px;
+        color: #898989;
+    }
+    
+    .joblist .pos {
+        width: 100px;
+        height: 70px;
+        line-height: 70px;
+        text-align: center;
+        font-size: 48px;
+        color: #dddddd;
+    }
+    
+    .jobWin {
+        width: 480px;
+        height: auto;
+        min-height: 480px;
+        padding-top: 20px;
+        background-color: #f2f2f2;
+    }
+    
+    .jobWin .tag {
+        float: left;
+        width: 102px;
+        height: 40px;
+        line-height: 40px;
+        text-align: right;
+    }
+    
+    .jobWin .mes {
+        float: left;
+        width: 300px;
+        padding-left: 15px;
+    }
+    
+    .jobWin .clear {
+        clear: both;
+        font-size: 0;
+        line-height: 0;
+        height: 15px;
+        width: 100%;
+    }
+    
+    .jobWin .selectbtns span {
+        background-color: #fff;
+    }
+    
+    .permissionsWin {
+        width: 1000px;
+        height: auto;
+        padding: 20px;
+    }
+</style>
+
+<!-- 员工搜索 -->
+
+<!-- 员工列表 -->
+<div class="joblist" id="joblist">
+    <section class="commodity-box">
+        <section class="commodityAdd fl" style="height:150px;" v-on:click="add">
+            <section class="combox">
+                <img src="res/images/comadd.png" alt="添加" />
+                <h3>新建职位</h3>
+            </section>
+        </section>
+
+        <section class="item fl" v-for="(i,item) in list" v-on:click="edit(item.id,i)">
+            <section class="head">
+                <section class="mes fl">
+                    {{item.name}}
+                </section>
+                <section class="pos fl">
+                    {{i+1}}
+                </section>
+            </section>
+        </section>
+    </section>
+</div>
+
+<!-- 新增或者修改员工信息窗口 -->
+<div class="jobWin" id="jobWin" v-if="info">
+    <h2 class="required tag">职位名称</h2>
+    <div class="mes">
+        <input type="text" class="input"  maxlength="10" style="width: 100%; " v-model="info.name" placeholder="请输入职位名字">
+    </div>
+    <div class="clear"></div>
+    <h2 class="required tag">排序</h2>
+    <div class="mes">
+        <sd-subadd :num.sync="info.sort" :maxnum="255" :minnum="1"></sd-subadd>
+    </div>
+    <div class="clear"></div>
+    <h2 class="required tag">职位权限</h2>
+    <div class="mes">
+        <a href="javascript:void(0);" class="addclassify" style="width:220px;" v-on:click="edit">分配职位权限</a>
+    </div>
+    <div class="clear"></div>
+    <h2 class="tag"></h2>
+    <div class="mes" v-if="info && info.permissions " style="color: #999;">
+        已分配职位权限：{{info.permissions.length }} 个
+    </div>
+    <div class="clear" style="height: 120px;"></div>
+</div>
+
+<!-- 二级弹框 权限列表 -->
+<div class="permissionsWin" id="permissionsWin" v-if="tabList1 && tabList1.length > 0">
+    <sd-tab :list.sync="tabList1" :index.sync="tab1Index" :name='"title"' class="tab" style="margin-bottom: 20px;"></sd-tab>
+    <sd-tab v-if="tabList2.length>0" :list.sync="tabList2" :index.sync="tab2Index" :name='"title"' class="tab2" style="margin-bottom: 20px;"></sd-tab>
+    <a href="javascript:void(0)" class="check" v-on:click="selectAll">全部选择</a>
+    <a href="javascript:void(0)" class="unselect" v-on:click="dellAll">全部取消</a>
+    <sd-multiselect :list.sync="list" :selects.sync="selects" :name='"title"' :key='"id"' style="margin-bottom: 20px;margin-top: 20px;"></sd-multiselect>
+</div>

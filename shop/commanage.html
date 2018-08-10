@@ -1,0 +1,231 @@
+<style type="text/css">
+    .input-content {
+        width: 80px !important;
+        height: 38px;
+        text-indent: 0 !important;
+        text-align: center;
+        padding: 0 !important;
+    }
+</style>
+
+<!-- 商品列表 -->
+<section class="fl user-content" id="com" v-cloak>
+    <section class="user-function">
+        <section class="place fl">
+            <section class="class-Parent">
+                <template v-for="(i , item) in stockList">
+                    <span v-if="item.id == 1" class="{{ item.id == stockID ? 'on' : ''}}" v-on:click="stockFun(item.id)">{{item.name}}</span>
+                    <span v-else class="{{item.id == stockID ? 'on' : ''}}" v-on:click="stockFun(item.id)">{{item.name}}</span>
+                </template>
+            </section>
+        </section>
+        <section class="place fl">
+            <section class="class-Parent">
+                <template v-for="(i , item) in category">
+                    <span v-if="item.id == L1ID" class="on"  v-on:click="changeL1ID(item.id,i)">{{item.name}}</span>
+                    <span v-else  v-on:click="changeL1ID(item.id,i)">{{item.name}}</span>
+                </template>
+            </section>
+            <section class="class-Child">
+                <template v-if="child.length > 0 " v-for="(i , item) in child">
+                    <span v-if="item.id == L2ID" v-on:click="changeL2ID(item.id)" class="second-on">{{item.name}}</span>
+                    <span v-else v-on:click="changeL2ID(item.id)">{{item.name}}</span>
+                </template>
+            </section>
+        </section>
+        <section class="search-fun">
+            <section class="fr export">
+                <form enctype="multipart/form-data" style="position: relative;">
+                    <a href="javascript:void(0);">导入</a>
+                    <input type="file" accept=".csv" style="opacity: 0;position: absolute;left:0;width: 74px;height: 40px;" />
+                </form>
+                <a href="{{exportUrl}}">导出</a>
+            </section>
+            <section class="search fr" style="margin-right: 20px;">
+                <input type="text" placeholder="请输入名称/简码" class="search-input" v-on:keyup="keyUp" v-model="search" />
+                <a href="javascript:void(0);" class="search-btn"></a>
+            </section>
+        </section>
+    </section>
+    <section class="user-info">
+        <section class="commodity-box">
+            <section class="commodityAdd fl" v-on:click="addcomm(null,'addcomm',null)">
+                <section class="combox">
+                    <img src="res/images/comadd.png" alt="添加" />
+                    <h3>添加商品</h3>
+                </section>
+            </section>
+            <template v-for="i in pageNum">
+                <section class="fl" v-if="goodsCom[currentPage*num+i]"  v-on:click="addcomm(goodsCom[currentPage*num+i].id,'edit',i)">
+                    <img v-if="goodsCom[currentPage*num+i].imageName != ''" src="res/food/loading.jpg" sd-src="{{imgHost+goodsCom[currentPage*num+i].imageName}}" width="300" height="200" onerror="this.src=sd.froot+'res/food/test.jpg'" class="cname" alt="商品" />
+                    <img v-if="goodsCom[currentPage*num+i].imageName == ''" src="res/food/test.jpg"   width="300" height="200" alt="商品" />
+                    <section class="comprice">
+                        <h2 class="commodityName">{{goodsCom[currentPage*num+i].goodsName}}</h2>
+                        <section class="fl" style="height: 30px;line-height: 30px;width: 100%;">
+                            <section style="width: 33.33%;text-align: left;" class="fl"><span class="fl" style="width: 42px;">库存：</span><span class="fl" style="width: 48px;margin-right:3px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{goodsCom[currentPage*num+i].goodsNum}}</span></section>
+                            <section style="width: 33.33%;text-align: center;" class="fl">
+                                <section v-if="goodsCom[currentPage*num+i].isVip == 0" class="fl">不参与会员</section>
+                                <section v-if="goodsCom[currentPage*num+i].isVip == 1">
+                                    <span class="fl" style="width: 42px;">会员：</span>
+                                    <span class="fl" style="width: 48px;margin-right:3px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{goodsCom[currentPage*num+i].vipPrice}}</span>
+                                </section>
+                                <section v-if="goodsCom[currentPage*num+i].isVip == 2">
+                                     <!--<span class="fl" style="width: 42px;">会员：</span>
+                                    <span class="fl" style="width: 48px;margin-right:3px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{goodsCom[currentPage*num+i].vipDiscount}}%</span>-->
+                                                                                    会员折扣
+                                </section>
+                            </section>
+                            <section style="width: 33.33%;text-align: right;" class="fl"><span class="fl" style="width: 42px;">原价：</span><span  class="fl" style="width: 48px;margin-right:3px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{goodsCom[currentPage*num+i].price}}</span></section>
+                            <section style="display: none;">{{goodsCom[currentPage*num+i].BC}}</section>
+                        </section>
+                    </section>
+                </section>
+                <!--</template>-->
+            </template>
+        </section>
+        <div style="width: 100%;height: 45px;" class="fl">
+            <sd-page :page.sync="page" :count.sync='count' :total.sync='total' :num.sync='num' :len="10" style="float: right;"  @click="pageChanged"  v-if="total > 1"></sd-page>
+    </div>                                                                                                                                                                                                                                                                               
+    </section>
+</section>
+<!-- 添加商品表单 -->
+<section class="commodity-form" v-cloak>
+    <section>
+        <label class="commodity-name required fl">类型</label>
+        <label class="fl commodity-type" id="type">
+				<span class="{{type == 0?'sign':''}}" v-on:click="tabTypes">普通菜品</span>
+				<span class="{{type == 1?'sign':''}}" v-on:click="tabTypes">斤两菜品</span>
+		</label>
+        <label class="commodity-name required fl">排序</label>
+        <label><sd-subadd :num.sync="sort"></sd-subadd></label>
+    </section>
+    <section class="fl" style="width: 65%;margin-top: 0;">
+        <section style="margin-top: 0;margin-bottom: 15px;">
+            <label class="commodity-name required fl">名称</label>
+            <label><input type="text" placeholder="输入名称" v-model="goodsNames" maxlength="60"  /></label>
+        </section>
+        <section style="margin-top: 0;margin-bottom: 15px;">
+            <label class="commodity-name fl">简码</label>
+            <label><input type="text" placeholder="输入简码" v-model="BCs" maxlength="20" /></label>
+        </section>
+        <section style="margin: 0;">
+            <label class="commodity-name required fl">售价</label>
+            <input type="text" placeholder="输入售价" v-model="price" style="width:106px;"  v-if="type==='0'" maxlength="10"/>
+            <input type="text" placeholder="输入售价" v-model="price" style="width:171px;" v-else maxlength="10" />
+            <div style="background-color: #fff;width: 30px;text-align:center;float: left;margin-right: 1px;">元</div>
+            <label v-if="type==='0'">
+                    <input type="text" placeholder="输入单位"  v-model="unitTypes"   style="width: 75px;margin-right: 1px;" maxlength="5" />
+                    <input type="text" placeholder="输入成本"  v-model="cost"   style="width: 63px" maxlength="10"  />
+                    <div style="background-color: #fff;width: 30px;text-align:center;float: left;">元</div>
+            </label>
+            <label v-else>
+                <div class="weight">
+                    <span class="{{unit == '斤'?'sign':''}}" v-on:click="units('斤')">斤</span>
+                    <span class="{{unit =='两'?'sign':''}}" v-on:click="units('两')">两</span>
+                    <span class="{{unit == '克'?'sign':''}}" v-on:click="units('克')">克</span>
+                </div>
+            </label>
+        </section>
+    </section>
+    <div style="float:left; width:225px;height: 150px;">
+        <div style="position:relative; width:225px; height:150px;background:url(res/images/upload.png) center 40px no-repeat #ddd ;" id="image">
+            <img v-if="fileName != ''" id="imgs" v-bind:src="imgHost+fileName" width="225" height="150" onerror="this.src=sd.froot+'res/food/test.jpg'">
+            <img v-if="fileName == ''" src="res/food/test.jpg" width="225" height="150"  alt="商品" />
+            <a style="background:url(res/images/a50.png) repeat;height: 40px;line-height: 40px; position:absolute; bottom:0; left:0;width:225px;color: #fff;text-align: center;font-size: 16px;">编辑图片</a>
+            <form enctype="multipart/form-data" id="comForm">
+                <input type="file" id="file_upload" accept="image/jpeg,image/png,image/gif,image/tiff" name="image" onclick="this.value = ''" style="position:absolute;bottom: 0;height: 40px;width: 225px;opacity: 0;cursor: pointer;" />
+            </form>
+        </div>
+    </div>
+    <section>
+        <label class="commodity-name  fl">分类</label>
+        <label class="commodity-type fl" id="cids" style="width: 600px;">
+            <span v-for="(index,class) in classOn"  v-on:click="delClass(class.id)" class="{{isA == true?'':'sign'}}">{{class.name}}</span>
+            <a href="javascript:void(0);"  class="addclassify fl"  v-on:click="addclassify($evnet)">添加分类</a>
+        </label>
+    </section>
+    <section>
+        <label class="commodity-name  fl">口味</label>
+        <label class="commodity-type fl" id="attrs" style="width: 600px;">
+            <template v-for="(index,on) in Attron">
+                <span  aid="{{on.id}}" class="{{isA == true?'':'sign'}}" v-on:click="delAttr(on.id)" v-if="on.name != null">{{on.name}}</span>
+            </template>
+        <a href="javascript:void(0);" class="addclassify fl" v-on:click="addflavor($evnet)">添加口味</a>
+        </label>
+    </section>
+    <section>
+        <section class="fl" style="width: 25%;">
+            <label class="commodity-name  fl">
+参与折扣
+</label>
+            <span class="{{isDiscount == '0'?'off check-span':'on check-span'}}" v-on:click="isDiscounts"></span>
+        </section>
+        <section class="fl" style="width: 25%;">
+            <label class="commodity-name  fl">服务费</label>
+            <span class="{{serviceCharge == 0?'off check-span':'on check-span'}}" v-on:click="serviceCharges"></span>
+        </section>
+        <section class="fl" style="width: 25%;">
+            <label class="commodity-name  fl">推荐菜</label>
+            <span class="{{isRecommend == 0?'off check-span':'on check-span'}}" v-on:click="isRecommends"></span>
+        </section>
+         <section class="fl" style="width: 25%;">
+            <label class="commodity-name  fl">开启库存</label>
+            <span class="{{isStock == 0?'off check-span':'on check-span'}}" v-on:click="isStocks"></span>
+        </section>
+    </section>
+    <section>
+        <section class="fl" style="width: 33.333%;clear: both;;">
+            <label class="commodity-name  fl">参与会员</label>
+            <span class="{{ivip == 0?'off check-span':'on check-span'}}" v-on:click="isvips"></span>
+        </section>
+        <section class="fl" style="width: 66.333%;text-align: center;" v-show="ivip!==false">
+            <section class="fl" style="width: 50%;margin: 0;">
+                <span style="width: 90px;height: 40px;line-height: 40px;background-color: #fff;margin-right: 1px;cursor:pointer;" class="{{isVip==1?'sign fl':'fl'}}" v-on:click="vipLists(1)">会员价格</span>
+                <span style="width: 90px;height: 40px;line-height: 40px;background-color: #fff;margin-right: 1px;cursor:pointer;" class="{{isVip==2?'sign fl':'fl'}}" v-on:click="vipLists(2)">会员折扣</span>
+            </section>
+            <section class="vipPrice" style="width: 50%;float: right;margin: 0;" v-show="isVip == 1">
+                <label class="commodity-name  fl">会员价格</label>
+                <label>
+                    <input type="text" placeholder="输入会员价格" v-model="vipPrice" onkeyup="this.value=this.value.replace(/[^\d\.]/g,'')" onafterupdate="this.value=this.value.replace(/[^\d\.]/g,'')"   style="width: 120px;"/>
+                </label>
+            </section>
+            <!--<section class="vipDiscount" style="width: 50%;float: right;margin: 0;" v-show="isVip == 2">
+                <label class="commodity-name  fl">会员折扣</label>
+                <label>
+                    <input type="text" placeholder="输入会员折扣" v-model="vipDiscount" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onafterupdate="this.value=this.value.replace(/[^\d]/g,'')" maxlength="3"  style="width: 120px;"/>%
+                </label>
+            </section>-->
+        </section>
+    </section>
+    <section>
+        <label class="commodity-name fl">描述</label>
+        <textarea class="describe fl" v-model="description" placeholder="描述你的菜，我的菜，他的菜..." maxlength="200"></textarea>
+    </section>
+</section>
+<!-- 添加口味 -->
+<section class="flavor">
+    <section class="flavor-type">
+        <template v-for="(index,flavor) in Attrall">
+            <span v-if="checkSelected(flavor.id)" v-on:click="handle(flavor.id,flavor.name)" aid="{{flavor.id}}" class="sign">{{flavor.name}}</span>
+            <span v-else v-on:click="handle(flavor.id,flavor.name)" aid="{{flavor.id}}">{{flavor.name}}</span>
+        </template>
+    </section>
+</section>
+<!-- 添加分类 -->
+<section class="classify">
+    <template v-for="(index,cAll) in classAll">
+        <section class="classify-box">
+            <section class="classify-tit">
+                <span style="margin-right: 20px;" v-on:click="pushClass(cAll.id,cAll.name)" v-if="checkSelected(cAll.id)" class="sign">{{cAll.name}}</span>
+                <span style="margin-right: 20px;" v-on:click="pushClass(cAll.id,cAll.name)"  v-else>{{cAll.name}}</span>
+                <a href="javascript:void(0);" v-on:click="childShow($event)"  class="{{isA==false?'clasArr classOn':'clasArr'}}"  v-show="cAll.child.length !==0"></a>
+            </section>
+            <section class="classify-cont fl" transition="slidUpDown">
+                <template v-for="(index,child) in cAll.child">
+                    <span v-on:click="pushClass(child.id,child.name)" v-if="checkSelected(child.id)" class="sign">{{child.name}}</span>
+                    <span v-on:click="pushClass(child.id,child.name)"  v-else>{{child.name}}</span>
+                </template>
+            </section>
+        </section>
+    </template>
+</section>

@@ -1,0 +1,71 @@
+<style type="text/css">
+    * {
+        background: none;
+        margin: 0;
+        padding: 0;
+        border: none;
+    }
+    
+    body {
+        background: url(res/images/bg.png) center no-repeat;
+        background-size: 100% 100%;
+    }
+    
+    html,
+    body {
+        height: 100%;
+    }
+    
+    .container .content .forms .input {
+        width: 310px;
+        height: 47px;
+        border: none;
+        outline: none;
+        background-color: #fff;
+        padding-left: 20px;
+        overflow: hidden;
+        line-height: 46px;
+        font-family: system;
+        text-indent: 0px;
+    }
+    
+    .container .content .forms .inputEmpty {
+        font-size: 16px;
+        color: #aaa;
+        line-height: 45px;
+    }
+    
+    .container .content .forms .inputHas {
+        font-size: 16px;
+        color: #999;
+        -webkit-rtl-ordering: logical;
+        text-rendering: auto;
+        letter-spacing: normal;
+        word-spacing: normal;
+        text-transform: none;
+        text-shadow: none;
+        display: inline-block;
+        text-align: start;
+        font-family: Arial;
+        text-indent: 0px;
+        line-height: 45px;
+    }
+</style>
+<section class="container">
+    <section class="content">
+        <section class="forms">
+            <label id="ph" style="width:100%;height: 47px;">
+                <input v-if="phtype" @blur="changePhType(false)" type="text" autocomplete="off"  @keyup="enter" placeholder="请输入手机号" v-model="phone"/>
+                <div v-if="!phtype" contenteditable="true" class="input" :class='{"inputEmpty":!phone,"inputHas":phone}' @focus="changePhType(true)">{{phone? phone:'请输入手机号'}}</div>
+            </label>
+            <label id="pw" style="width:100%;height: 47px;">
+                <input v-if="pwtype" type="password" @blur="changeType(false)" @keyup="enter" autocomplete="off" placeholder="请输入密码" v-model="password"/>
+                <div v-if="!pwtype" contenteditable="true" class="input" :class='{"inputEmpty":!phone,"inputHas":phone}' @focus="changeType(true)">{{spassword ? spassword: "请输入密码"}}</div>
+            </label>
+            <label class="mbottom"><input type="button" value="登录" class="btn"/></label>
+
+            <section class="fl tip"><i></i>账号或密码错误</section>
+            <section class="fl form-footer"> 欢迎登录闪店商家</section>
+        </section>
+    </section>
+</section>

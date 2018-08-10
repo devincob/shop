@@ -1,0 +1,81 @@
+body {
+    background: url(../res/images/loginverbg.png) center center no-repeat;
+    background-size: 100% 100%;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.loginver {
+    width: 100%;
+    height: 60%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.loginver .loginverBox {
+    height: 80%;
+    width: 600px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+}
+
+.wait {
+    position: absolute;
+    width: 931px;
+    height: 216px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    background: url(../res/images/tips.png) center center no-repeat;
+}
+
+h1 {
+    color: #f0333a;
+    font-weight: bold;
+    height: 40px;
+    font-size: 32px;
+    text-align: left;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 20px;
+    outline: none;
+    border: 1px solid #b8b8b8;
+    resize: none;
+    margin-bottom: 20px;
+}
+
+.wait {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -100%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+}
+
+.addShop {
+    position: absolute;
+    right: 280px;
+    top: 170px;
+    background: url(../res/images/addshop.png) no-repeat;
+    width: 135px;
+    height: 40px;
+}

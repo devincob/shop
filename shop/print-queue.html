@@ -1,0 +1,203 @@
+<style type="text/css">
+    .boot-select {
+        float: right;
+        width: 80px;
+    }
+    
+    .boot-nav {
+        float: right;
+    }
+    
+    .boot-page {
+        display: inline-block;
+        margin: 2px 10px 0 20px;
+        vertical-align: middle;
+    }
+    
+    #print-queue .page-total {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    
+    #print-queue .baginTop {
+        width: 100%;
+        height: 50px;
+        /*overflow: hidden;*/
+    }
+    
+    #print-queue .topL {
+        width: 680px;
+        height: 50px;
+        padding: 10px 0;
+        overflow: hidden;
+    }
+    
+    #print-queue .calendar {
+        background: #fff;
+    }
+    
+    #print-queue .baginTop span {
+        display: block;
+        float: left;
+        width: 60px;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+    }
+    
+    #print-queue .timer1 {
+        width: 600px;
+        height: 40px;
+        margin-left: 10px;
+    }
+    #print-queue  .ent,
+    #print-queue .start {
+        display: block;
+        box-sizing: border-box;
+        width: 200px;
+        height: 40px;
+        line-height: 40px;
+        margin: 0;
+        padding: 0 10px;
+        border: 1px solid #ccc;
+        outline: none;
+        text-indent: 10px;
+    }
+    
+    #print-queue .ent {
+        border-left: 0;
+    }
+   #print-queue .search-btn {
+        cursor: pointer;
+        display: inline-block;
+        float: left;
+        width: 50px;
+        height: 40px;
+        background: url(../res/images/search.png) no-repeat;
+    }
+    #print-queue .search1-btn {
+        cursor: pointer;
+        display: inline-block;
+        float: right;
+        width: 130px;
+        height: 40px;
+        background: #29A7E1;
+        text-align: center;
+        line-height: 40px;
+    }
+    #print-queue .searchR .search-input {
+        outline: none;
+        border: 1px solid #b3b3b3;
+        box-sizing: border-box;
+        border-right: none;
+        width: 200px;
+        height: 40px;
+        line-height: 40px;
+        padding: 0;
+        color: #999;
+        float: left;
+    }
+    #print-queue .baginTop .topR {
+        width: 500px;
+        height: 40px;
+        padding: 10px 0;
+    }
+    
+   #print-queue  .tab {
+        width: 88px;
+        height: 40px;
+        background: url(res/images/off.png) -48px 0 no-repeat;
+        margin: 0 20px;
+    }
+    
+    #print-queue .searchR {
+        height: 40px;
+    }
+    
+    #print-queue .luyou {
+        width: 100%;
+        line-height: 40px;
+        height: auto;
+        margin-top:40px;
+    }
+    
+    #print-queue .state {
+        color: #009A44;
+        margin: 0 50px 0 10px;
+    }
+    
+    #print-queue .table {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        top: 0;
+        left: 0;
+    }
+  
+    #print-queue .table .tableTr {
+        width: 100%;
+        height: 50px;
+        background: #F2F2F2;
+    }
+    #print-queue .tableTr-last{margin-bottom:20px;}
+    #print-queue .tableTr div {
+        float: left;
+        width: 16.5%;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+    }
+    #print-queue .clearbtn{position: absolute;top:-60px;right: 0;width:150px}
+    #print-queue-tan .oDetial{width:100%;height:20px;line-height:20px;text-align: center;}
+</style>
+
+<section style="text-align:left;position: relative;"  num="app" id="print-queue">
+    <div class="clearbtn"><a v-on:click = "clearbtn" href="javascript:void(0);" class="green" style="width: 100%;">清空打印队列</a></div>
+    <section class="luyou" id="table" style="width:100%;min-width: 1140px;">
+        <section  class="table">
+            <section style="background:#E6E6E6" class="tableTr">
+                <div>序号</div>
+                <div>打印单据名称</div>
+                <div>打印机ip</div>
+                <div>打印次数</div>
+                <div style="width:17.5%;">生成时间</div>
+                <div>操作</div>
+            </section>
+            <section style="width:100%;">
+                <section style="width:100%">
+                    <section v-if = "printRueue.length == 0" style="width:100%;height:50px;line-height: 50px;text-align: center;color:orange;">暂时无打印队列单</section>
+                    <section v-else v-for="(index,print) in printRueue">
+                        <section v-if="(index % 2) == 0" style="background-color: #f2f2f2;" class="tableTr">
+                            <div>{{index + 1}}</div>
+                            <div>{{print.orderName}}</div>
+                            <div>{{print.ip}}</div>
+                            <div>{{print.printTimes}}</div>
+                            <div style="width:17.5%;">{{print.createTime}}</div>
+                            <div><a v-on:click="openDetails(print.printData)" href="javascript:void(0);" class="blue" style="width: 100%;">详情</a></div>
+                        </section>
+                        <section v-else style="background-color: #fff;" class="tableTr">
+                            <div>{{index + 1}}</div>
+                            <div>{{print.orderName}}</div>
+                            <div>{{print.ip}}</div>
+                            <div>{{print.printTimes}}</div>
+                            <div style="width:17.5%;">{{print.createTime}}</div>
+                            <div><a v-on:click="openDetails(print.printData)" href="javascript:void(0);" class="blue" style="width: 100%;">详情</a></div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+
+            <section style="background:#E6E6E6" class="tableTr tableTr-last">
+                <div>序号</div>
+                <div>打印单据名称</div>
+                <div>打印机ip</div>
+                <div>打印次数</div>
+                <div>生成时间</div>
+                <div>打印详情</div>
+            </section>
+        </section>
+    </section>
+</section>
+<section id='print-queue-tan'>
+    <section v-for = "i in alist.length" class="oDetial">{{alist[i]}}</section>
+</section>

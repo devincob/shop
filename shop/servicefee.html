@@ -1,0 +1,142 @@
+<style type="text/css">
+    .commodity-name {
+        width: 115px;
+        height: 40px;
+        line-height: 40px;
+        text-align: right;
+        margin-right:25px;
+    }
+    .topR , .picName{
+        width:100%;
+        margin-top:10px;
+        overflow: hidden;
+    }
+    
+    .picName input{
+        width:100px;
+        line-height: 25px;
+        padding:5px;
+        margin:0;
+    }
+    .line {
+        display: block;
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        margin:10px 0;
+    }
+    .all{
+        display: block;
+        float: left;
+        font-size: 14px;
+        text-align: center;
+        color: #999999;
+        padding: 0 20px;
+        margin:5px 0;
+        height: 40px;
+        line-height: 40px;
+        cursor: pointer;
+        position: relative;
+        background-color: #f2f2f2;
+        border-right: 1px solid #fff;
+    }
+    .shopall{
+        float: left;
+        font-size: 14px;
+        text-align: center;
+        color: #999999;
+        padding: 0 20px;
+        height: 40px;
+        line-height: 40px;
+        cursor: pointer;
+        position: relative;
+        background-color: #f2f2f2;
+        border-right: 1px solid #fff;
+        margin:0 10px 20px 0;
+    }
+    .spanCom{
+        height: 40px;
+        line-height: 40px;
+        width: 150px;
+        text-align: left;}
+    .relatedFormTwo ,.relatedForm{
+        padding:30px;
+    }
+</style>
+ <meta charset="UTF-8" />
+<section style="text-align:left;" id="service">
+	<div class="topR">
+	    <section class="fl" style="width:100%;">
+            <label class="commodity-name  fl">开启服务费</label>
+            <sd-onoff :onoff.sync="on" ></sd-onoff>
+	    </section>
+    </div>	
+    <div class="picName">
+        <div class="line">
+            <span class="required" style="display: block;width:130px;line-height: 40px;margin-right:10px;float: left;">服务费使用规范  </span>
+            <sd-radio :list.sync="list" :index.sync="index" :name='"name"' style="width:400px;height:40px;"></sd-radio>
+        </div>
+     
+        <div class="line">
+            <label class="required fl" style="width:130px;line-height: 40px;margin-right:10px;">服务费费率设置</label>
+            <label>
+                <input type="text" class="input" disabled="{{disabled}}" v-model="percent" style="width: 120px;height:30px;border:1px solid #ccc; " placeholder="输入费率">%
+            </label>
+        </div>
+        <div class="line">
+            <label class="required fl" style="width:130px;line-height: 40px;margin-right:10px;">选择服务费商品</label>
+            <span class="fl spanCom" v-if="goodsLength>0">已选择菜品：{{goodsLength}}道</span>
+            <a href="javascript:void(0);" disabled="{{disabled}}" v-on:click="addlist" class="addclassify" disabled="{{disabled}}" style="width:180px;">添加关联菜品</a>
+        </div>
+        <div class="line">
+            <label class="required fl" style="width:130px;line-height: 40px;margin-right:10px;">选择服务费商品</label>
+            <span class="fl spanCom" v-if="packagesLength>0">已选择套餐：{{packagesLength}}个</span>
+            <a href="javascript:void(0);" disabled="{{disabled}}" v-on:click="addpackage" class="addclassify" disabled="{{disabled}}" style="width:180px;">添加关联套餐</a>
+        </div>
+</div>
+    <a href="javascript:void(0);" v-on:click="keepOn" class="{{percent !== '' ?'yellow':'gray'}}" style="margin:10px 0;width:250px;">保存</a>
+</section>
+
+<!--关联商品关联菜品表单-->
+<section class="relatedForm">
+    <section> 
+        <section class="place fl">
+            <section class="class-Parent">
+                <template v-for="(i , item) in category">
+                    <span v-if="item.id == L1ID" class="on"  v-on:click="changeL1ID(item.id,i)">{{item.name}}</span>
+                    <span v-else  v-on:click="changeL1ID(item.id,i)">{{item.name}}</span>
+                </template>
+            </section>
+            <section class="class-Child">
+                <template v-if="child.length > 0 " v-for="(i , item) in child">
+                    <span v-if="item.id == L2ID" v-on:click="changeL2ID(item.id)" class="second-on">{{item.name}}</span>
+                    <span v-else v-on:click="changeL2ID(item.id)">{{item.name}}</span>
+                </template>
+            </section>
+        </section>
+        <section class="fl" style="width: 100%;height: auto;margin-bottom: 10px;">
+            <a href="javascript:void(0)" class="check fl"  v-on:click="wholeOnCom">全部选择</a>
+            <a href="javascript:void(0)" class="unselect fl" v-on:click="wholeOffCom">全部取消</a>
+        </section>
+    </section>
+    <section class="comList">
+        <sd-multiselect :list.sync="selectgoods" :selects.sync="goodsIndex" :name='"goodsName"' :key='"id"'></sd-multiselect>
+    </section>
+</section>
+<!--关联商品套餐表单-->
+<section class="relatedFormTwo">
+    <section class="place fl" style="width: 100%;height:auto;">
+            <span v-bind:class='{"on":( show == -1)}' class="on" v-on:click="change(-1)">全部分类</span>
+            <span v-bind:class='{"on":( show == 1)}' v-on:click="change(1)">可选套餐</span>
+            <span v-bind:class='{"on":( show == 0)}' v-on:click="change(0)">固定套餐</span>
+    </section>
+    <section class="fl" style="width: 100%;height: auto;padding-top: 3px;">
+        <a href="javascript:void(0)" class="check" style="width: 20%;" v-on:click="wholeOnPackage">全部选择</a>
+        <a href="javascript:void(0)" class="unselect" style="width: 20%;" v-on:click="wholeOffPackage">全部取消</a>
+    </section>
+    <section class="fl packageList">
+        <sd-multiselect :list.sync="selectPackages" :selects.sync="packageIndex"  :name='"packageName"' :key='"id"'></sd-multiselect>
+    </section>    
+</section>
+
+     

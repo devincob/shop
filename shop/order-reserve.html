@@ -1,0 +1,439 @@
+<style type="text/css">
+    .order-content1,
+    .order-content2 {
+        /*height: 410px;*/
+        background-color: #fff;
+        min-width: 708px;
+        /*max-width: 1416px;*/
+    }
+    
+    .order-order-data ul {
+        margin: 20px 20px 20px 0px;
+        min-width: 940px;
+        width: 100%;
+        float: left;
+    }
+    
+    .order-staff-list {
+        width: 176px;
+        display: block;
+        position: absolute;
+        top: 44px;
+        left: 0;
+        z-index: 3;
+    }
+    
+    .order-staff-list span {
+        display: inline-block;
+        width: 100%;
+        height: 44px;
+        line-height: 44px;
+        text-align: center;
+        border: 1px solid #C7C7C7;
+        background-color: #fff;
+    }
+    
+    .order-order-data ul li {
+        float: left;
+        margin-right: 20px;
+        height: 46px;
+    }
+    
+    .order-order-data ul li span input {
+        width: 174px;
+        height: 40px;
+        text-align: center;
+        border: 1px solid #B3B3B3;
+        float: left;
+    }
+    
+    .order-order-click {
+        display: inline-block;
+        width: 44px;
+        height: 44px;
+        border: 1px solid #B3B3B3;
+        float: left;
+        border-left: none;
+        background: url(res/icon/q@2x.png) center center no-repeat;
+        cursor: pointer;
+    }
+    
+    .order-order-zhi {
+        float: left;
+        width: 36px;
+        height: 46px;
+        line-height: 46px;
+        text-align: center;
+    }
+    
+    .order-order-searchA,
+    .order-order-search,
+    .order-order-inquire {
+        display: inline-block;
+        float: left;
+        width: 44px;
+        height: 44px;
+        background-color: #29A7E1;
+        cursor: pointer;
+    }
+    
+    .order-order-search {
+        background: url(res/images/search.png) center center no-repeat;
+    }
+    
+    .order-order-inquire {
+        width: 96px;
+        background-color: #29A7E1;
+        color: #FFF;
+        text-align: center;
+        line-height: 44px;
+    }
+    
+    .order-content1 ul li,
+    .order-content2 ul li {
+        float: left;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+    }
+    
+    .order-content1 ul li.normal-li,
+    .order-content2 ul li.normal-li {
+        float: left;
+        height: 50px;
+        max-height: 50px;
+        line-height: 25px;
+        text-align: center;
+        vertical-align: middle;
+        display: -webkit-box;
+        -webkit-box-pack: center;
+        -webkit-box-align: center;
+        -webkit-box-orient: vertical;
+        word-break: break-all;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+    }
+    
+    .order-content1 ul.order-content-show:nth-child(2n) li,
+    .order-content2 ul.order-content-show:nth-child(2n+1) li {
+        background-color: #F2F2F2;
+    }
+    
+    .order-content1 ul.first li,
+    .order-content1 ul.last li,
+    .order-content2 ul.first li,
+    .order-content2 ul.last li {
+        background-color: #E6E6E6;
+    }
+    /*.order-content1 ul.order-content-show li:last-child span {
+        float: left;
+        display: inline-block;
+        color: #FFFFFF;
+       
+    }*/
+    
+    .order-content1 ul.order-content-show li.order-last-li {
+        float: left;
+        height: 50px;
+        line-height: 25px;
+        text-align: center;
+    }
+    
+    .order-content1 ul.order-content-show li.order-last-li span {
+        color: #FFFFFF;
+        display: inline-block;
+        float: left;
+    }
+    
+    .order-con-nav {
+        width: 100%;
+        height: 35px;
+        float: left;
+        border: 1px solid #E6E6E6;
+        border-left: 2px solid #F8931F;
+        position: relative;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+    
+    .order-con-nav ul li {
+        line-height: 35px;
+        height: 35px;
+    }
+    
+    .order-content2 {}
+    
+    .order-operation {
+        position: absolute;
+        right: 0;
+        top: -53px;
+        z-index: 2;
+        width: 210px;
+        height: 44px;
+    }
+    
+    .order-operation div {
+        display: inline-block;
+        width: 90px;
+        height: 44px!important;
+        float: left;
+        line-height: 44px;
+        text-align: center;
+        color: #FFFFFF;
+    }
+    
+    .order-select {
+        text-align: center;
+        display: inline-block;
+        width: 26px;
+        height: 26px;
+        border: 1px solid #C7C7C7;
+        border-radius: 50%;
+        background-color: #28A8E0;
+        line-height: 23px;
+    }
+    
+    .order-page ul.tab-list li {
+        line-height: 45px;
+    }
+    
+    .order-page {
+        height: 100px;
+        float: right;
+        margin-top: 25px;
+        margin-right: 60px;
+    }
+    
+    #order-edit .edit-text {
+        width: 100px;
+        height: 44px;
+        float: left;
+        text-align: right;
+        line-height: 44px;
+        margin-top: 10px;
+    }
+    
+    #order-edit .edit-content {
+        width: 450px;
+        height: 44px;
+        float: right;
+        line-height: 44px;
+        margin-top: 10px;
+        color: #333333;
+    }
+    
+    #order-edit .edit-content input {
+        width: 168px;
+        height: 40px;
+        margin-left: 24px;
+        background-color: #fff;
+    }
+    
+    #order-select-table {}
+    
+    .calendar {
+        width: 256px;
+    }
+    
+    .edit-text .edit-content> .calendar {
+        width: 150px;
+    }
+    .calendar{
+    	width: 212px !important;
+    }
+</style>
+<div id="order-reserve" v-cloak>
+
+    <div class="order-order-data" v-if="!openDetail">
+        <ul>
+            <li>
+                <span>
+                <sd-calendar :time.sync="startTime" :only="true" :uid="'mycalendar1'"  :format="'yyyy年MM月dd日'"style="width: 200px;height: 42px;" id="order-data-start"></sd-calendar>
+                <span class="order-order-click calendar-ctr" onclick="$('#mycalendar1').mouseup();"></span>
+                <span class="order-order-zhi">至</span>
+                <sd-calendar :time.sync="endTime" :only="true" :uid="'mycalendar2'" :format="'yyyy年MM月dd日'" style="width: 200px;height: 42px;" id="order-data-end"></sd-calendar>
+                <span class="order-order-click calendar-ctr" onclick="$('#mycalendar2').mouseup();"></span>
+                <span class="order-order-searchA" v-on:click="getReserveList"> <span class="order-order-search"></span></span>
+                </span>
+            </li>
+            <li style="margin-left: 66px;">
+                <span>
+                <input type="text" placeholder="请输入手机号码" v-model="searchOrderMobile"/>  <span class="order-order-searchA" v-on:click = "getByMobile()"> <span class="order-order-search"></span></span>
+                </span>
+                </span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="order-content1" v-if="!openDetail && reserveListInited">
+
+        <ul style="color: #333333;" class="first">
+            <li style="width: 20%;">预定手机号</li>
+            <li style="width: 14%;">姓名</li>
+            <li style="width: 10%;">预定席位</li>
+            <!--<li style="width: 10%;">会员</li>-->
+            <!--<li style="width: 10%;">桌台</li>-->
+            <li style="width: 20%;">预定时间</li>
+            <li style="width: 10%;">状态</li>
+            <li style="width: 16%;">操作</li>
+        </ul>
+        <template v-if=' reserveList.length>0'>
+            <template v-for=" (i,item) in reserveList">
+                <ul style="color: #333333;" class="order-content-show">
+                    <li style="width: 20%;" class="normal-li">{{item.mobile}}</li>
+                    <li style="width: 14%;" class="normal-li">{{item.name}}</li>
+                    <li style="width: 10%;" class="normal-li">{{item.num}}</li>
+                    <!--<li style="width: 10%;" class="normal-li">否</li>-->
+                    <!--<li style="width: 10%;" class="normal-li">{{getTableName(item.tableId)}}</li>-->
+                    <li style="width: 20%;" class="normal-li">{{tranformTime(item.time)}}</li>
+                    <li style="width: 10%;" class="normal-li">{{reserveStatu(item.status)}}</li>
+                    <li style="width: 16%;" class="order-last-li">
+                        <template v-if='item.from == "1"'>
+                            <span class="blue" style="width: 50%;" v-on:click="editReserve(item,i)">修改</span>
+                            <span class="red" style="width: 50%;" v-on:click="delectReserve(item.id,i)">删除</span></li>
+                    </template>
+                    <template v-else>
+                        <span class="yellow" style="width: 50%;" v-on:click="openOrderDetail(item.shopId,item.oid)">允许</span>
+                        <span class="red" style="width: 50%;" v-on:click="getPrintOrderInfo(i)">拒绝</span></li>
+                    </template>
+                </ul>
+            </template>
+        </template>
+        <ul v-else>
+            <li style="width: 90%;background-color: #F2F2F2;color: #F8931F; ">该时间段并没有预定数据</li>
+        </ul>
+        <ul style="color: #333333;" class="last">
+            <li style="width: 20%;">预定手机号</li>
+            <li style="width: 14%;">姓名</li>
+            <li style="width: 10%;">预定席位</li>
+<!--            <li style="width: 10%;">会员</li>-->
+            <!--<li style="width: 10%;">桌台</li>-->
+            <li style="width: 20%;">预定时间</li>
+            <li style="width: 10%;">状态</li>
+            <li style="width: 16%;">操作</li>
+        </ul>
+
+        <div class="order-page" v-if='reserveList.length>0'>
+            <sd-page :page.sync="orderPage" :count.sync='orderPageTTotal' :total.sync='orderPageTTotal' :num.sync='orderPageNum' style="float: left;"></sd-page>
+        </div>
+    </div>
+
+</div>
+
+<!--修改的一级弹窗-->
+<div id="order-edit" style="background-color: #F2F2F2;width：550px;overflow: hidden;" v-cloak>
+    <div style="background-color: #F2F2F2;width：550px;overflow: hidden;">
+
+        <div class="edit-text required">预定手机号</div>
+        <div class="edit-content">
+            <input type="text" class="input" style="width: 200px;" maxlength="11" v-model="oneReserveInfo.mobile" placeholder="请输入手机号">
+        </div>
+        <div class="edit-text required">姓名</div>
+        <div class="edit-content">
+            <input type="text" class="input" style="width: 200px; " v-model="oneReserveInfo.name" maxlength="6" placeholder="请输入姓名">
+        </div>
+        <div class="edit-text required">预定席位</div>
+        <div class="edit-content">
+            <input type="text" class="input" style="width: 200px;" maxlength="6" v-model="oneReserveInfo.num" placeholder="请输入预定席位">
+        </div>
+        <!--<div class="edit-text required">会员</div>
+        <div class="edit-content">
+            <input type="text" class="input" style="width: 200px; " v-model="oneReserveInfo.mobile" placeholder="请输入">
+        </div>-->
+        <div class="edit-text ">桌台</div>
+        <div class="edit-content">
+            <span style="width: 400px;height: 40px; display: inline-block;">
+            <input type="text" class="input" style="width: 130px;float: left; outline: none;" v-model="tableAndAreaName" readonly="readonly" >
+            <a class="blue" style="width: 70px;height: 40px;line-height: 40px;float: left; margin-left: 2px;" v-on:click='openChangeTable'>更改桌台</a>
+            </span>
+        </div>
+        <div class="edit-text required">预定时间</div>
+        <div class="edit-content">
+            <sd-calendar :time.sync="startTime" :only="false" :uid="'mycalendar3'" style="padding-left:10px;width: 212px;height: 42px;float: left;" readonly="readonly" id="order-data-start"></sd-calendar>
+            <div class="edit-content-data calendar-ctr" onclick="$('#mycalendar3').mouseup();"></div>
+            <!--<div class="order-order-zhi" style="height: 42px;line-height: 42px;">至</div>
+            <sd-calendar :time.sync="endTime" :only="false" :uid="'mycalendar4'" style="width: 150px;height: 42px;float: left;margin-left: 0;" readonly="readonly" id="order-data-end"></sd-calendar>
+            <div class="edit-content-data calendar-ctr" onclick="$('#mycalendar4').mouseup();"></div>-->
+        </div>
+
+        <div class="edit-text" style="padding-bottom: 210px;">备注</div>
+        <div class="edit-content">
+            <textarea class="describe" style="width: 368px;height: 150px;margin-left: 24px;" v-model="oneReserveInfo.remark" maxlength="100"></textarea>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    .bgc-blue {
+        background-color: #2980b9!important;
+        color: #FFFFFF;
+        position: relative;
+    }
+    
+    .bgc-blue:after {
+        content: "";
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid #fff;
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translate(-50%, 0);
+        -webkit-transform: translate(-50%, 0);
+        -ms-transform: translate(-50%, 0);
+        -moz-transform: translate(-50%, 0);
+    }
+    
+    .select-table-navP,
+    .select-table-navC {
+        float: left;
+    }
+    
+    #order-select-table ul li {
+        display: inline-block;
+        padding: 0 20px 0 20px;
+        font-size: 14px;
+        text-align: center;
+        height: 40px;
+        line-height: 40px;
+        cursor: pointer;
+        float: left;
+        background-color: #f3f3f3;
+    }
+    
+    #order-select-table ul {
+        background-color: #f3f3f3;
+        margin-bottom: 5px;
+    }
+    
+    .select-table-navC {}
+    
+    .select-table-navC ul li {
+        margin-right: 20px;
+        margin-top: 10px;
+    }
+</style>
+<!--选择桌台 二级弹窗-->
+<div id='order-select-table' style="width: 700px;margin-bottom: 40px;overflow: hidden;">
+    <div class="select-table-navP" style="margin:10px 30px 0 30px;">
+        <ul>
+            <template v-for="(i,item) in areaList">
+                <li v-if="item.id == List1ID" v-on:click="changeL1ID(item.id,i)" class="bgc-blue">{{item.areaName}}</li>
+                <li v-else v-on:click="changeL1ID(item.id,i)" style="color: #333;">{{item.areaName}}</li>
+            </template>
+        </ul>
+
+    </div>
+    <div class="select-table-navC" style="margin:8px 30px 0 30px;height: 356px;overflow: auto;">
+        <ul>
+            <template v-for="(i,table) in tableList  | filterBy  List1ID in 'areaId'">
+                <li v-if='table.id == selectedTableId' class="sign" v-on:click="selectedTable(table.id)">{{table.tableName}}</li>
+                <li v-on:click="selectedTable(table.id)" v-else>{{table.tableName}}</li>
+            </template>
+
+        </ul>
+    </div>
+</div>

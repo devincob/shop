@@ -1,0 +1,98 @@
+@charset "utf-8";
+/* CSS Document */
+*{margin:0px;padding:0px;}
+/*水平翻转*/
+.flipx {
+    -moz-transform:scaleX(-1);
+    -webkit-transform:scaleX(-1);
+    -o-transform:scaleX(-1);
+    transform:scaleX(-1);
+    /*IE*/
+    filter:FlipH;
+}
+
+/*垂直翻转*/
+.flipy {
+    -moz-transform:scaleY(-1);
+    -webkit-transform:scaleY(-1);
+    -o-transform:scaleY(-1);
+    transform:scaleY(-1);
+    /*IE*/
+    filter:FlipV;
+}
+
+/*不可选*/
+ .noselect{
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+}
+
+.translucent-50{
+filter:alpha(opacity=50);  /*支持 IE 浏览器*/
+-moz-opacity:0.50; /*支持 FireFox 浏览器*/
+opacity:0.50;  /*支持 Chrome, Opera, Safari 等浏览器*/
+}
+
+.translucent-png50{
+  background:url(../res/images/a50.png) repeat;
+}
+
+
+
+/*通用按钮样式
+<a class="large button radius gray noselect">取消</a>
+<a class="large button radius blue noselect">确定</a>
+background: #222 url(../res/overlay.png) repeat-x; 
+   text-shadow: 0 -1px 1px rgba(0,0,0,0.25); 
+*/
+.button, .button:visited {
+	display: inline-block; 
+	color: #fff; 
+	text-decoration: none;
+	position: relative;
+	cursor: pointer;
+  text-align:center;
+}
+.radius , .radius:visited{
+  -moz-border-radius: 6px; 
+  -webkit-border-radius: 6px;
+  border-radius:6px; 
+}
+.shadow , .shadow:visited{
+  -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+  border-bottom: 1px solid rgba(0,0,0,0.25); 
+}
+.button:hover	{ background-color: #111; color: #fff; }
+.button:active {top:1px; }
+.small.button, .small.button:visited 			{ font-size: 11px}
+.button, .button:visited,
+.medium.button, .medium.button:visited 		{ font-size: 13px; 
+                        font-weight: bold; 
+                     
+                        }
+                        
+.large.button, .large.button:visited 			{ font-size: 14px;  }
+                          
+.super.button, .super.button:visited 			{ font-size: 34px;  }
+
+.pink.button, .pink.button:visited		{ background-color: #e22092; }
+.pink.button:hover							{ background-color: #c81e82; }
+.gray.button, .gray.button:visited		{ background-color: #CfCfCf; }
+.gray.button:hover							{ background-color: #C0C0C0; }
+.green.button, .green.button:visited		{ background-color: #91bd09; }
+.green.button:hover						    { background-color: #749a02; }
+.red.button, .red.button:visited			{ background-color: #e62727; }
+.red.button:hover							{ background-color: #cf2525; }
+.orange.button, .orange.button:visited		{ background-color: #ff5c00; }
+.orange.button:hover						{ background-color: #d45500; }
+.blue.button, .blue.button:visited		    { background-color: #28a8e0; }
+.blue.button:hover							{ background-color: #2575cf; }
+.yellow.button, .yellow.button:visited		{ background-color: #ffb515; }
+.yellow.button:hover						{ background-color: #fc9200; }
+

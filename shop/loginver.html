@@ -1,0 +1,123 @@
+<!-- 开台审核提交 -->
+<style type="text/css">
+    html,
+    body {
+        height: 100%;
+    }
+    
+    body {
+        background: url(res/images/bg.png) center -550px no-repeat;
+        background-size: 100% 100%;
+    }
+    
+    .loginver {
+        width: 100%;
+        height: 70%;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+    }
+    
+    .loginverBox {
+        height: 450px;
+        width: 920px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+    }
+    
+    .form-info span {
+        min-height: 45px;
+        line-height: 45px;
+        text-align: right;
+        width: 100px;
+        margin-right: 20px;
+    }
+    
+    .form-info div {
+        min-height: 45px;
+        line-height: 45px;
+        margin-bottom: 10px;
+    }
+    
+    .form-info div input {
+        width: 300px;
+        border: 1px solid #949494;
+        box-sizing: border-box;
+        resize: none;
+    }
+    
+    .form-info div.error input{
+         border: 1px solid red;
+    }
+    
+    .form-info div.error span{
+        color: red;
+    }
+    
+    .form-info div a {
+        margin-left: 550px;
+        margin-top: -90px;
+        font-size: 22px;
+    }
+    
+    .form-info div textarea {
+        outline: none;
+        width: 300px;
+        height: 150px;
+        padding: 10px;
+        box-sizing: border-box;
+        border: 1px solid #949494;
+        resize: none;
+    }
+</style>
+
+<div class="loginver" id="loginver">
+    <div class="loginverBox">
+        <form class="fl" style="width: 50%;">
+            <div class="form-info">
+                <div style="margin-top: 5px;">
+                    <span class="required fl">店铺名</span>
+                    <input class="input fl" type="text" v-model="shopName" placeholder="请输入店名" />
+                </div>
+                <div>
+                    <span class="required fl">店铺负责人</span>
+                    <input class="input fl" type="text" v-model="contactMan" placeholder="请输入店铺负责人" />
+                </div>
+                <div>
+                    <span class="required fl">联系方式</span>
+                    <input class="input fl" type="text" v-model="telephone" placeholder="请输入手机号码" />
+                </div>
+                <div>
+                    <span class="required fl">地址</span>
+                    <input class="input fl" type="text" v-model="address" placeholder="请输入地址" />
+                </div>
+                <div>
+                    <span class="fl">详细介绍</span>
+                    <textarea class="fl" style="" v-model="description" placeholder="请输入详细介绍..."></textarea>
+                </div>
+                <div>
+                    <span class="fl"> </span>
+                    <a class="yellow fl" class="{{Validation === true?'btn garys':'btn yellow'}}" v-on:click="subForm">提交审核</a>
+                </div>
+            </div>
+        </form>
+        <form class="fr" style="width: 50%;" id="imageUpForm" enctype="multipart/form-data">
+            <div style="width: 85%;float: right;position: relative;">
+                <span class="required fl" style="width: 80px;line-height: 40px;">营业执照</span>
+                <a href="javascript:void(0);" class="fl blue" style="display: block;width: 120px;height: 40px;line-height: 40px;color: #fff;font-size: 18px;">立即上传</a>
+                <input type="file" id="file_upload" accept="image/jpeg,image/png,image/gif,image/tiff" name="image" style="position: absolute;left: 63px;width: 120px;height: 40px;opacity: 0;cursor: pointer;display: block;" />
+            </div>
+            <div style="float: right;width: 85%;margin-top: 20px;">
+                <p class="fl" style="width: 70px;text-align: right;margin-right: 10px;color: #cccccc;font-size: 16px;">图片：</p>
+                <div id="image fl"><img v-bind:src='fileName' id="imgs" alt="营业执照" style="max-height: 271px;max-width: 195px;" style="border: 2px solid #727071;" /></div>
+
+            </div>
+
+        </form>
+    </div>
+</div>

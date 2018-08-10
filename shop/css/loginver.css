@@ -1,0 +1,94 @@
+body {
+    background: url(res/images/loginverbg.png) center center no-repeat;
+    background-size: 100% 100%;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.loginver {
+    width: 100%;
+    height: 60%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.loginver .loginverBox {
+    height: 80%;
+    width: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+}
+
+.forms> div {
+    width: 50%;
+    height: 100%;
+    background-color: #fff;
+}
+
+.forms> div:after {
+    content: '';
+    clear: both;
+    zoom: 1;
+}
+
+.forms> div> div {
+    margin-bottom: 20px;
+    float: left;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+}
+
+.forms> div> div span {
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    width: 20%;
+    text-align: right;
+}
+
+.form-info input {
+    outline: none;
+    width: 75%;
+    margin-left: 5%;
+    height: 40px;
+    line-height: 40px;
+    padding: 0;
+    box-sizing: border-box;
+    border: 1px solid #949494;
+    padding-left: 10px;
+    box-sizing: content-box;
+}
+
+.forms> div> div textarea:focus {
+    box-shadow: none;
+}
+
+.btn {
+    width: 240px;
+    height: 50px;
+    line-height: 50px;
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    outline: none;
+}
+
+.garys {
+    background-color: #a0a0a0;
+    pointer-events: none;
+    cursor: default;
+}
+
+input:disabled {
+    background-color: #a0a0a0 !important;
+}

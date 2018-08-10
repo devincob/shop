@@ -1,0 +1,70 @@
+<!--打印机设置-->
+<style type="text/css">
+.print-form{width: 580px;height:auto;background-color: #f2f2f2;padding: 20px 40px;overflow: hidden;padding-bottom: 100px;}
+.print-form label{width: 100%;height: 40px;overflow: hidden;}
+.print-form label span.printName{height: 40px;line-height: 40px;width: 80px;text-align: right;margin-right: 20px;}
+.print-form label input.printText{outline: none;border: none;background-color: #fff;width:385px;height: 40px;padding-left: 10px;}
+.print-form label input:focus{box-shadow: none;}
+.selectbtns span{background-color: #FFFFFF;}
+.selectbtns span:hover{background-color: #FFFFFF;}
+.commodity-box > section{height: 150px;}
+</style>
+<section class="fl user-content" id="printer" v-cloak>
+    <section class="user-info">
+        <section class="commodity-box">
+            <section class="commodityAdd fl" v-on:click="openWin(null,'addPrint',null)">
+                <section class="combox">
+                    <img src="res/images/comadd.png" alt="添加" />
+                    <h3>新建打印机</h3>
+                </section>
+            </section>
+            <section class="fl" v-for="(i,pList) in printerList" style="background-color: #eeeeee;color: #898989;" v-on:click="openWin(pList.id,'edit',i)">
+                <section style="border-left: 2px solid #026eb7;height: 30px;width: 100%;margin-bottom: 40px;">
+                    <section class="fl" style="width: 210px;text-indent: 10px;">
+                        <section style="height: 30px;line-height: 30px;font-size: 16px;">{{pList.printerName}}</section>
+                    </section>
+                    <section  style="width: 80px;height: 60px;line-height: 60px;text-align: center;" class="fr">
+                        <h2 style="font-size: 64px;color: #dddddd;">{{i}}</h2>
+                    </section>
+                </section>
+                <section style="height: 70px;text-indent: 10px;">
+                   <p style="color: #666;font-size:18px;font-weight: bold;line-height: 30px;height: 30px;">IP：<span style="font-size: 18px;">{{pList.ip}}</span></p>
+                   <p style="height: 20px;line-height: 20px;">字宽：<span>{{pList.maxLen}}</span></p>
+                   <p style="height: 20px;line-height: 20px;">类型：<span>{{pList.typeName}}</span></p>
+                </section>
+            </section>
+        </section>
+    </section>
+</section>
+<section class="print-form">
+    <label class="fl" style="margin-bottom: 10px;">
+        <span class="fl required printName">名称</span>
+        <input type="text" class="fl printText" v-model="printerName" placeholder="请输入名称" maxlength="30" />
+    </label>
+    <label class="fl" style="margin-bottom: 10px;">
+        <span class="fl required printName">IP地址</span>
+        <input type="text" class="fl printText" v-model="ip" placeholder="请输入IP名称" />
+    </label>
+    <label class="fl" style="padding-left: 100px;line-height: 20px;margin-bottom: 10px;font-size: 16px;color: #b5b5b5;">
+        (局域网IP地址,例如：192.168.66.11。<br />
+        &nbsp;电脑打印机的IP地址必须设为127.0.0.1)
+    </label>
+    <label class="fl" style="margin-bottom: 10px;">
+        <span class="fl required printName">最大字款</span>
+        <input type="text" class="fl printText" v-model="maxLen" placeholder="请输入最大字款" />
+    </label>
+     <label class="fl" style="padding-left: 100px;line-height: 20px;margin-bottom: 10px;font-size: 16px;color: #b5b5b5;">
+        (每行最多打印英文字的个数。<br />
+         &nbsp;80mm打印机:<=48;58mm打印机:<=32)
+    </label>
+    <label class="fl" style="margin-bottom: 10px;">
+        <span class="fl required printName">通信类型</span>
+        <div style="width: 400px;" class="fl printText">
+            <sd-radio :list.sync="list" :index.sync="type" :name='"name"'></sd-radio>
+        </div>
+    </label>
+    <label class="fl" style="margin-bottom: 10px;">
+        <span class="fl required printName">排序</span>
+        <div style="width: 400px;overflow: hidden;" class="fl"><sd-subadd :num.sync="num" :maxnum="255" :minnum="1"></sd-subadd></div>
+    </label>
+</section>

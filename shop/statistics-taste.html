@@ -1,0 +1,325 @@
+<meta charset="UTF-8"/>
+<style>
+    body,ul,h1,p{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .chairFix:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+    #tasteStatistics{
+        position: relative;
+    }
+    #tasteStatistics .statisticsCalendar {
+        height: 73px;
+    }
+    #tasteStatistics .statisticsCalendar>span{
+        color: #666;
+        font-size: 14px;
+        height: 41px;
+        width: 36px;
+        text-align: center;
+        line-height: 41px;
+    }
+    #tasteStatistics .tableListInp {
+        color: #666666;
+        border: #b3b3b3 solid 1px;
+    }
+    #tasteStatistics .tableListInp div{
+        width: 41px;
+        height: 41px;
+        position: relative;
+    }
+    #tasteStatistics .tableListInp div i{
+        height: 10px;
+        width: 10px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -5px;
+        margin-left: -5px;
+        border-top: 10px solid #b3b3b3;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        box-sizing: border-box;
+    }
+    #tasteStatistics .statisticsList{
+        position: relative;
+        line-height: 41px;
+    }
+    #tasteStatistics .statisticsList input{
+        text-align: center;
+        display: block;
+        float: left;
+        height: 41px;
+        width: 148px;
+        outline: none;
+        border: 0;
+        border-right: 1px #B3B3B3 solid;
+    }
+    #tasteStatistics .statisticsList ul{
+        width: 100%;
+        margin: 0;
+        position: absolute;
+        top: 41px;
+        left: 0;
+    }
+    #tasteStatistics .statisticsList ul li{
+        text-align: center;
+        height: 41px;
+        border: 1px #b3b3b3 solid;
+        border-top: 0;
+    }
+    #tasteStatistics .statConBox{
+        width: 302px;
+        height: 152px;
+        margin-right: 12px;
+        margin-bottom: 12px;
+        background: #eee;
+        position: relative;
+        float: left;
+    }
+    #tasteStatistics .statConBox h1{
+        width: 210px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 20px;
+        line-height: 54px;
+        height: 54px;
+        margin-top: 0;
+        margin-bottom: 6px;
+        text-indent: 15px;
+        border-left: 2px #f8931f solid;
+    }
+    #tasteStatistics .statConBox p{
+        font-size: 12px;
+        margin-top: 10px;
+        margin-bottom: 0;
+        padding-left: 18px;
+    }
+    #tasteStatistics .statConBox a{
+        text-align: center;
+        line-height: 34px;
+        color: #fff;
+        height: 34px;
+        font-size: 14px;
+        margin-top: 14px;
+        display: block;
+        background: #f8931f;
+    }
+    #tasteStatistics .statConBox span{
+        font-size: 42px;
+        color: rgba(0,0,0, .1);
+        position: absolute;
+        top: 8px;
+        right: 11px;
+    }
+    #tasteStatistics .statConBox.active h1{
+        color: #f8931f;
+        border-left-color: #f8931f;
+    }
+    #tasteStatistics .statConBox.active span{
+        color: #f8931f;
+    }
+    #tasteStatistics .tableStatisticsDetails {
+        width: 500px;
+    }
+    #tasteStatistics .titleBar h1{
+        height: 50px;
+        line-height: 50px;
+        font-size: 16px;
+        padding-left: 25px;
+        border-left: 3px solid #f8931f;
+        position: relative;
+        background: #e6e6e6;
+    }
+    #tasteStatistics .titleBar ul{
+        padding-left: 28px;
+    }
+    #tasteStatistics .titleBar ul span{
+        float: left;
+        font-size: 16px;
+        width: 210px;
+    }
+    #tasteStatistics .titleDetails li span{
+        color: #888;
+        height: 50px;
+        line-height: 50px;
+        font-size: 16px;
+        text-align: center;
+        margin: 0;
+        float: left;
+    }
+    #tasteStatistics .titleDetails li:nth-of-type(even){
+        background: #f4f2f3;
+    }
+    #tasteStatistics .titleDetails li:first-of-type{
+        background: #e6e6e6;
+    }
+    #tasteStatistics .titleDetails li:first-of-type span{
+        color: #000;
+    }
+    .chairFix span{
+        width: 25%;
+    }
+    #tasteStatistics .tableStatisticsDetails{
+        position: absolute;
+        top:-50px;
+        right: 0;
+        background: #fff;
+    }
+    .newClose{
+        text-align: center;
+        line-height: 50px;
+        width: 45px;
+        height: 51px;
+        background: #e4e4e4;
+        position: absolute;
+        left: 0;
+        top: 0;
+        margin-left: -48px;
+        cursor: pointer;
+    }
+    .searchoutBtn{
+        width: 46px; height: 44px;line-height: 44px;
+        background: #29a7e1;
+    }
+    .searchBtn{width: 46px; height: 44px;line-height: 44px;
+        background: url(res/images/search.png) no-repeat center;
+    }
+    .titleDetails li:nth-of-type(odd){
+        background: #f2f2f2;
+        height: 50px;
+        line-height: 50px;
+    }
+    .titleDetails li:nth-of-type(even){
+        height: 50px;
+        line-height: 50px;
+    }
+    .titleDetails li span{
+        float: left;width: 25%;
+        text-align: center;
+    }
+    .allTaste span{
+        height: 41px;width: 136px;display: block;float: left;
+        text-align: center;border-right: 1px #B3B3B3 solid;
+    }
+    .pointer{
+        cursor: pointer;
+    }
+    .chairFix input{
+        width: 190px !important;
+    }
+    .isActive{
+        background: red !important;
+    }
+.selectlistsection{
+    position:absolute;top: 43px;
+    left: 0; background: #fff; border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;    z-index: 10;
+}
+    .selectlist{
+
+        border-bottom: 1px solid #cccccc;
+        height: 40px;
+        width: 177px;padding-left: 40px;
+        line-height: 40px;
+    }
+</style>
+<section id="tasteStatistics" style="min-width: 800px;" v-on:click="clickBody" v-cloak>
+    <section>
+        <!-- 日历时间-->
+        <section class="statisticsCalendar chairFix">
+            <!-- 全部口味-->
+            <section class="statisticsList fl">
+                <section   class="tableListInp chairFix allTaste">
+                    <span style="">{{alltaste}}</span>
+                    <div class="fl pointer" v-on:click="showTasteList">
+                        <i></i>
+                    </div>
+                </section>
+            </section>
+            <section class="selectlistsection">
+                <ul>
+                    <li v-if="tasteBtn" class="selectlist" v-for="(index,list) in selectList" v-on:click="selectTaste(index,list)">
+                        {{list.name}}
+                    </li>
+                </ul>
+            </section>
+            <span style="float: left; width: 25px;"></span>
+            <!--开始日期 -->
+            <section class="statisticsList fl">
+                <section class="tableListInp chairFix">
+                     <sd-calendar :time.sync="startTime" :only="true" :uid="'mycalendar1'" :format="'yyyy年MM月dd日'" style="width: 200px;height: 42px;" id="order-data-start"></sd-calendar>
+                    <div class="fl calendar-ctr" onclick="$('#mycalendar1').mouseup();">
+                        <i></i>
+                    </div>
+                </section>
+            </section>
+            <span style="float: left; width: 25px;">至</span>
+            <!--结束日期 -->
+            <section class="statisticsList fl">
+                <section class="tableListInp chairFix">
+
+                      <sd-calendar :time.sync="endTime" :only="true" :uid="'mycalendar2'" :format="'yyyy年MM月dd日'" style="width: 200px;height: 42px;" id="order-data-end"></sd-calendar>
+                    <div class="fl calendar-ctr" onclick="$('#mycalendar2').mouseup();">
+                        <i></i>
+                    </div>
+                </section>
+            </section>
+            <!-- 搜索按钮-->
+            <a class="searchoutBtn fl" href="javascript:void(0)">
+                <span class="searchBtn fl" style="width: 100%;" v-on:click="searInDate">
+                </span>
+            </a>
+
+        </section>
+        <!------口味显示列表------>
+        <section class="statisticsContent chairFix">
+            <section class="statConBox " v-for="(index,list) in filterTasteList" v-on:click="showDetails(index,list)">
+                <h1 >{{list.attrName}}</h1>
+                <p>共点单：{{list.orderTotal}}</p>
+                <p>共收:{{list.price}}</p>
+                <a href="javascript:void(0)">点击查看详情</a>
+                <span>{{$index+1}}</span>
+            </section>
+        </section>
+
+    </section>
+
+</section>
+<section id="tastedetail" v-cloak>
+
+    <section class="tableStatisticsDetails">
+    <section class="titleBar">
+    <ul style="height: 50px;line-height: 50px;">
+    <li class="chairFix">
+    <span style="float: left;margin-right: 10%;margin-left: 10%;">总计金额：200000</span>
+    <span  style="float: left">总计数量：2000</span>
+    </li>
+    </ul>
+    </section>
+    <ol class="titleDetails" style="padding: 0;">
+    <li class="chairFix">
+    <span>序号</span>
+    <span>商品名称</span>
+    <span>数量</span>
+    <span>小计</span>
+    </li>
+    <li class="chairFix" v-for="(index,lists) in detailList">
+    <span>{{index+1}}</span>
+    <span>{{lists.itemName}}</span>
+    <span>{{lists.itemNum}}</span>
+    <span>{{lists.priceTotal}}</span>
+    </li>
+
+    </ol>
+    </section>
+
+</section>
+
+

@@ -1,0 +1,455 @@
+<style>
+    .meal-container {
+        width: 100%;
+        margin-left: -5px;
+    }
+    
+    .meal-item {
+        position: relative;
+        width: 300px;
+        height: 200px;
+        overflow: hidden;
+        float: left;
+        margin: 20px 5px 20px 5px;
+        border: #eee 1px solid;
+        text-align: center;
+        font-size: 14px;
+    }
+    
+    .meal-item .emptyBg {
+        width: 300px;
+        height: 200px;
+        background: url(res/images/upload.png) center 40px no-repeat #ddd;
+    }
+    
+    .meal-item .commodityAdd {
+        border: none;
+    }
+    
+    .meal-item img.tag {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    
+    .meal-item .mes {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 82px;
+        color: #fff;
+        padding: 10px;
+        background: url(res/images/a50.png) repeat;
+    }
+    
+    .meal-item .meal-name {
+        height: 40px;
+        line-height: 20px;
+        text-align: left;
+    }
+    
+    .meal-item .meal-data {
+        height: 30px;
+        line-height: 30px;
+        width: 100%;
+    }
+    
+    .meal-item .vip {
+        width: 50%;
+        height: 30px;
+        text-align: left;
+    }
+    
+    .meal-item .price {
+        width: 50%;
+        height: 30px;
+        text-align: right;
+    }
+    /* 一级弹框样式 */
+    
+    .win-body {
+        background-color: #f2f2f2;
+    }
+    
+    .meal-set {
+        width: 700px;
+        height: auto;
+        min-height: 690px;
+    }
+    
+    .meal-set .container {
+        padding-left: 27px;
+        padding-top: 18px;
+        width: 680px;
+        height: auto;
+        font-size: 14px;
+        text-align: left;
+        padding-bottom: 20px;
+    }
+    
+    .line {
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+    }
+    
+    .meal-set .container .radio {
+        line-height: 40px;
+        font-size: 0;
+        overflow: hidden;
+    }
+    
+    .meal-set .container .radio span {
+        width: 100px;
+        height: 40px;
+        background-color: #fff;
+        cursor: pointer;
+        float: left;
+        display: inline-block;
+        font-size: 14px;
+        margin-right: 1px;
+        margin-bottom: 2px;
+        text-align: center;
+    }
+    
+    .meal-set .container .input {
+        border: none;
+        outline: none;
+        padding-left: 10px;
+        box-sizing: content-box;
+    }
+    
+    .meal-set .container .tab {
+        height: 40px;
+        width: 146px;
+        margin-bottom: 7px;
+        text-align: center;
+        line-height: 40px;
+        background-color: #e7e7e7;
+        border-right: 14px solid #f2f2f2;
+    }
+    
+    .meal-set .container .seleted {
+        border-right: 14px solid #e7e7e7;
+    }
+    
+    .meal-set .container .seleted-right {
+        width: 412px;
+        float: left;
+        height: auto;
+        float: left;
+        background-color: #e7e7e7;
+    }
+    
+    .meal-set .container .seleted-center {
+        width: 146px;
+        float: left;
+        height: auto;
+        float: left;
+    }
+    
+    .meal-set .container .seleted-container {
+        height: auto;
+    }
+    
+    .meal-set .container .seleted-container span {
+        float: left;
+        width: auto;
+        margin-left: 5px;
+        text-align: center;
+        height: 30px;
+        line-height: 30px;
+        overflow: hidden;
+    }
+    /* 二级弹框样式 */
+    
+    .meal-level2 {
+        width: 1000px;
+        height: auto;
+        min-height: 300px;
+    }
+    
+    .meal-space {
+        padding-left: 35px;
+        padding-right: 35px;
+        padding-top: 18px;
+        text-align: left;
+        width: 100%;
+        height: auto;
+    }
+    
+    .meal-space .place .on2 {
+        background-color: #b5b5b5;
+        color: #fff;
+    }
+    
+    .meal-space .place span:hover {
+        background-color: #d5d5d5;
+    }
+    
+    .meal-space .place span.on:hover {
+        background-color: #2980b9;
+    }
+    
+    .meal-space .place span.on2:hover {
+        background-color: #b5b5b5;
+    }
+    
+    .meal-space .radio {
+        line-height: 40px;
+        font-size: 0;
+        overflow: hidden;
+        margin: 15px -20px 10px -20px;
+    }
+    
+    .meal-space .radio label {
+        float: left;
+        width: auto;
+        height: 40px;
+        position: relative;
+        display: inline-block;
+        line-height: 40px;
+        margin: 5px 15px 5px 15px;
+    }
+    
+    .meal-space .radio span {
+        float: left;
+        width: auto;
+        height: 40px;
+        display: inline-block;
+        font-size: 14px;
+        line-height: 40px;
+        padding: 0 5px 0 5px;
+    }
+    
+    .meal-space .radio .item {
+        background-color: #f2f2f2;
+        cursor: pointer;
+        margin-right: 1px;
+        margin-bottom: 2px;
+        text-align: center;
+        padding: 0 20px 0 20px;
+    }
+    
+    .meal-space .radio .input-content {
+        border: 1px solid #ddd;
+        width: 40px;
+        height: 37px;
+    }
+    
+    .meal-space .input {
+        border: none;
+        outline: none;
+        padding-left: 10px;
+        box-sizing: content-box;
+    }
+</style>
+
+<div id="package-search" class="search-fun" v-cloak>
+    <div class="search fr">
+        <input type="text" placeholder="请输入名称/简码" maxlength="20" v-on:keyup="search" v-model="filter" class="search-input" />
+        <a href="javascript:void(0);" class="search-btn"></a>
+    </div>
+</div>
+
+<!-- 显示列表 -->
+<div id="package-list" v-cloak>
+    <div>
+        <div class="place fl" style="height:auto;">
+            <span v-bind:class='{"on":( show == -1)}' class="on" v-on:click="change(-1)">全部分类</span>
+            <span v-bind:class='{"on":( show == 1)}' v-on:click="change(1)">可选套餐</span>
+            <span v-bind:class='{"on":( show == 0)}' v-on:click="change(0)">固定套餐</span>
+        </div>
+
+        <div style="clear: both; width: 100%;font-size: 0;"></div>
+    </div>
+
+    <div class="meal-container">
+        <div class="meal-item" v-on:click="addPackage">
+            <div class="commodityAdd">
+                <div class="combox">
+                    <img src="res/images/comadd.png" alt="添加商品">
+                    <div>添加套餐</div>
+                </div>
+            </div>
+        </div>
+
+        <template v-if="type0goods.length>0" v-for="(index,item) in goods | filterBy  filter in 'packageName' 'BC' ">
+            <div v-if="show==-1 || item.type == show" class="meal-item" v-on:click="editPackage(item.id,index)">
+                <img v-if="item.imageName != ''" src="res/food/loading.jpg" sd-src="{{imgHost + item.imageName}}" class="cname" width="300" height="200" onerror="this.src=sd.froot+'res/food/test.jpg';" />
+                <img v-if="item.imageName == ''" width="300" height="200" src="res/food/test.jpg" />
+                <img v-if="item.type == 1" src="res/images/selet.png" width="85" height="49" class="tag" title="可选套餐" alt="可选套餐" />
+                <img v-else src="res/images/fix.png" width="85" height="49" class="tag" title="固定套餐" alt="固定套餐" />
+                <div v-if="item.status == '0'" class="mes">
+                    <div class="meal-name">{{item.packageName}}</div>
+                    <div class="meal-data fl">
+                        <div class="vip fl">
+                            <span v-if="item.isVip == '0'">不参与会员</span>
+                            <span v-if="item.isVip == '1'">会员价格：{{item.vipPrice}}</span>
+                            <span v-if="item.isVip == '2'">会员折扣：{{item.vipDiscount}}%</span>
+                        </div>
+                        <div class="price fl">原价：{{item.price}}</div>
+                    </div>
+                </div>
+                <div v-if="item.status == '1'" class="mes" style="width:300px; height:200px; text-align: center;">
+                    <h2 style="height: 120px;line-height:120px;width: 100%;font-size: 64px;">估清</h2>
+                    <p style="font-size: 16px;">{{item.packageName}}</p>
+                </div>
+            </div>
+        </template>
+        <div style="width: 100%; font-size: 0; clear: both;"></div>
+    </div>
+</div>
+
+<!-- 一级弹框 -->
+<div id="package-win" class="meal-set" v-cloak>
+    <div class="container" v-if="good !== null">
+        <div class="line">
+            <label class="required fl" style="width: 50px;">类型</label>
+            <label class="radio fl" style="width: 234px;">
+                  <span v-bind:class='{"sign":( good.package.type +"" == "0")}' v-on:click="changeType(0)" >固定套装</span>
+                  <span v-bind:class='{"sign":( good.package.type +"" == "1")}' v-on:click="changeType(1)">可选套餐</span>                          
+            </label>
+            <template v-if="good">
+                <label class="required fl" style="width: 50px;">排序</label>
+                <sd-subadd :num.sync="good.package.sort"></sd-subadd>
+            </template>
+        </div>
+        <div style="width:100%; height:182px; padding-top: 14px;">
+            <div style="float:left; width:400px;height: 150px;">
+                <div class="line">
+                    <label class="required fl" style="width: 50px;">名称</label>
+                    <label><input type="text" class="input"  maxlength="20" v-model="packageName" style="width: 335px;height:40px; " placeholder="输入名称"></label>
+                </div>
+                <div class="line" style="margin-top:15px ;">
+                    <label class="fl" style="width: 50px;">简码</label>
+                    <label><input type="text" v-model="BC"  maxlength="10" class="input" style="width: 335px;height:40px; " placeholder="输入简码"></label>
+                </div>
+                <div class="line" style="margin-top:15px ;">
+                    <span class="required fl" style="width: 50px;">售价</span>
+                    <label class="fl" style="width: 143px;height:40px; position: relative; margin: 0; padding: 0; ">
+                        <input type="text" class="input" style="width: 133px;height:40px;"  maxlength="10" v-model="price" placeholder="输入售价">
+                        <span style="position: absolute; right: 10px;top:3px; z-index: 1;">元</span>
+                    </label>
+                    <span class="fl" style="width: 60px;margin: 0; padding: 0; text-align: center;">成本价</span>
+                    <label class="fl"  style="width: 132px;height:40px; position: relative; ">
+                        <input type="text" class="input" style="width:122px; height:40px;"  maxlength="10" v-model="cost" placeholder="输入售价">
+                        <span style="position: absolute; right: 10px; top:3px; z-index: 1;">元</span>
+                    </label>
+                </div>
+            </div>
+            <div style="float:left; width:225px;height: 150px;">
+                <div id="upfilediv" style="position:relative; width:225px; height:150px;background:url(res/images/upload.png) center 40px no-repeat #ddd ;">
+                    <img v-if="good.package.imageName != ''" id="mimgs" v-bind:src="imgHost + good.package.imageName" onerror='this.src= sd.froot+ "res/food/test.jpg"' width="225" height="150">
+                    <img v-if="good.package.imageName == ''" id="mimgs" src="res/food/test.jpg" width="225" height="150">
+                    <a style="background:url(res/images/a50.png) repeat;height: 40px;line-height: 40px; position:absolute; bottom:0; left:0;width:225px;color: #fff;text-align: center;font-size: 16px;">编辑图片</a>
+                    <form method="post" id="uploadImageForm" enctype="multipart/form-data">
+                        <input type="file" accept="image/jpeg,image/png,image/gif,image/tiff" id="fileInput" name="image" style="position:absolute;bottom: 0;height: 40px;width: 225px;opacity: 0;cursor: pointer;" />
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div style="width: 100%; height: auto; clear: both; ">
+            <div style="width: 68px;height: auto; float: left;">
+                <span style="line-height: 40px;">套餐内容</span>
+            </div>
+            <div class="seleted-center">
+                <template v-for="(i,item) in good.packageTag">
+                    <div v-if="i == tagselect" class="tab seleted" tid="{{item.id}}" v-on:click="changeTag(i,item.id)">{{item.tagName}}</div>
+                    <div v-else class="tab" tid="{{item.id}}" v-on:click="changeTag(i,item.id)">{{item.tagName}}</div>
+                </template>
+                <a href="javascript:void(0);" v-on:click="addTag('添加标识')" class="addclassify" style="width:132px;">添加标识</a>
+            </div>
+            <div class="seleted-right">
+                <div class="seleted-container" v-bind:style="{minHeight:seletedContainerHeight +'px'}">
+                    <div v-if="good.packageTag && good.packageTag.length > 0" style="height: 5px;font-size: 0;line-height: 5px;"></div>
+                    <span v-for="item in packageTagGoods">{{item.goodsName}}&nbsp;{{item.packageGoodsNum}} {{item.unit}}；</span>
+                </div>
+                <a href="javascript:void(0);" v-on:click="eidtTag('编辑该标识可选内容', i)" class="addclassify" style="width:100%;background-position-x: 125px;">编辑该标识可选内容</a>
+            </div>
+            <div style="clear: both; font-size: 0px;width:100%;"></div>
+        </div>
+        <div class="line" style="margin-top: 14px;">
+            <label class="fl" style="width: 68px;">参与折扣</label>
+            <span v-bind:class='{"off":(good.package.isDiscount == 0),"on":(good.package.isDiscount == 1)}' v-on:click="changeDiscount" class="check-span fl "></span>
+            <label class="fl" style="width: 65px; text-align: right;  margin-right: 12px; ">服务费</label>
+            <span v-bind:class='{"off":(good.package.serviceCharge == 0),"on":(good.package.serviceCharge == 1)}' v-on:click="changeServiceCharge" class="check-span fl"></span>
+            <label class="fl" style="width: 45px; text-align: right;  margin-right: 12px; ">估清</label>
+            <span v-bind:class='{"off":(good.package.status == 0),"on":(good.package.status == 1)}' v-on:click="changeStatus" class="check-span fl"></span>
+            <label class="fl" style="width: 60px; text-align: right;  margin-right: 12px; ">推荐菜</label>
+            <span v-bind:class='{"off":(good.package.isRecommend == 0),"on":(good.package.isRecommend == 1)}' v-on:click="changeRecommend" class="check-span fl"></span>
+        </div>
+        <div class="line" style="margin-top: 14px;">
+            <label class="fl" style="width: 68px;">会员专享</label>
+            <span v-bind:class='{"off":(good.package.isVip == 0),"on":(good.package.isVip != 0)}' v-on:click="changeVip(-1)" class="check-span fl"></span>
+            <label v-if="good.package.isVip != 0" class="radio fl" style="width: 200px; margin-left: 10px;">
+                  <span v-bind:class='{"sign":(good.package.isVip == 1)}' v-on:click="changeVip(1)" style="width: 95px;" >会员价格</span>
+                  <span v-bind:class='{"sign":(good.package.isVip == 2)}' v-on:click="changeVip(2)" style="width: 95px;" >会员折扣</span>                          
+            </label>
+            <template v-if="good.package.isVip == 1">
+                <label class="fl" style="width: 80px; text-align: right;  margin-right: 12px; ">会员价格</label>
+                <input class="input fl" maxlength="10" v-model="vipPrice" type="text" placeholder="输入会员价" style="width: 158px; height: 40px; line-height: 40px; overflow: hidden;">
+            </template>
+            <!-- template v-if="good.package.isVip == 2">
+                <label class="fl" style="width: 80px; text-align: right;  margin-right: 12px; ">会员折扣</label>
+                <input class="input fl" maxlength="3" v-model="vipDiscount" type="text" placeholder="输入会员折扣" style="width: 138px; height: 40px; line-height: 40px; overflow: hidden;">
+                <label class="fl" style="width: 30px; text-align: center;  margin-right: 12px; ">%</label>
+            </template -->
+        </div>
+        <div style="width: 100%; height: 100px; margin-top: 14px; clear: both; ">
+            <div style="width: 50px;height: 90px; float: left;">
+                <span style="line-height: 40px;">描述</span>
+            </div>
+            <textarea v-model="good.package.description" maxlength="200" class="describe" style="width:555px; height:98px; font-size:14px;" placeholder="输入描述"></textarea>
+
+        </div>
+        <div style="clear: both; height:20px;font-size: 0px;width:100%;"></div>
+    </div>
+</div>
+
+<!-- 二级弹框 -->
+<div id="package-select-win" class="meal-level2" v-cloak>
+    <div v-if="packageTag" style="height: 75px; width: 100%; border-bottom: 1px solid #ddd;font-size: 14px;">
+        <div class="meal-space">
+            <div class="line" v-if="type==1">
+                <label class="required fl" style="width: 50px;">名称</label>
+                <input v-model="packageTag.tagName" maxlength="10" class="input fl" type="text" style="width: 200px;height:40px; border:1px solid #d7d7d7 ;" placeholder="输入名称">
+                <label class="required fl" style="width: 65px;margin-left:35px;margin-right:10px;">可选数量</label>
+                <sd-subadd :num.sync="packageTag.totalNum"></sd-subadd>
+            </div>
+            <div class="line" v-else>
+                <label class="required fl" style="width: 50px;">名称</label>
+                <input v-model="packageTag.tagName" maxlength="10" class="input fl" type="text" style="width: 200px;height:40px; border:1px solid #d7d7d7 ;" placeholder="输入名称">
+                <label class="fl" style="width: 65px;margin-left:35px;margin-right:10px;">总数量</label>
+                <span v-if="coutGoodsNum()"> {{getGoodsNum()}} </span>
+            </div>
+        </div>
+    </div>
+    <div class="meal-space" style=" padding-top: 9px;">
+        <div id="menu1" class="place" style="margin-bottom: 4px;">
+            <template v-for="(i , item) in category">
+                <span v-if="item.id == L1ID" class="on" v-on:click="changeL1ID(item.id  , i)">{{item.name}}</span>
+                <span v-else v-on:click="changeL1ID(item.id  , i)">{{item.name}}</span>
+            </template>
+        </div>
+        <div id="menu2" class="place">
+            <template v-if="child.length > 0 " v-for="(i , item) in child">
+                <span v-if="item.id == L2ID" v-on:click="changeL2ID(item.id)" class="on2">{{item.name}}</span>
+                <span v-else v-on:click="changeL2ID(item.id)">{{item.name}}</span>
+            </template>
+        </div>
+
+        <div v-if="filterChilds()" id="menu3" class="radio" transition='slidUpDown'>
+            <template v-for="item in goods | orderBy 'sort' 'id' ">
+                <template v-if="incategory(item.cids)">
+                    <label>
+                     <span class="item" :class="{'sign':item.selected}" v-on:click="select(item)">{{item.goodsName}}</span>
+                     <input v-model="item.packageGoodsNum" @keyup="keydown(item)" class="input-content">
+                     <span>{{item.unit}}</span>
+                     </label>
+                </template>
+            </template>
+        </div>
+    </div>
+</div>

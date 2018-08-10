@@ -1,0 +1,115 @@
+<style type="text/css">
+.commodity-box > section{height: 150px;}
+.commodity-box .box{background-color: #eeeeee;color: #898989;}
+.commodity-box .bor{border-left: 2px solid #026eb7;height: 60px;width: 100%;margin-bottom: 50px;}
+.commodity-box .spanFont{height: 30px;line-height: 30px;font-size: 16px;color: #999;}
+.Pconfig{width: 580px;height: 540px;padding: 20px 20px;background-color: #f2f2f2;}
+.Pconfig label{width: 100%;min-height: 40px;line-height: 40px;margin-bottom: 20px;}
+.Pconfig .pNmae{width: 80px;height: 40px;text-align: right;margin-right: 20px;}
+.Pconfig .pInput{outline: none;border: none;background-color: #fff;width: 390px;height: 40px;line-height: 40px;padding-left: 10px;}
+.selectbtns{width: auto;}
+.selectbtns span{background-color: #fff;}
+.selectbtns span:hover{background-color: #fff;}
+.addclassify{width: 180px;}
+.relatedForm{width: 980px;height: 500px;padding: 30px;}
+.comList{width: 100%;height: auto;overflow: hidden;margin-bottom: 30px;}
+.comList .selectbtns{width: 100%;}
+.comList .selectbtns span,.packageList span{background-color: #F1F1F1;}
+.comList .selectbtns span:hover,.packageList span:hover{background-color: #F1F1F1;}
+.spanCom{height: 40px;line-height: 40px;width: 130px;text-align: left;}
+</style>
+<!--打印机配置列表-->
+<section class="fl user-content" id="printercon">
+    <section class="user-info">
+        <section class="commodity-box">
+            <section class="commodityAdd fl" v-on:click="openWin(null,'addPcon',null)">
+                <section class="combox">
+                    <img src="res/images/comadd.png" alt="添加" />
+                    <h3>新建打印机配置</h3>
+                </section>
+            </section>
+            <section class="fl box" v-for="(index,pList) in conList" v-on:click="openWin(pList.id,'edit',index)">
+                <section class="bor">
+                    <section class="fl" style="width: 100%;text-indent: 10px;">
+                        <section class="spanFont">单据数据：<span class="spanFont">{{pList.orderName}}</span></section>
+                        <section class="spanFont">打印机：<span class="spanFont">{{pList.printerName}}</span></section>
+                    </section>
+                </section>
+            </section>
+        </section>
+    </section>
+</section>
+<!--打印机创建修改表单-->
+<section class="Pconfig" v-if="printerList != '' && areaIdsList != ''">
+    <div class="configOne">
+        <label class="fl">
+            <span class="fl required pNmae">单据数据</span>
+            <sd-radio :list.sync="docType" :index.sync="orderTypeIndex" :name='"name"'></sd-radio>
+        </label>
+        <label class="fl" v-if="status==1">
+            <span class="fl required pNmae">页脚内容</span>
+            <input type="text" class="pInput" v-model="footerContent" placeholder="请输入页脚内容" />
+        </label>
+        <label class="fl">
+            <span class="fl required pNmae">打印机</span>
+            <!--<sd-multiselect :list.sync="printerList" :selects.sync="printerId" :name='"printerName"'></sd-multiselect>-->
+            <sd-radio :list.sync="printerList" :index.sync="printerIndex" :name='"printerName"'></sd-radio>
+        </label>
+        <label class="fl" v-if="status==1 || status==3 || status==5">
+            <span class="fl required pNmae">区域</span>
+            <sd-multiselect :list.sync="areaIdsList" :selects.sync="areaIndex" :name='"areaName"' :key='"id"'></sd-multiselect>
+        </label>
+         <label class="fl" v-if="status==3 || status== 4">
+            <span class="fl required pNmae">选择菜品</span>
+            <span class="fl spanCom" v-if="goodsLength!==null">已选择菜品：{{goodsLength}}道</span>
+            <span class="fl spanCom" v-if="packagesLength!==null">已选择套餐：{{packagesLength}}个</span>
+            <a href="javascript:void(0);" class="addclassify fl" v-on:click="openWinThree">添加关联菜品</a>
+        </label>
+        <label class="fl">
+            <span class="fl required pNmae">打印次数</span>
+            <div class="fl" style="width: 185px;"><sd-subadd :num.sync="printTimes" :maxnum="10" :minnum="1"></sd-subadd></div>
+            <span class="fl pNmae">蜂鸣</span><sd-onoff :onoff.sync="isAlam"></sd-onoff>
+        </label>
+    </div>
+</section>
+
+<!--关联商品套餐表单-->
+<section class="relatedForm">
+    <section>     
+        <!--<sd-tab :list.sync="category" :index.sync="tab1" :name='"name"' class="tab"></sd-tab>
+        <sd-tab :list.sync="child" :index.sync="tab2" :name='"name"' class="tab2"></sd-tab>-->
+        <section class="place fl">
+            <section class="class-Parent">
+                <template v-for="(i , item) in category">
+                    <span v-if="item.id == L1ID" class="on"  v-on:click="changeL1ID(item.id,i)">{{item.name}}</span>
+                    <span v-else  v-on:click="changeL1ID(item.id,i)">{{item.name}}</span>
+                </template>
+            </section>
+            <section class="class-Child">
+                <template v-if="child.length > 0 " v-for="(i , item) in child">
+                    <span v-if="item.id == L2ID" v-on:click="changeL2ID(item.id)" class="second-on">{{item.name}}</span>
+                    <span v-else v-on:click="changeL2ID(item.id)">{{item.name}}</span>
+                </template>
+            </section>
+        </section>
+        <section class="fl" style="width: 100%;height: auto;margin-bottom: 10px;">
+            <a href="javascript:void(0)" class="check fl"  v-on:click="wholeOnCom">全部选择</a>
+            <a href="javascript:void(0)" class="unselect fl" v-on:click="wholeOffCom">全部取消</a>
+        </section>
+    </section>
+    <section class="comList">
+        <sd-multiselect :list.sync="selectgoods" :selects.sync="goodsIndex" :name='"goodsName"' :key='"id"'></sd-multiselect>
+    </section>
+    <section class="place fl" style="width: 100%;height:auto;margin-bottom: 10px;">
+            <span v-bind:class='{"on":( show == -1)}' class="on" v-on:click="change(-1)">全部分类</span>
+            <span v-bind:class='{"on":( show == 1)}' v-on:click="change(1)">可选套餐</span>
+            <span v-bind:class='{"on":( show == 0)}' v-on:click="change(0)">固定套餐</span>
+    </section>
+    <section class="fl" style="width: 100%;height: auto;">
+        <a href="javascript:void(0)" class="check fl" v-on:click="wholeOnPackage">全部选择</a>
+    <a href="javascript:void(0)" class="unselect fl" v-on:click="wholeOffPackage">全部取消</a>
+    </section>
+    <section class="fl packageList">
+        <sd-multiselect :list.sync="selectPackages" :selects.sync="packageIndex"  :name='"packageName"' :key='"id"'></sd-multiselect>
+    </section>
+</section>

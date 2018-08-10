@@ -1,0 +1,174 @@
+@charset "utf-8";
+.calendar {
+    width: 200px;
+    height: auto;
+    border: 1px #CCCCCC solid;
+    font-family: "微软雅黑";
+    font-size: 14px;
+    box-sizing: border-box;
+    display: none;
+    position: absolute;
+    left: -1000px;
+    top: -1000px;
+    background-color: #fff;
+    z-index: 1000;
+}
+
+.calendar .calendar-title {
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    box-sizing: border-box;
+}
+
+.calendar .calendar-title .calendar-left {
+    text-align: left;
+    float: left;
+    width: 25%;
+    cursor: pointer;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+.calendar .calendar-title .calendar-center {
+    text-align: center;
+    float: left;
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.calendar .calendar-title .calendar-right {
+    text-align: right;
+    float: left;
+    width: 25%;
+    cursor: pointer;
+    padding-right: 10px;
+    box-sizing: border-box;
+}
+
+.calendar .calendar-title .calendar-left:hover,
+.calendar .calendar-title .calendar-right:hover {
+    background-color: #eee;
+}
+
+.calendar .calendar-week,
+.calendar .calendar-day {
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2px;
+}
+
+.calendar .calendar-week span,
+.calendar .calendar-day span {
+    width: 14.2857%;
+    float: left;
+    height: 24px;
+    line-height: 24px;
+    color: #898989;
+    font-size: 12px;
+    box-sizing: border-box;
+}
+
+.calendar .calendar-day span {
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.calendar .calendar-day span.calendar-on:hover {
+    background-color: #eee;
+}
+
+.calendar .calendar-day span.calendar-next {
+    color: #ddd;
+}
+
+.calendar .calendar-day span.calendar-pre {
+    color: #ddd;
+}
+
+.calendar .calendar-day span.calendar-seleted {
+    border: 1px solid #ccc;
+    background: url(res/images/topright.png) no-repeat right -70px;
+}
+
+.calendar .calendar-time {
+    width: 100%;
+    height: 40px;
+    box-sizing: border-box;
+    clear: both;
+}
+
+.calendar .calendar-time span {
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    text-align: center;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.calendar .calendar-time span.calendar-hour {
+    border-right: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.calendar .calendar-time span.calendar-minute {
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.calendar .calendar-time span.calendar-second {
+    border-left: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.calendar .calendar-time span.calendar-hour:hover,
+.calendar .calendar-time span.calendar-minute:hover,
+.calendar .calendar-time span.calendar-second:hover {
+    background-color: #eee;
+}
+
+.calendar .calendar-time span.calendar-seleted {
+    background: url(res/images/topright.png) no-repeat right -62px;
+}
+
+.calendar .calendar-bar {
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    clear: both;
+    padding-top: 10px;
+}
+
+.calendar .calendar-bar .calendar-size {
+    position: absolute;
+    left: 0;
+    top: -9px;
+    width: 50%;
+    height: 2px;
+    background-color: #727071;
+    margin: 9px 0 9px 0;
+}
+
+.calendar .calendar-bar .calendar-handle {
+    cursor: pointer;
+    position: absolute;
+    right: 50%;
+    top: -10px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #b3b3b3;
+    background-color: #fff;
+    margin-left: -10px;
+}
+
+.calendar .calendar-buttons {
+    width: 100%;
+    height: 40px;
+    font-size: 0;
+    clear: both;
+}

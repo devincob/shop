@@ -1,0 +1,182 @@
+<style>
+	.chairFix:after{
+		content: '';
+		display: block;
+		clear: both;
+	}
+	#orBill{
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+	}
+	#orBill .orBillConLeft{
+		width: 494px;
+		height: 680px;
+		background: #F2F2F2;
+		padding: 30px 15px;
+		float: left;
+	}
+	#orBill .orBillConLeft ul{
+		padding: 0 15px;
+		border-bottom: 1px #c8c9ca solid;
+		margin-bottom: 27px;
+	}
+	#orBill .orBillConLeft ul li span{
+		font-size: 14px;
+		display: block;
+		height: 40px;
+		float: left;
+	}
+	#orBill .orBillConLeft ul li span:first-of-type{
+		width: 285px;
+	}
+	#orBill .orBillConRight{
+		width: 1013px;
+		height: 680px;
+		padding: 39px 30px;
+		margin-left: 34px;
+		background: #f2f2f2;
+		float: left;
+	}
+	#orBill .orBillConRight h1 span{
+		text-align: center;
+		height: 40px;
+		width: 50%;
+		display: block;
+		border-bottom: 2px solid #c8c9ca;
+		float: left;
+	}
+	#orBill .orBillConRight h1 span.active{
+		border-bottom-color: #00adef;
+	}
+	#orBill .orBillConRight ul{
+		width: 100%;
+		height: 462px;
+		max-height: 462px;
+		margin-top: 13px;
+		border: 1px solid #b3b3b3;
+		background: #fff;
+	}
+	#orBill .orBillConRight ul li span{
+		text-align: center;
+		line-height: 40px;
+		height: 40px;
+		float: left;
+		display: block;
+		border-bottom: 1px solid #b3b3b3;
+		border-right: 1px solid #b3b3b3;
+	}
+	#orBill .orBillConRight ul li span:nth-of-type(1){
+		width: 13.3%;
+	}
+	#orBill .orBillConRight ul li span:nth-of-type(2){
+		width: 17.1%;
+	}
+	#orBill .orBillConRight ul li span:nth-of-type(3){
+		width: 12.8%;
+	}
+	#orBill .orBillConRight ul li span:nth-of-type(4){
+		width: 12.8%;
+	}
+	#orBill .orBillConRight ul li span:nth-of-type(5){
+		width: 14.3%;
+	}
+	#orBill .orBillConRight ul li span:nth-of-type(6){
+		width: 13.2%;
+	}
+	#orBill .orBillConRight ul li span:nth-of-type(7){
+		width: 16.5%;
+		border-right: 0;
+	}
+	#orBill .orBillTitle{
+		height: 50px;
+		line-height: 50px;
+		background: #e1e1e1;
+		padding-left: 58px;
+	}
+	#orBill .orBillTitle span{
+		margin-right: 45px;
+	}
+	#orBill .orBillTitle span:last-of-type{
+		float: right;
+	}
+</style>
+
+<section id="orBill" class="chairFix">
+	<section style="width: 1541px;">
+		<section class="orBillConLeft">
+			<ul class="chairFix">
+				<li><span>订单号：{{}}</span><span>就座区域：{{}}</span></li>
+				<li><span>挂账日期：{{}}</span><span>桌号：{{}}</span></li>
+				<li><span>单据状态：{{}}</span><span>就座人数：{{}}</span></li>
+			</ul>
+			<ul class="chairFix">
+				<li><span>订单原价：{{}}</span><span>菜品数：{{}}</span></li>
+				<li><span>订单实价：{{}}</span><span>退菜数：{{}}</span></li>
+				<li><span>毛利润：{{}}</span></li>
+			</ul>
+			<ul class="chairFix">
+				<li><span>支付方式：{{}}</span></li>
+				<li><span>预入账：¥{{}}</span></li>
+				<li><span>找零：¥{{}}</span></li>
+			</ul>
+			<ul class="chairFix">
+				<li><span>开台时间：{{}}</span></li>
+				<li><span>结台时间：{{}}</span></li>
+			</ul>
+			<p>收银员{{}}</p>
+		</section>
+		<section class="orBillConRight">
+			<h1 id="hhhh" class="chairFix"><span class="active" v-on:click="">商品详情</span><span>退菜详情</span></h1>
+			
+			<div style="padding: 0 1%;">
+				<ul class="chairFix" v-if="comDetails.length>0">
+					<li>
+						<span>序号</span>
+						<span>菜品名</span>
+						<span>单价</span>
+						<span>数量（份）</span>
+						<span>小计（元）</span>
+						<span>折扣</span>
+						<span>实收（元）</span>
+					</li>
+					<li v-for="">
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+					</li>
+				</ul>
+				<ul class="chairFix" v-else>
+					<li>
+						<span>序号</span>
+						<span>菜品名</span>
+						<span>单价</span>
+						<span>数量（份）</span>
+						<span>小计（元）</span>
+						<span>折扣</span>
+						<span>实收（元）</span>
+					</li>
+					<li>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+					</li>
+				</ul>
+				<div class="orBillTitle">
+					<span>总计数量：{{}}份</span>
+					<span>总计应收：{{}}</span>
+					<span>总计折扣：{{}}</span>
+					<span>总计实收：{{}}</span>
+				</div>
+			</div>
+		</section>
+	</section>
+</section>

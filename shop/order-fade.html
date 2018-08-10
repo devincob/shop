@@ -1,0 +1,229 @@
+<style type="text/css">
+	.yuChairFix:after{
+		content: '';
+		display: block;
+		clear: both;
+	}
+	#orderFade {
+		min-width: 875px;
+		margin-top: 20px;
+	}
+	#orderFade nav{
+		margin-bottom: 20px;
+	}
+	#orderFade nav a{
+		color: #333;
+		text-align: center;
+		font-size: 12px;
+		width: 100px;
+		height: 40px;
+		line-height: 40px;
+		float: left;
+		display: block;
+		background: #F2F2F2;
+	}
+	#orderFade nav a.active{
+		color: #fff;
+		background: #2a80b9;
+	}
+	#orderFade .orMaReMainList li:first-of-type,#orderFade .orMaReMainList li:last-of-type{
+		background: #e6e6e6;
+	}
+	#orderFade .orMaReMainList li:nth-of-type(even){
+		background: #f2f2f2;
+	}
+	#orderFade .orMaReMainList li:nth-of-type(2){
+		text-align: center;
+		height: 50px;
+		line-height: 50px;
+	}
+	#orderFade .orMaReMainList li span{
+		display: block;
+		text-align: center;
+		height: 50px;
+		line-height: 50px;
+		width: 25%;
+		color: #8f8f8f;
+		float: left;
+	}
+	#orderFade .orMaReMainList li span a{
+		color: #fff !important;
+		height: 49px;
+		width: 113px;
+		background: #ec1415;
+		color: #f00;
+	}
+	#orderFade .orMaReMain li span{
+		width: 20% !important;
+	}
+	#orderFade .orMaRetBox{
+		height: 42px;
+		border: 1px solid #b3b3b3;
+		float: left;
+	}
+	#orderFade .zhi{
+		text-align: center;
+		width: 35px;
+		height: 40px;
+		line-height: 40px;
+		display: block;
+		float: left;
+	}
+	.orderFadeTime {
+		height: 42px;
+		margin-bottom: 25px;
+	}
+	#orderFade .orMaRetBox input{
+		text-align: center;
+		height: 38px;
+		width: 159px;
+		padding-left: 0;
+		display: block;
+		float: left;
+		outline: none;
+		border: 0;
+		border-right: solid #b3b3b3 1px;
+	}
+	#orderFade .orMaRetBox div{
+		width: 40px;
+		height: 40px;
+		position: relative;
+		cursor: pointer;
+	}
+	#orderFade .orMaRetBox div i{
+		height: 10px;
+		width: 10px;
+		border-top: 10px #b3b3b3 solid;
+		border-left: 5px solid transparent;
+		border-right: 5px solid transparent;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		margin-left: -5px;
+		margin-top: -5px;
+		box-sizing: border-box;
+	}
+	#orderFade .orMaRetBox a{
+		width: 51px;
+		height: 40px;
+		line-height: 40px;
+		background: #28a8e0;
+	}
+	#orderFade .orMaRetBox:last-of-type{
+		margin-left: 45px;
+	}
+	#orderFade .orMaRetBox:last-of-type a{
+		color: #fff;
+		height: 40px;
+		width: 90px;
+		text-align: center;
+		line-height: 40px;
+	}
+</style>
+
+<section id="orderFade">
+	<nav class="yuChairFix">
+		<a href="javascript:void(0)" v-on:click="noOrder" class="active">退单统计</a>
+		<a href="javascript:void(0)" v-on:click="noFood">退菜统计</a>
+	</nav>
+	
+	<section class="orderFadeCon yuChairFix">
+		<section v-if="withoutOrderBtn">
+			<section class="orderFadeTime yuChairFix">
+				<section class="orMaRetBox yuChairFix">
+					<sd-calendar :time.sync="startTime" :uid="'mycalendar1'" :format="'yyyy年MM月dd日'" :only="true" readonly="readonly" style="height: 40px"></sd-calendar>
+					<div class="fl calendar-ctr" onclick="$('#mycalendar1').mouseup();">
+						<i></i>
+					</div>
+				</section>
+				<span class="zhi">至</span>
+				<section class="orMaRetBox yuChairFix">
+					<sd-calendar :time.sync="endTime" :uid="'mycalendar2'" :format="'yyyy年MM月dd日'" :only="true" readonly="readonly" style="height: 40px"></sd-calendar>
+					<div class="fl calendar-ctr" onclick="$('#mycalendar2').mouseup();">
+						<i></i>
+					</div>
+					<a class="fl" v-on:click="searcg()" href="javascript:void(0)"><img src="res/images/search.png" alt="" /></a>
+				</section>
+				<section class="orMaRetBox yuChairFix">
+					<input type="text" v-model="infoSearch" placeholder="请输入订单号"  />
+					<a class="fl orMaaBtn" v-on:click="searchOrNum(infoSearch)" href="javascript:void(0)">查询</a>
+				</section>
+			</section>
+			<section class="orderFadeMain">
+				<ul class="orMaReMainList">
+					<li class="yuChairFix">
+						<span>订单号</span>
+						<span>退单原因</span>
+						<span>退单时间</span>
+						<span>退单金额（元）</span>
+					</li>
+					<li v-if="withoutOrder.length == 0">暂时没有退单</li>
+					<li class="yuChairFix" v-for="(i,item) in withoutOrder">
+						<span>{{item.oid}}</span>
+						<span>{{item.delReason}}</span>
+						<span>{{item.updateTime}}</span>
+						<span>{{item.originalPrice}}</span>
+					</li>
+					<li class="yuChairFix">
+						<span>订单号</span>
+						<span>退单原因</span>
+						<span>退单时间</span>
+						<span>退单金额（元）</span>
+					</li>
+				</ul>
+				
+			</section>
+			<sd-page v-on:click="goOrderPage(orderPage)"  v-if="total > 1 || count > num" :page.sync="orderPage" :count.sync='count' :total.sync='total' :num.sync='num' style="float: right;margin-top: 25px;"></sd-page>
+		</section>
+		<section v-else>
+			<section class="orderFadeTime yuChairFix">
+				<section class="orMaRetBox yuChairFix">
+					<sd-calendar :time.sync="startTime" :uid="'mycalendar1'" :format="'yyyy年MM月dd日'" :only="true" readonly="readonly" style="height: 40px"></sd-calendar>
+					<div class="fl calendar-ctr" onclick="$('#mycalendar1').mouseup();">
+						<i></i>
+					</div>
+				</section>
+				<span class="zhi">至</span>
+				<section style="margin-left: 0;" class="orMaRetBox yuChairFix">
+					<sd-calendar :time.sync="endTime" :uid="'mycalendar2'" :format="'yyyy年MM月dd日'" :only="true" readonly="readonly" style="height: 40px"></sd-calendar>
+					<div class="fl calendar-ctr" onclick="$('#mycalendar2').mouseup();">
+						<i></i>
+					</div>
+					<a class="fl" v-on:click="searcgFood" style="width: 50px;" href="javascript:void(0)"><img src="res/images/search.png" alt="" /></a>
+				</section>
+				<section class="orMaRetBox yuChairFix">
+					<input type="text" v-model="infoSearch" placeholder="请输入菜名"  />
+					<a class="fl orMaaBtn" v-on:click="searcgInFood" href="javascript:void(0)">查询</a>
+				</section>
+			</section>
+			<section class="orderFadeMain">
+				<ul class="orMaReMainList orMaReMain">
+					<li class="yuChairFix">
+						<span>订单号</span>
+						<span>菜品名称</span>
+						<span>退菜原因</span>
+						<span>退菜时间</span>
+						<span>退菜金额（元）</span>
+					</li>
+					<li v-if="withoutFood.length == 0">暂时没有退菜</li>
+					<li class="yuChairFix" v-for="(i,item) in withoutFood">
+						<span>{{item.oid}}</span>
+						<span>{{item.itemName}}</span>
+						<span>{{item.returnReason}}</span>
+						<span>{{item.oiupdateTimed}}</span>
+						<span>{{item.itemPrice}}</span>
+					</li>
+					<li class="yuChairFix">
+						<span>订单号</span>
+						<span>菜品名称</span>
+						<span>退菜原因</span>
+						<span>退菜时间</span>
+						<span>退菜金额（元）</span>
+					</li>
+				</ul>
+				<sd-page v-on:click="goCaiPage(foodPage)"  v-if="total > 1 || count > num" :page.sync="foodPage" :count.sync='count' :total.sync='total' :num.sync='num' style="float: right;margin-top: 25px;"></sd-page>
+			</section>
+			
+		</section>
+	</section>
+</section>

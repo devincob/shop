@@ -1,0 +1,208 @@
+<style>
+    li {
+        text-decoration: none;
+    }
+    
+    .pic-list {
+        width: 100%;
+        overflow: hidden;
+        list-style: none;
+    }
+    
+    .pic-list li {
+        width: 300px;
+        height: 200px;
+        float: left;
+        margin: 10px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+    
+    .pic-list .add-pic {
+        position: relative;
+    }
+    
+    .add-pic i {
+        width: 47px;
+        height: 47px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 50px;
+        right: 0;
+        margin: auto;
+        background: url(res/images/comadd.png) no-repeat;
+    }
+    
+    .add-pic p {
+        width: 100%;
+        color: #999;
+        font-size: 18px;
+        text-align: center;
+        position: absolute;
+        bottom: 75px;
+    }
+    
+    .pic-list li.li-pic {
+        position: relative;
+        padding: 0;
+    }
+    
+    li.li-pic img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+    
+    li.li-pic p {
+        width: 298px;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        color: #fff;
+        padding: 0;
+        border: 0;
+        margin: 0;
+        background: rgba(0, 0, 0, .5);
+        position: absolute;
+        bottom: 0;
+    }
+    
+    .picLift {
+        display: none;
+        width: 570px;
+        height: 100%;
+        background: #f2f2f2;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    
+    .picLift .newC {
+        width: 100%;
+        height: 50px;
+        padding: 5px 10px;
+        color: #343434;
+        font-size: 18px;
+        line-height: 40px;
+        background: #e6e6e6;
+    }
+    
+    .picLift .newC .closeBtn {
+        width: 16px;
+        height: 16px;
+        background: url(res/images/close.png) no-repeat;
+        float: right;
+        margin: 12px;
+    }
+    
+    .picCon {
+        width: 100%;
+        height: 600px;
+        background: #f2f2f2;
+        margin: 0;
+        padding-top:20px;
+        padding-left:10px;
+    }
+    
+    .picCon .picName {
+        width: 100%;
+        height: 40px;
+        padding: 10px;
+    }
+    
+    .picCon span {
+        margin-left: 10px;
+        font-size: 18px;
+    }
+    
+    .picName input {
+        width: 60%;
+        height: 30px;
+        line-height: 25px;
+        padding: 5px;
+        border: none;
+        margin-left: 5px;
+    }
+    
+    .picCon .picImg {
+        width: 100%;
+        height: 40px;
+        margin: 20px 10px;
+    }
+    
+
+    
+    .picImg p {
+        width: 97%;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+        color: #898989;
+    }
+    
+    .imgBox {
+        width: 420px;
+        height: 300px;
+        margin: 80px auto;
+    }
+    
+    .imgBox img {
+        padding: 0;
+        margin: 0;
+        border: 0;
+        width: 420px;
+        height: 300px;
+    }
+    .pic-list h2{
+        position: absolute;
+        top:10px;right:20px;
+        z-index: ;
+    }
+    
+</style>
+
+<!-- 轮播图列表 -->
+<section style="text-align:left; " id="picList">
+    <ul class="pic-list">
+        <li class="add-pic" v-on:click="add">
+            <i></i>
+            <p>新建轮播图</p>
+        </li>
+
+        <li class="li-pic" v-for="(index,blist) in bannerList" v-on:click="edit(index,blist.id)">
+            <img  v-if="blist.fileName != ''" src="res/food/loading.jpg" sd-src="{{imgHost + blist.fileName}}"  class="cname" onerror="this.src=sd.froot+'res/food/test.jpg'"/>
+            <img v-if="blist.fileName == ''" src="res/food/test.jpg" width="300" height="200"  alt="商品" />
+            <p>{{blist.bannerName}}</p>
+            <h2 style="font-size: 38px;color: #dddddd;">{{index+1}}</h2>
+        </li>
+
+    </ul>
+
+    <!--<sd-page :page.sync="0" :count.sync='100' :total.sync='20' :num.sync='1' style="float: right;"></sd-page>-->
+
+</section>
+
+<!-- 轮播图修改和新增窗口 -->
+<div class="picCon">
+
+    <div class="picName">
+        <span class="required" style="margin-right: 10px;">轮播图名称  </span>
+        <input type="text" class="tex" v-model="bannerName" placeholder="请输入名称" />
+    </div>
+    <div class="picImg" id="upfilediv">
+        <span class="required" style="margin-right: 10px;">轮播图图片</span>
+        <span style="position:relative;  display: inline-block; font-size:0;height: 40px; ">
+            <form id="imageUpForm" enctype="multipart/form-data">
+                <input type="file" accept="image/jpeg,image/png,image/gif,image/tiff" id="file_upload" name="image" onclick="this.value = ''" style="position:absolute;left:0px; top:0px;height: 40px; opacity:0;width: 100%; background-color:red;cursor: pointer;">
+                <a class="blue" style="width: 100px; height: 40px; line-height: 40px;">编辑图片</a>
+            </form>
+        </span>
+        <p>(请上传.jpg .jpeg .gif .png等格式的图片，单张图片不能超过2M)</p>
+    </div>
+    <div class="imgBox" >
+        <img v-if="fileName != ''" id="imgs" v-bind:src="imgHost+fileName" onerror="this.src=sd.froot+'res/food/test.jpg'" alt="商品" >
+        <img v-if="fileName == ''" src="res/food/test.jpg" width="300" height="200"  alt="商品" />
+    </div>
+
+</div>

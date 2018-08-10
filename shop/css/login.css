@@ -1,0 +1,11 @@
+ body {
+     background: url(../res/images/bg.png) center no-repeat;
+     -ms-behavior: url(../css/backgroundsize.min.htc);
+     behavior: url(../css/backgroundsize.min.htc);
+     background-size: cover;
+ }
+ 
+ html,
+ body {
+     height: 100%;
+ }

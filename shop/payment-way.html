@@ -1,0 +1,123 @@
+<style type="text/css">
+    .paymentWayContent{
+        text-align: center;
+    }
+    .commonLi ul li{
+        width: 25%;float: left;
+    }
+    .paymentWayContent:nth-of-type(odd){
+        background: #f2f2f2;
+    }
+    .paymentWayContent{
+        height: 50px; line-height: 50px;
+    }
+    .editInfo{
+        width: 100%;display: block;color: #FFF;
+    }
+    .paymentWayTittle{
+        background: #E6E6E6;height: 50px;
+        line-height: 50px;text-align: center;
+    }
+    /*..................................弹出框的样式................................*/
+    #editInfomation{background:#eee;width:100%;height:100%;padding-top:20px;}
+    #editInfomation .payShowList{
+        height:50px;
+        padding-left:20px;
+        margin-top:20px;
+    }
+    #editInfomation .showListBefore{
+        width: 120px;height: 40px;
+        line-height: 40px;
+        float: left;
+        text-align: right;
+        margin-right:15px;
+    }
+    /*...........................小红*星星.....................*/
+    #editInfomation .showListBefore:after {
+        content: "*";
+        color: red;
+        position: relative;
+        top: 3px; right: -1px;
+    }
+    #editInfomation .payShowList .input{
+        border: 1px solid deepskyblue;
+    }
+    /*.............开关...................*/
+    #editInfomation .payShowList .switch{
+        float: left;/*margin-top: 7px;*/
+    }
+</style>
+<section   num="app" id="paymentWay" v-cloak>
+    <section>
+        <!-- 添加原因的button-->
+        <section style="margin-bottom: 15px;">
+            <div v-on:click="addpay" class="btn-concent" style="width: 100px;">
+                <button class="increase">添加</button>
+            </div>
+        </section>
+        <section style="width:100%;min-width: 760px;">
+            <!-- title-->
+            <section class="paymentWayTittle commonLi">
+                <ul>
+                    <li>支付方式</li>
+                    <li>入实收账</li>
+                    <li>排序</li>
+                    <li>操作</li>
+                </ul>
+            </section>
+            <!-- content list-->
+            <section>
+                <section v-if = "payNameList.length == 0" style="width:100%;height:50px;line-height: 50px;text-align: center;color:orange;">暂时无支付</section>
+                <section v-else v-for="(index,bill) in payNameList" class="paymentWayContent commonLi" >
+                    <ul>
+                        <!-- 支付方式名称-->
+                        <li style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
+                            {{bill.paymentName}}
+                        </li>
+                        <!-- 是否入账-->
+                        <li>
+                            <span v-if="bill.isBill=='1'">是</span>
+                            <span v-else>否</span>
+                        </li>
+                        <!-- 排序-->
+                        <li>{{bill.sort}}</li>
+                        <!--编辑状态-->
+                        <li>
+                            <span v-if="bill.isOperation==1" class="blue editInfo" >
+                                <a v-on:click="modifyBtn(index,bill)" href="javascript:void(0);" class="blue fl" style="width: 50%;">编辑</a>
+                                <a v-on:click="deleteBtn(index,bill)" href="javascript:void(0);" class="red fl" style="width: 50%;">删除</a>
+                            </span>
+                            <span v-else class="gray editInfo">不可操作</span>
+                        </li>
+                    </ul>
+                </section>
+            </section>
+            <!-- title-->
+            <section v-if = "payNameList.length > 0"  class="paymentWayTittle commonLi">
+                <ul>
+                    <li>支付方式</li>
+                    <li>入实收账</li>
+                    <li>排序</li>
+                    <li>操作</li>
+                </ul>
+            </section>
+        </section>
+    </section>
+</section>
+<!--...............添加和编辑信息弹框....................-->
+<section id="editInfomation">
+    <div class="payShowList">
+        <h3 class="showListBefore">支付方式名称</h3>
+        <input type="text" v-model="payName" class="input" value="{{payName}}" placeholder="重新编辑支付方式"/>
+    </div>
+    <div class="payShowList">
+    <h3 class="showListBefore">是否入实账</h3>
+        <div class="switch">
+            <sd-onoff :onoff.sync="isBill"></sd-onoff>
+        </div>
+    </div>
+    <div class="payShowList">
+        <h3 class="showListBefore">排序</h3>
+        <sd-subadd :num.sync="num" :maxnum="1000" :minnum="1"></sd-subadd>
+    </div>
+</section>

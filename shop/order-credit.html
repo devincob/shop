@@ -1,0 +1,512 @@
+<style type="text/css">
+	.yuChairFix:after {
+		content: '';
+		display: block;
+		clear: both;
+	}
+	
+	#orMaRetreat {
+		margin-top: 20px;
+		position: relative;
+	}
+	
+	#orMaRetreat nav {
+		margin-bottom: 20px;
+	}
+	
+	#orMaRetreat nav a {
+		text-align: center;
+		font-size: 12px;
+		width: 100px;
+		height: 40px;
+		line-height: 40px;
+		float: left;
+		display: block;
+		background: #F2F2F2;
+	}
+	
+	#orMaRetreat nav a.active {
+		color: #fff;
+		background: #2a80b9;
+	}
+	
+	#orMaRetreat .orMaReMainList li:first-of-type,
+	#orMaRetreat .orMaReMainList li:last-of-type {
+		background: #e6e6e6;
+	}
+	
+	#orMaRetreat .orMaReMainList li:nth-of-type(even) {
+		background: #f2f2f2;
+	}
+	
+	#orMaRetreat .orMaReMainList li span {
+		display: block;
+		text-align: center;
+		height: 50px;
+		line-height: 50px;
+		width: 11%;
+		color: #8f8f8f;
+		float: left;
+		position: relative;
+	}
+	
+	#orMaRetreat .orMaReMainList li span:last-of-type {
+		width: 23%;
+	}
+	#orMaRetreat .orMaReMainList li span:nth-of-type(1){
+		width: 7%;
+	}
+	#orMaRetreat .orMaReMainList li span:nth-of-type(2){
+		width: 15%;
+	}
+	#orMaRetreat .orMaReMainList li span:nth-of-type(3){
+		width: 17%;
+	}
+	#orMaRetreat .orMaReMainList li span:nth-of-type(4) {
+		width: 5%;
+	}
+	#orMaRetreat .orMaRetBox {
+		height: 42px;
+		border: 1px solid #b3b3b3;
+		float: left;
+	}
+	
+	#orMaRetreat .zhi {
+		text-align: center;
+		width: 35px;
+		height: 40px;
+		line-height: 40px;
+		display: block;
+		float: left;
+	}
+	
+	.orMaRetreatTime {
+		height: 42px;
+		margin-bottom: 25px;
+	}
+	
+	#orMaRetreat .orMaRetBox input {
+		text-align: center;
+		height: 38px;
+		width: 159px;
+		padding-left: 0;
+		display: block;
+		float: left;
+		outline: none;
+		border: 0;
+		border-right: solid #b3b3b3 1px;
+	}
+	
+	#orMaRetreat .orMaRetBox div {
+		width: 40px;
+		height: 40px;
+		position: relative;
+		cursor: pointer;
+	}
+	
+	#orMaRetreat .orMaRetBox div i {
+		height: 10px;
+		width: 10px;
+		border-top: 10px #b3b3b3 solid;
+		border-left: 5px solid transparent;
+		border-right: 5px solid transparent;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		margin-left: -5px;
+		margin-top: -5px;
+		box-sizing: border-box;
+	}
+	
+	#orMaRetreat .orMaRetBox a {
+		width: 51px;
+		height: 40px;
+		background: #28a8e0;
+	}
+	
+	#orMaRetreat .orMaRetBox:last-of-type {
+		margin-left: 45px;
+	}
+	
+	#orMaRetreat .orMaRetBox:last-of-type a {
+		color: #fff;
+		height: 40px;
+		width: 90px;
+		text-align: center;
+		line-height: 40px;
+	}
+	
+	#orMaRetreat .deepBlue {
+		background: #2980b9;
+	}
+	
+	#orMaRetreat .blue {
+		background: #00adef;
+	}
+	
+	#orMaRetreat .red {
+		background: #ec1515;
+	}
+	
+	#orMaRetreat .orMaReMainList li span a {
+		color: #fff;
+		font-size: 12px;
+		width: 32.9%;
+		height: 49px;
+		margin-top: 1px;
+		margin-left: 1px;
+		display: block;
+		float: right;
+	}
+	
+	#orMaRetreat .circle {
+		width: 26px;
+		height: 26px;
+		border: 1px #c7c7c7 solid;
+		border-radius: 50%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-left: -13px;
+		margin-top: -13px;
+		background: #fff;
+	}
+	
+	#orMaRetreat .circle.active {
+		background: url(res/icon/selected.png) center center no-repeat, #28A8E0;
+	}
+	
+	#orMaRetreat .orMaReBatch {
+		position: absolute;
+		top: -60px;
+		right: 0px;
+	}
+	
+	#orMaRetreat .orMaReBatch a {
+		color: #fff;
+		margin-left: 10px;
+	}
+	
+	#orMaRetreat .orange {
+		background: #f8931f;
+	}
+	
+	#orMaRetreat .orMaReBatch a.active {
+		background: #2980b9;
+	}
+	
+	#orMaRetreat .orMaReMainList li:nth-of-type(2) {
+		text-align: center;
+		height: 50px;
+		line-height: 50px;
+	}
+	
+	#orBatch {
+		width: 100%;
+		position: fixed;
+	}
+	
+	#orBatch p {
+		margin: 0;
+		margin-top: 30px;
+		padding-left: 28px;
+	}
+	
+	#orBatch p:last-of-type {
+		height: 14px;
+		margin-bottom: 48px;
+	}
+	
+	#orBatch p span {
+		display: block;
+		float: left;
+	}
+	
+	#orBatch p>span:first-of-type {
+		width: 254px;
+	}
+	
+	#orMaRetreat .orMaReBatch a.disabled {
+		background: #B3B3B3;
+		cursor: not-allowed;
+	}
+	
+	#orBill {
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+	}
+	
+	#orBill .orBillConLeft {
+		width: 494px;
+		height: 680px;
+		background: #F2F2F2;
+		padding: 30px 15px;
+		float: left;
+	}
+	
+	#orBill .orBillConLeft ul {
+		padding: 0 15px;
+		border-bottom: 1px #c8c9ca solid;
+		margin-bottom: 27px;
+	}
+	
+	#orBill .orBillConLeft ul li span {
+		font-size: 14px;
+		display: block;
+		height: 40px;
+		float: left;
+	}
+	
+	#orBill .orBillConLeft ul li span:first-of-type {
+		width: 285px;
+	}
+	
+	#orBill .orBillConRight {
+		width: 1013px;
+		height: 680px;
+		padding: 39px 30px;
+		margin-left: 34px;
+		background: #f2f2f2;
+		float: left;
+	}
+	
+	#orBill .orBillConRight h1 span {
+		text-align: center;
+		height: 40px;
+		width: 50%;
+		display: block;
+		border-bottom: 2px solid #c8c9ca;
+		float: left;
+		cursor: pointer;
+	}
+	
+	#orBill .orBillConRight h1 span.active {
+		border-bottom-color: #00adef;
+	}
+	
+	#orBill .orBillConRight ul {
+		width: 100%;
+		height: 462px;
+		max-height: 462px;
+		margin-top: 13px;
+		border: 1px solid #b3b3b3;
+		background: #fff;
+		overflow-y: auto;
+	}
+	
+	#orBill .orBillConRight ul li span {
+		text-align: center;
+		line-height: 40px;
+		height: 40px;
+		float: left;
+		display: block;
+		border-bottom: 1px solid #b3b3b3;
+		border-right: 1px solid #b3b3b3;
+	}
+	
+	#orBill .orBillConRight ul li span:nth-of-type(1) {
+		width: 13.3%;
+	}
+	
+	#orBill .orBillConRight ul li span:nth-of-type(2) {
+		width: 17.1%;
+	}
+	
+	#orBill .orBillConRight ul li span:nth-of-type(3) {
+		width: 12.8%;
+	}
+	
+	#orBill .orBillConRight ul li span:nth-of-type(4) {
+		width: 12.8%;
+	}
+	
+	#orBill .orBillConRight ul li span:nth-of-type(5) {
+		width: 14.3%;
+	}
+	
+	#orBill .orBillConRight ul li span:nth-of-type(6) {
+		width: 13.2%;
+	}
+	
+	#orBill .orBillConRight ul li span:nth-of-type(7) {
+		width: 16.5%;
+		border-right: 0;
+	}
+	
+	#orBill .orBillTitle {
+		height: 50px;
+		line-height: 50px;
+		background: #e1e1e1;
+		padding-left: 58px;
+	}
+	
+	#orBill .orBillTitle span {
+		margin-right: 45px;
+	}
+	
+	#orBill .orBillTitle span:last-of-type {
+		float: right;
+	}
+</style>
+</style>
+
+<section id="orMaRetreat" style="min-width: 1360px;">
+	<section v-if="showDetails">
+		<nav class="yuChairFix">
+			<div class="orMaReBatch">
+				<a class="deepBlue" v-bind:class="{'disabled' : !moreSettle.length}" v-on:click="orCSettleAll" href="javascript:void(0)">批量结清</a>
+				<!--<a class="blue" v-bind:class="{'disabled' : !moreSettle.length}" href="javascript:void(0)">导出</a>
+			<a class="orange" v-bind:class="{'disabled' : !moreSettle.length}" href="javascript:void(0)">打印</a>-->
+			</div>
+		</nav>
+
+		<section class="orMaRetreatCon">
+			<section class="orMaRetreatTime yuChairFix">
+				<section class="orMaRetBox yuChairFix">
+					<sd-calendar :time.sync="startTime" :uid="'mycalendar1'" :format="'yyyy年MM月dd日'" :only="true" readonly="readonly" style="height: 40px"></sd-calendar>
+					<div class="fl calendar-ctr" onclick="$('#mycalendar1').mouseup();">
+						<i></i>
+					</div>
+				</section>
+				<span class="zhi">至</span>
+				<section class="orMaRetBox yuChairFix">
+					<sd-calendar :time.sync="endTime" :uid="'mycalendar2'" :format="'yyyy年MM月dd日'" :only="true" readonly="readonly" style="height: 40px"></sd-calendar>
+					<div class="fl calendar-ctr" onclick="$('#mycalendar2').mouseup();">
+						<i></i>
+					</div>
+					<a v-on:click="searchInDate" class="fl" href="javascript:void(0)"><img src="res/images/search.png" alt="" /></a>
+				</section>
+				<section class="orMaRetBox yuChairFix">
+					<input type="text" v-model="bu" placeholder="请输入挂账账号" />
+					<span class="zhi">-</span>
+					<input style="border-left: 1px solid #B3B3B3;" type="text" v-model="searchInfo" placeholder="请输入订单号" />
+					<a class="fl orMaaBtn" v-on:click="searchBill" href="javascript:void(0)">查询</a>
+				</section>
+			</section>
+			<section class="orMaRetreatMain">
+				<ul class="orMaReMainList">
+					<li class="yuChairFix">
+						<span v-on:click="allSelected">全选</span>
+						<span>订单号</span>
+						<span>挂账账号</span>
+						<span>人数</span>
+						<span>消费金额</span>
+						<span>挂账时间</span>
+						<span>挂账金额（元）</span>
+						<span>操作</span>
+					</li>
+					<li v-if="orderCredit.length == 0">暂时没有退单</li>
+					<li v-else style="display: table;width: 100%;" class="yuChairFix" v-for="(i,item) in orderCredit">
+						<span v-on:click="ocSel(item)"><div class="circle" v-bind:class="{ 'active': item.selected}"></div></span>
+						<span>{{item.oid}}</span>
+						<span>{{item.billUser}}</span>
+						<span>{{item.person}}</span>
+						<span>{{item.price}}</span>
+						<span>{{item.updateTime}}</span>
+						<span>{{item.price}}</span>
+						<span><a class="red" v-on:click="orderDelete(item)" href="javascript:void(0)">删除</a><a class="blue" v-on:click="orCSettle(item)" href="javascript:void(0)">结清</a><a class="deepBlue" v-on:click="goDetails(item)" href="javascript:void(0)">明细</a></span>
+					</li>
+					<li class="yuChairFix">
+						<span v-on:click="allSelected">全选</span>
+						<span>订单号</span>
+						<span>挂账账号</span>
+						<span>人数</span>
+						<span>消费金额</span>
+						<span>挂账时间</span>
+						<span>挂账金额（元）</span>
+						<span>操作</span>
+					</li>
+				</ul>
+
+			</section>
+			<sd-page v-on:click="goPage(page)" v-if="total>1" :page.sync="page" :count.sync='count' :total.sync='total' :num.sync='num' style="float: right;margin-top: 25px;"></sd-page>
+		</section>
+	</section>
+	<section v-else id="orBill" class="yuChairFix">
+		
+		<section style="width: 1541px;">
+			<a class="deepBlue" style="text-align: center;font-size: 12px; width: 60px;height: 40px;margin-top: -60px;line-height: 40px;float: right;display: block;" v-on:click="orCSettle(orderDetails)" href="javascript:void(0)">结清</a>
+			<section class="orBillConLeft">
+				<ul class="yuChairFix">
+					<li><span>订单号：{{orderDetails.oid}}</span><span>就座区域：{{areaName}}</span></li>
+					<li><span>挂账日期：{{orderDetails.updateTime}}</span><span>桌号：{{tableName}}</span></li>
+					<li><span>单据状态：{{orderDetails.status}}</span><span>就座人数：{{orderDetails.person}}</span></li>
+				</ul>
+				<ul class="yuChairFix">
+					<li><span>订单原价：¥{{orderDetails.originalPrice}}</span><span>菜品数：{{totalCount.goodsTotal}}</span></li>
+					<li><span>订单实价：¥{{orderDetails.price}}</span><span>退菜数：{{orderDetails.returnNum}}</span></li>
+					<li><span>毛利润：¥{{orderDetails.profit}}</span></li>
+				</ul>
+				<ul class="yuChairFix">
+					<li><span>支付方式：暂未支付</span></li>
+					<li><span>预入账：¥{{orderDetails.price}}</span></li>
+					<li><span>找零：¥{{orderDetails.chargePrice}}</span></li>
+				</ul>
+				<ul class="yuChairFix">
+					<li><span>开台时间：{{orderDetails.createTime}}</span></li>
+					<li><span>结台时间：{{orderDetails.updateTime}}</span></li>
+				</ul>
+				<p>收银员{{orderDetails.billUser}}</p>
+			</section>
+			<section class="orBillConRight">
+				<h1 id="hhhh" class="yuChairFix"><span v-bind:class="{'active':controBtn}" v-on:click="conBtn">商品详情</span><span v-bind:class="{'active':!controBtn}" v-on:click="foodBtn">退菜详情</span></h1>
+
+				<div style="padding: 0 1%;">
+					<ul class="yuChairFix" v-if="controBtn">
+						<li>
+							<span>序号</span>
+							<span>菜品名</span>
+							<span>单价</span>
+							<span>数量（份）</span>
+							<span>小计（元）</span>
+							<span>折扣</span>
+							<span>实收（元）</span>
+						</li>
+						<li v-for="(i, item) in comDetails">
+							<span>{{i+1}}</span>
+							<span>{{item.itemName?item.itemName:item.package.itemName}}</span>
+							<span>{{item.itemPrice?item.itemPrice:item.package.itemPrice}}</span>
+							<span>{{item.itemNum ?item.itemNum:item.package.itemNum}}</span>
+							<span>{{item.itemTotal?item.itemTotal:item.package.itemTotal}}</span>
+							<span>{{item.itemDiscount?item.itemDiscount:item.package.itemDiscount}}</span>
+							<span>{{item.itemPrice?item.itemPrice:item.package.itemPrice}}</span>
+						</li>
+					</ul>
+					<ul class="yuChairFix" v-else>
+						<li>
+							<span>序号</span>
+							<span>菜品名</span>
+							<span>单价</span>
+							<span>数量（份）</span>
+							<span>小计（元）</span>
+							<span>折扣</span>
+							<span>实收（元）</span>
+						</li>
+						<li v-for="(i, item) in foodDEtails">
+							<span>{{i+1}}</span>
+							<span>{{item.itemName}}</span>
+							<span>{{item.itemPrice}}</span>
+							<span>{{item.itemNum}}</span>
+							<span>{{item.itemTotal}}</span>
+							<span>{{item.itemDiscount}}</span>
+							<span>{{item.itemPrice}}</span>
+						</li>
+					</ul>
+					<div class="orBillTitle">
+						<span>总计数量：{{totalCount.goodsTotal}}份</span>
+						<span>总计应收：¥{{totalCount.totalParice}}</span>
+						<span>总计折扣：¥{{totalCount.totalZhekou}}</span>
+						<span>总计实收：¥{{totalCount.totalShiJi}}</span>
+					</div>
+				</div>
+			</section>
+		</section>
+	</section>
+</section>
+<section id="orBatch">
+	<p>共{{num}}单</p>
+	<p class="yuChairFix"><span>应收：<span style="color: #fbb03b;float: none;display: inline">{{price}}</span>元</span>实收：<input v-model="payment" style="color: #fbb03b;float: none;display: inline">元</span>
+	</p>
+	<p><span v-if="settleType">是否进行批量结清</span><span v-else>是否进行结清</span></p>
+</section>

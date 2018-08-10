@@ -1,0 +1,71 @@
+<!--库存管理模块-->
+<section class="fl user-content" id="lcont">
+    <section class="user-function">
+        <section class="place fl">
+            <section class="class-Parent">
+                <template v-for="(i , item) in category">
+                    <span v-if="item.id == L1ID" class="on" v-on:click="changeL1ID(item.id  , i)">{{item.name}}</span>
+                    <span v-else v-on:click="changeL1ID(item.id  , i)">{{item.name}}</span>
+                </template>
+            </section>
+            <section  class="class-Child">
+                <template   v-if="child.length > 0 "  v-for="(i , item) in child">
+                    <span v-if="item.id == L2ID" v-on:click="changeL2ID(item.id)" class="second-on">{{item.name}}</span>
+                    <span v-else v-on:click="changeL2ID(item.id)">{{item.name}}</span>
+                </template>
+            </section>
+        </section>
+
+    </section>
+    <section class="user-info">
+        <section class="commodity-box">
+            <!--<template v-for="(index,stock) in goods | filterBy goodsName in 'goodsName' 'BC'">-->
+            <template v-for="(index,stock) in goods">                
+                <template v-if="incategory(stock.cids)">
+                    <section v-if="stock.isStock == 1" style="width: 300px;" class="fl" >
+                        <section class="fl" v-if="stock.status == 1" v-on:click="stockSet(index,stock.id)" style="transition: all 0.2s;">
+                            <img v-if="stock.imageName != ''" src="res/food/loading.jpg" sd-src="{{imgHost+stock.imageName}}" width="300" height="200" class="cname" onerror="this.src=sd.froot+'res/food/test.jpg'" alt="商品" />
+                            <img v-if="stock.imageName == ''" src="res/food/test.jpg" width="300" height="200"  class="cname" alt="商品" />
+                            <section class="comprice" style="height: 100%;text-align: center;">
+                                <h2 style="height: 120px;line-height:120px;width: 100%;font-size: 64px;">估清</h2>
+                                <p style="font-size: 24px;">{{stock.goodsName}}</p>
+                            </section>
+                        </section>
+                        <section class="fl" v-on:click="stockSet(index,stock.id)" v-else style="transition: all 0.2s;">
+                                <img v-if="stock.imageName != ''" src="res/food/loading.jpg" sd-src="{{imgHost+stock.imageName}}" class="cname" width="300" height="200" onerror="this.src=sd.froot+'res/food/test.jpg'" alt="商品" />
+                                <img v-if="stock.imageName == ''" src="res/food/test.jpg" width="300" height="200" class="cname"  alt="商品" />
+                                <section class="comprice" style="height: 100%;text-align: center;">
+                                    <h2 class="commodityName" style="font-size:  24px;text-align: center;line-height: 40px;margin-bottom: 40px;">{{stock.goodsName}}</h2>
+                                    <section class="fl" style="height: 30px;line-height: 30px;width: 100%;">
+                                        <section style="width: 100%;text-align: center;font-size:  16px;" class="fl">库存：<span style="font-size:  16px;">{{stock.goodsNum}}</span></section>
+                                        <section style="width: 100%;text-align: center;font-size:  16px;" class="fl">库存预警：<span style="font-size:  16px;">{{stock.goodsThreshold}}</span></section>
+                                    </section>
+                                </section>
+                        </section>
+                    </section>
+                </template>
+            </template>
+        </section>
+    </section>
+</section>
+
+<!--库存设置表单-->
+<section class="lContForm" style="width: 350px;height:200px;padding: 20px;">
+    <section v-if="initialise == true">
+        <section style="margin-bottom: 10px;width: 100%;" class="fl">
+            <label class="required fl" style="width: 30%;height: 40px;line-height: 40px;text-align: center;">库存</label>
+             <label class="fl" style="width: 70%;"> <input type="text" v-model="goodsNums"  maxlength="6" id="goodsNum" disabled="{{numDis}}" placeholder="输入库存数量"style="width: 170px;height:45px;padding-left:10px;border:0;outline: none;background-color: #f2f2f2;" /> </label>
+        </section>
+        <section style="margin-bottom: 10px;width: 100%;" class="fl">
+            <label class="required fl" style="width: 30%;height: 40px;line-height: 40px;text-align: center;">库存预警</label>
+             <label class="fl" style="width: 70%;"> <input type="text" v-model="goodsThresholds"  maxlength="6" id="goodsThresholds"  disabled="{{ThresholdDis}}"  placeholder="输入库存预警数量" style="width: 170px;height:45px;padding-left:10px;border:0;outline: none;background-color: #f2f2f2;" /> </label>
+        </section>
+       <section style="margin-bottom: 10px;width: 100%;" class="fl">
+            <label class="fl" style="width: 30%;height: 40px;line-height: 40px;text-align: center;">估清</label>
+            <label class="fl" style="width: 70%;"><span class="{{isLock==1?'check-span on':'check-span off'}}"  v-on:click="ToisWarn($event)"></span></label>
+       </section>
+    </section>
+    <section v-else>
+        <h2 style="line-height: 150px;color: #C8C8C8;font-size: 32px;text-align: center;">数据加载中...</h2>
+    </section>
+</section>

@@ -1,0 +1,33 @@
+<style type="text/css">
+    .commodity-name {
+        width: 100px;
+        height: 40px;
+        line-height: 40px;
+    }
+    .topR , .picName{
+        width:100%;height:40px;
+        margin-top:10px;
+    }
+    
+    .picName input{
+        width:100px;height:30px;
+        line-height: 25px;
+        padding:5px;
+        margin:0;
+    }
+</style>
+<section style="text-align:left;" id="jifen">
+	<div class="topR">
+	    <section class="fl" style="clear: both;">
+            <label class="commodity-name fl">参与会员</label>
+            <sd-onoff :onoff.sync="on"></sd-onoff>
+	    </section>
+    </div>	
+    <div class="picName">
+        <span class="required" style="display: block;float:left;width:100px;line-height: 40px;">积分比例  </span>
+        <input type="text"  disabled="{{disabled}}" v-model="cash" placeholder="请输入现金" />
+        <i>:</i>
+        <input type="text"  disabled="{{disabled}}" v-model="integral" placeholder="请输入积分" />
+    </div>
+    <a href="javascript:void(0);" v-on:click="keepOn" class="{{cash && integral  !== '' ?'yellow':'gray'}}" style="margin:10px 0;width:250px;">保存</a>
+</section>

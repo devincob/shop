@@ -1,0 +1,223 @@
+<style type="text/css">
+    .tas-addtas {
+        width: 580px;
+        height: 760px;
+        background-color: #F2F2F2;
+        padding: 30px;
+        color: #333;
+    }
+    /*.tas-type{width: 490px;height: 40px;margin: 0 auto;font-size: 0;}*/
+    
+    .tas-text {
+        font-size: 16px;
+        line-height: 40px;
+        text-align: center;
+        width: 64px;
+    }
+    
+    .tas-change {
+        margin-top: 10px;
+        height: 40px;
+    }
+    
+    .tas-change input {
+        border: none;
+        height: 40px;
+        outline: none;
+        padding: 0;
+        width: 65px;
+        float: left;
+    }
+    
+    .tas-change texttable {
+        text-indent: 16px;
+    }
+    
+    .commodity-box> section {
+        height: 150px;
+    }
+    
+    .table-content {
+        background-color: #eeeeee;
+        color: #898989;
+    }
+    
+    .table-border {
+        border-left: 2px solid #026eb7;
+        height: 40px;
+        width: 100%;
+        /*margin-bottom: 30px;*/
+    }
+    
+    .table-pos {
+        width: 218px;
+        text-indent: 10px;
+        
+    }
+    
+    .table-pos-name {
+        height: 40px;
+        line-height: 40px;
+        font-size: 24px;
+        color: #585657;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .table-number {
+        width: 80px;
+        height: 70px;
+        line-height: 70px;
+        text-align: center;
+    }
+    
+    .table-number h2 {
+        font-size: 48px;
+        color: #dddddd;
+    }
+    
+    .table-seat {
+        height: 80px;
+        line-height: 20px;
+        text-indent: 10px;
+    }
+    
+    .table-seat-num {
+        height: 20px;
+        font-size: 16px;
+        line-height: 20px;
+        margin-bottom: 4px;
+    }
+    
+    .table-seat h3 {
+        font-size: 20px;
+        padding-bottom: 10px;
+        color: #585657;
+    }
+    
+    .describe {
+        width: 400px;
+        padding: 10px;
+        font-size: 14px;
+    }
+    
+    .input-content {
+        width: 75px;
+    }
+    
+    .table-window {
+        width: 580px;
+        height: 600px;
+        background-color: #F2F2F2;
+        text-align: center;
+    }
+    
+    .table-window-show {
+        width: 540px;
+        height: 400px;
+        display: inline-block;
+        margin-top: 20px;
+        font-size: 0;
+    }
+    
+    .table-window-show ul li {
+        margin-bottom: 14px;
+    }
+    
+    .table-window-show ul li p {
+        width: 80px;
+        height: 40px;
+        line-height: 40px;
+        text-align: right;
+        font-size: 14px;
+    }
+    
+    .table-window-show ul li span.table-span {
+        display: inline-block;
+        width: 420px;
+        text-align: left;
+        height: 40px;
+    }
+    
+    /*.table-name {
+        display: inline-block;
+        font-size: 24px;
+        line-height: 16px;
+    }*/
+    
+    .selectbtns span {
+     
+        background-color: #FFF;
+    }
+    
+</style>
+
+<!-- 模块展示代码在此 -->
+<div id="table-show">
+    <section class="commodity-box">
+        <section class="commodityAdd fl" v-on:click="openWindow('add')">
+            <section class="combox">
+                <img src="res/images/comadd.png" alt="添加" />
+                <h3>新建桌台</h3>
+            </section>
+        </section>
+        <template v-for="(i, item) in tableList" v-cloak>
+            <section class="table-content fl" v-on:click="openWindow('edit',item.id,i)">
+                <section class="table-border">
+                    <section class="table-pos fl">
+                        <section class="table-pos-name">{{item.areaName}} - {{item.tableName}}</section>
+                    </section>
+                    <section class="table-number fl">
+                        <h2>{{i+1}}</h2>
+                    </section>
+                </section>
+                <section class="table-seat">
+                    <h3>默认席位：{{item.normalSeat}}</h3>
+                    <section class="table-seat-num">最少容纳：{{item.minSeat}}</section>
+                    <section class="table-seat-num">最多容纳：{{item.maxSeat}}</section>
+                </section>
+            </section>
+        </template>
+    </section>
+</div>
+<!--一级弹窗-->
+
+<div class="table-window" id="table-window" v-cloak>
+    <div class="table-window-show">
+        <ul>
+            <li>
+                <p class="required table-area fl">区域</p>
+                <span class="table-span"><sd-radio :list.sync="Area" :index.sync="Index" :name='"areaName"'></sd-radio></span>
+            </li>
+            <li>
+                <p class="required table-area fl" style="">桌号名称</p>
+                <input type="text" class="input" style="width: 410px;" placeholder="输入桌台名称(创建多个桌台请请以逗号隔开)"  v-model = 'getOneTable.tableName'>
+            </li>
+            <li>
+                <p class="required table-area fl">标准席位</p>
+                <span class="table-span"><sd-subadd :num.sync="getOneTable.normalSeat" :maxnum="1000" :minnum="1"></sd-subadd></span>
+                
+                <!--<input type="number" class="input" style="width: 410px; " placeholder="输入标准席位" v-model='getOneTable.normalSeat'>-->
+            </li>
+            
+            <li>
+                <p class="table-area required fl">容纳人数</p>
+                <span class="table-span"><sd-subadd :num.sync="minSeat" :maxnum="1000" :minnum="1"></sd-subadd> 
+                <p class="table-area fl" style="width: 60px;text-align: center;">至</p>
+                <sd-subadd :num.sync="maxSeat" :maxnum="1000" :minnum="1"></sd-subadd></span>
+            </li>
+            <li>
+                <p class="table-area required fl">排序</p>
+                <span class="table-span"><sd-subadd :num.sync="sort" :maxnum="250" :minnum="1"></sd-subadd></span>
+            </li>
+            <li>
+                <p class="table-area fl">描述</p>
+                <textarea class="describe" maxlength='250' v-model='getOneTable.description'></textarea>
+            </li>
+        </ul>
+
+    </div>
+
+</div>
+<!-- 模块展示代码在此 -->

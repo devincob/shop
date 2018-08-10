@@ -1,0 +1,66 @@
+<style>
+    body, .main{
+        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK8AAAABCAIAAAAn5mm8AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyFpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozQUFEN0FGRkJCNzAxMUU2QTgyQkY5QzU3RDAwMEUzRSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozQUFEN0IwMEJCNzAxMUU2QTgyQkY5QzU3RDAwMEUzRSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjNBQUQ3QUZEQkI3MDExRTZBODJCRjlDNTdEMDAwRTNFIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjNBQUQ3QUZFQkI3MDExRTZBODJCRjlDNTdEMDAwRTNFIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+pHohywAAABRJREFUeNpi1Fz9iGEUjAIwAAgwAIQYAbhSGKfiAAAAAElFTkSuQmCC");
+        background-position:left top;
+        background-repeat: repeat-y;
+    }
+</style>
+<div id="app" v-cloak>
+    <section class="main" style="height: auto;">
+        <header>
+            <section class="head-logo fl">
+                <a href="javascript:void(0);" class="logo"> </a>
+            </section>
+            <section class="uname fr">
+                <section class="user-tit">
+                    {{shopName}}<i></i>
+                    <a href="#loginout" class="uname-list">退出登录</a>
+                </section>
+            </section>
+        </header>
+        <section class="content" style="height: auto;">
+            <section class="menu-second">
+                <ul>
+                    <template v-if="secondMenu.length > 0">
+                        <li v-for="(i,x) in secondMenu">
+                            <a v-if="second == i" class="on" href="#main&f={{first}}&s={{i}}">{{x.title}}</a>
+                            <a v-else href="#main&f={{first}}&s={{i}}">{{x.title}}</a>
+                        </li>
+                    </template>
+                    <template v-else>
+                        <li>
+                            <a href="#"> &nbsp; </a>
+                        </li>
+                    </template>
+                </ul>
+                <section class="warn">
+                    <section class="warn-content"><i class="warn-tip"></i>警告提示：当前路由器已离线</section>
+                </section>
+            </section>
+            <section class="user-title">
+                <template v-for="crumb in breadcrumb">
+                    <a @click="breadcrumbClick" href="{{crumb.url}}" class="{{crumb.class}}">{{crumb.title}}</a>
+                </template>
+                <section class="fr" id="search" style="margin-top: 5px;">
+                </section>
+            </section>
+            <section id="userbox" style="height: auto;"></section>
+            <div style="clear: both;font-size: 0; line-height: 0px;height: 0;width: 100%;"></div>
+        </section>
+    </section>
+    <aside class="sitebar">
+        <section class="menu">
+            <nav>
+                <template v-for="(index,list) in firstMenu">
+                    <a v-if="first == index" class="on" href="#main&f={{index}}&s=0">
+                        <i class="{{getFirstClass(list.title)}}"></i> {{list.title}}
+                    </a>
+                    <a v-else href="#main&f={{index}}&s=0">
+                        <i class="{{getFirstClass(list.title)}}"></i> {{list.title}}
+                    </a>
+                </template>
+            </nav>
+        </section>
+    </aside>
+    <div style="clear: both;font-size: 0; line-height: 0px;height: 0;width: 100%;"></div>
+</div>
